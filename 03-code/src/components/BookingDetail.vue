@@ -41,9 +41,24 @@
                 },{
                     name: '预约时间',
                     contain: '3月13日 下午； 3月14日 上午+下午'
-                }]
+                }],
+                customer:[
+                    {
+                        id: 1,
+                        name: '啦啦啦',
+                        pet: '狗'
+                    }
+                ]
             }
 
+        },
+        created() {
+            const _this = this
+            this.$http.get('http://localhost:8181/customer/findAll').then(function (resp){
+                console.log(resp)
+                _this.customer = resp.data
+                alert(_this.customer[1].id + ' ' + _this.customer[1].name + ' ' + _this.customer[1].pet)
+            })
         }
     }
 </script>

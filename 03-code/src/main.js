@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
 import Element from 'element-ui'
+import axios from 'axios'
+Vue.prototype.$http = axios
 import 'element-ui/lib/theme-chalk/index.css';
 import './font/iconfont.js';
 

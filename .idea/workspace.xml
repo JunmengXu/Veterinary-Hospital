@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cc47ebdf-d66f-4e23-ad74-7ab8bc2ceccf" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="cc47ebdf-d66f-4e23-ad74-7ab8bc2ceccf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/config/CrosConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/controller/CustomerHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/controller/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/entity/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/repository/CustomerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/result/Result.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/test/java/com/backend/springboothospital/HelloController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/test/java/com/backend/springboothospital/SpringboothospitalApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/test/java/com/backend/springboothospital/repository/CustomerRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03-code/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03-code/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03-code/src/components/BookingDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/src/components/BookingDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03-code/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/src/main.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IgnoredFileRootStore">
     <option name="generatedRoots">
@@ -17,19 +36,55 @@
   </component>
   <component name="ProjectId" id="1Z9cfFeplh73S9TkmB1OBijfOmC" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/03-code/package.json" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/03-code/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="serve" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="npm serve" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/03-code/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="serve" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
       <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
       </list>
     </option>
   </component>
@@ -44,10 +99,48 @@
       <option name="presentableId" value="Default" />
       <updated>1584254851822</updated>
       <workItem from="1584254852911" duration="798000" />
+      <workItem from="1584276013374" duration="1493000" />
+      <workItem from="1584341077047" duration="830000" />
+      <workItem from="1584350584337" duration="3997000" />
+      <workItem from="1584408540451" duration="3459000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="71" key="#ESLint" timestamp="1584369087442">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="71" key="#ESLint/0.0.1536.824@0.0.1536.824" timestamp="1584369087442" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584276711771">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1584276711771" />
+    <state x="548" y="167" key="FileChooserDialogImpl" timestamp="1584276534147">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="548" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1584276534147" />
+    <state width="1364" height="195" key="GridCell.Tab.0.bottom" timestamp="1584408948933">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1364" height="195" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584408948933" />
+    <state width="1364" height="195" key="GridCell.Tab.0.center" timestamp="1584408948932">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1364" height="195" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1584408948932" />
+    <state width="1364" height="195" key="GridCell.Tab.0.left" timestamp="1584408948931">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1364" height="195" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1584408948931" />
+    <state width="1364" height="195" key="GridCell.Tab.0.right" timestamp="1584408948933">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1364" height="195" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584408948933" />
+    <state x="270" y="54" key="SettingsEditor" timestamp="1584369225084">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="270" y="54" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1584369225084" />
   </component>
 </project>
