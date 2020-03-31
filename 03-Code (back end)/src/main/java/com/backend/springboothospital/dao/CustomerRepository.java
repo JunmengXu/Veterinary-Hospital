@@ -1,4 +1,4 @@
-package com.backend.springboothospital.repository;
+package com.backend.springboothospital.dao;
 
 import com.backend.springboothospital.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;

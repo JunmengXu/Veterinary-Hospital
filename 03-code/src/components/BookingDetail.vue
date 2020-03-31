@@ -52,6 +52,7 @@
             }
 
         },
+        //向后端发送请求，获得customer的数据
         created() {
             const _this = this
             this.$http.get('http://localhost:8181/customer/findAll').then(function (resp){

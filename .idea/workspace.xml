@@ -2,20 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc47ebdf-d66f-4e23-ad74-7ab8bc2ceccf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/config/CrosConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/controller/CustomerHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/controller/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/entity/Customer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/entity/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/repository/CustomerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/result/Result.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/test/java/com/backend/springboothospital/HelloController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/test/java/com/backend/springboothospital/SpringboothospitalApplicationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/test/java/com/backend/springboothospital/repository/CustomerRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/dao/UserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-code/src/assets/image/login_bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-code/src/components/LoginCustomer.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-code/src/components/home/Appindex.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-code/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/config/CrosConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/config/CrosConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03-Code (back end)/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/03-code/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/03-code/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03-code/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/03-code/src/components/BookingDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/src/components/BookingDetail.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/03-code/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/src/main.js" afterDir="false" />
     </list>
@@ -23,6 +23,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -44,7 +51,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/03-code/package.json" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/03-code/src/assets/image" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -53,6 +60,15 @@
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\College subjects\大三\大三下\软件课设Ⅱ\github\Veterinary-Hospital-Front-End-\03-code\src\components" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\College subjects\大三\大三下\软件课设Ⅱ\github\Veterinary-Hospital-Front-End-\03-code\src\assets\image" />
+      <recent name="D:\College subjects\大三\大三下\软件课设Ⅱ\github\Veterinary-Hospital-Front-End-\03-code\src" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="js.build_tools.npm">
@@ -102,7 +118,9 @@
       <workItem from="1584276013374" duration="1493000" />
       <workItem from="1584341077047" duration="830000" />
       <workItem from="1584350584337" duration="3997000" />
-      <workItem from="1584408540451" duration="3459000" />
+      <workItem from="1584408540451" duration="4061000" />
+      <workItem from="1585534299400" duration="10130000" />
+      <workItem from="1585620636043" duration="2195000" />
     </task>
     <servers />
   </component>
@@ -110,37 +128,52 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="361" y="71" key="#ESLint" timestamp="1584369087442">
+    <state x="361" y="71" key="#ESLint" timestamp="1585539677266">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="71" key="#ESLint/0.0.1536.824@0.0.1536.824" timestamp="1584369087442" />
+    <state x="361" y="71" key="#ESLint/0.0.1536.824@0.0.1536.824" timestamp="1585539677266" />
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584276711771">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1584276711771" />
-    <state x="548" y="167" key="FileChooserDialogImpl" timestamp="1584276534147">
+    <state x="548" y="167" key="FileChooserDialogImpl" timestamp="1585540042807">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="548" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1584276534147" />
-    <state width="1364" height="195" key="GridCell.Tab.0.bottom" timestamp="1584408948933">
+    <state x="548" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1585540042807" />
+    <state width="1017" height="195" key="GridCell.Tab.0.bottom" timestamp="1585622971224">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1364" height="195" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584408948933" />
-    <state width="1364" height="195" key="GridCell.Tab.0.center" timestamp="1584408948932">
+    <state width="1017" height="195" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585622971224" />
+    <state width="1017" height="195" key="GridCell.Tab.0.center" timestamp="1585622971224">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1364" height="195" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1584408948932" />
-    <state width="1364" height="195" key="GridCell.Tab.0.left" timestamp="1584408948931">
+    <state width="1017" height="195" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585622971224" />
+    <state width="1017" height="195" key="GridCell.Tab.0.left" timestamp="1585622971224">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1364" height="195" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1584408948931" />
-    <state width="1364" height="195" key="GridCell.Tab.0.right" timestamp="1584408948933">
+    <state width="1017" height="195" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585622971224" />
+    <state width="1017" height="195" key="GridCell.Tab.0.right" timestamp="1585622971224">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1364" height="195" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584408948933" />
+    <state width="1017" height="195" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585622971224" />
     <state x="270" y="54" key="SettingsEditor" timestamp="1584369225084">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="270" y="54" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1584369225084" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1585622132001">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1585622132001" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/03-code/src/components/LoginCustomer.vue</url>
+          <line>10</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

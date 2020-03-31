@@ -1,31 +1,37 @@
 <template>
   <div id="app">
-    <Header/>
-    <Homepage/>
-    <Timetable/>
-    <Console/>
-    <DailyDetail/>
-    <BookingDetail/>
+<!--    <Header/>-->
+<!--    <Homepage/>-->
+<!--    <Timetable/>-->
+<!--    <Console/>-->
+<!--    <DailyDetail/>-->
+<!--    <BookingDetail/>-->
+<!--    <router-link to="/login">Login</router-link>-->
+    <router-view/>
+      <LoginCustomer/>
+
   </div>
 </template>
 
 <script>
-  import Header from './components/Header.vue'
-  import BookingDetail from "@/components/BookingDetail";
-  import DailyDetail from "@/components/DailyDetail";
-  import Homepage from "./components/Homepage";
-  import Console from "@/components/Console";
-  import Timetable from "@/components/Timetable";
+  // import Header from './components/Header.vue'
+  // import BookingDetail from "@/components/BookingDetail";
+  // import DailyDetail from "@/components/DailyDetail";
+  // import Homepage from "./components/Homepage";
+  // import Console from "@/components/Console";
+  // import Timetable from "@/components/Timetable";
+  import LoginCustomer from "./components/LoginCustomer";
 
   export default {
     name: 'App',
     components: {
-      BookingDetail: BookingDetail,
-      DailyDetail: DailyDetail,
-      Timetable: Timetable,
-      Console: Console,
-      Homepage: Homepage,
-      Header: Header
+      // BookingDetail: BookingDetail,
+      // DailyDetail: DailyDetail,
+      // Timetable: Timetable,
+      // Console: Console,
+      // Homepage: Homepage,
+      // Header: Header
+        LoginCustomer: LoginCustomer
     }
   }
 </script>
