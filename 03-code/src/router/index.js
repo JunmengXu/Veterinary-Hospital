@@ -7,6 +7,7 @@ Vue.use(Router)
 
 //路由， 控制不同的路径导向不同的页面
 export default new Router({
+  mode: 'history',
   routes: [
     {
       //登录界面
@@ -18,7 +19,11 @@ export default new Router({
       //主界面
       path: '/index',
       name: 'AppIndex',
-      component: AppIndex
+      component: AppIndex,
+      // 区分页面是否需要拦截
+      meta: {
+        requireAuth: true
+      }
     }
   ]
 })

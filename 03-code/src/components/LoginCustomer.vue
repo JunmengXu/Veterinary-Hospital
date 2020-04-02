@@ -35,6 +35,8 @@
         //向后端发送用户名密码，进行验证
         methods: {
             login () {
+                // var _this = this
+                console.log(this.$store.state)
                 this.$http
                     .post('http://localhost:8181/api/login', {
                         username: this.loginForm.username,
@@ -42,7 +44,10 @@
                     })
                     .then(successResponse => {
                         if (successResponse.data.code === 200) {
-                            this.$router.replace({path: '/index'})
+                            // var data = this.loginForm
+                            this.$store.commit('login', this.loginForm)
+                            var path = this.$route.query.redirect
+                            this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
                         }
                     })
                     // eslint-disable-next-line no-unused-vars
@@ -50,6 +55,13 @@
                     })
             }
         }
+        // mounted() {
+        //     // 关闭浏览器窗口的时候清空浏览器缓存在localStorage的数据
+        //     window.onbeforeunload = function () {
+        //         var storage = window.localStorage;
+        //         storage.clear()
+        //     }
+        // }
     }
 </script>
 

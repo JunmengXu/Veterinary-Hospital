@@ -23,7 +23,7 @@
 
 
 
-                        <el-button id="up9" size="medium" type="primary">登出</el-button>
+                        <el-button id="up9" size="medium" type="primary" v-on:click="loginOut">登出</el-button>
 
 
 
@@ -43,10 +43,18 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
+    name: 'HelloWorld',
+    props: {
+        msg: String
+    },
+    methods: {
+        loginOut () {
+            localStorage.removeItem('user')
+            // localStorage.removeItem('login')
+            alert('退出成功')
+            this.$router.replace('/login')
+            }
+    }
 }
 </script>
 
