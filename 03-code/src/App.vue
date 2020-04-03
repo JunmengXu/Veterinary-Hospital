@@ -7,9 +7,9 @@
 <!--    <DailyDetail/>-->
 <!--    <BookingDetail/>-->
 <!--    <router-link to="/login">Login</router-link>-->
-    <router-view/>
-      <LoginCustomer/>
-
+<!--    <router-view/>-->
+<!--      <LoginCustomer/>-->
+      <router-view/>
   </div>
 </template>
 
@@ -20,19 +20,19 @@
   // import Homepage from "./components/Homepage";
   // import Console from "@/components/Console";
   // import Timetable from "@/components/Timetable";
-  import LoginCustomer from "./components/LoginCustomer";
+  // import LoginCustomer from "./components/LoginCustomer";
 
   export default {
     name: 'App',
-    components: {
-      // BookingDetail: BookingDetail,
-      // DailyDetail: DailyDetail,
-      // Timetable: Timetable,
-      // Console: Console,
-      // Homepage: Homepage,
-      // Header: Header
-        LoginCustomer: LoginCustomer
-    }
+    // components: {
+    //   // BookingDetail: BookingDetail,
+    //   // DailyDetail: DailyDetail,
+    //   // Timetable: Timetable,
+    //   // Console: Console,
+    //   // Homepage: Homepage,
+    //   // Header: Header
+    //     LoginCustomer: LoginCustomer
+    // }
   }
 </script>
 

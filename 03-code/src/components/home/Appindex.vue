@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header/>
+<!--    <Header/>-->
     <Homepage/>
     <Timetable/>
     <Console/>
@@ -11,7 +11,7 @@
 
 <script>
 
-  import Header from '@/components/Header.vue'
+  // import Header from '@/components/Header.vue'
   import BookingDetail from "@/components/BookingDetail";
   import DailyDetail from "@/components/DailyDetail";
   import Homepage from "@/components/Homepage";
@@ -27,7 +27,7 @@ export default {
     Timetable: Timetable,
     Console: Console,
     Homepage: Homepage,
-    Header: Header
+    // Header: Header
   }
 }
 </script>
