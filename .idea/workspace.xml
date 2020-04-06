@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc47ebdf-d66f-4e23-ad74-7ab8bc2ceccf" name="Default Changelist" comment="">
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/03-Code (back end)/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/resources/application.yml" afterDir="false" />
@@ -9,6 +10,29 @@
       <change beforePath="$PROJECT_DIR$/03-code/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/03-code/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/03-code/src/components/LoginCustomer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/src/components/LoginCustomer.vue" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/controller/AppointmentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/dao/BookingDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/dao/PetDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/entity/Booking.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/entity/Pet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/service/BookingService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/service/PetService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-code/src/components/staff/Booking/BookingItem.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-code/src/components/staff/Booking/SideMenuBooking.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/03-code/src/components/staff/LoginStaff.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/03-Code (back end)/src/main/java/com/backend/springboothospital/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03-code/src/components/BookingDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/src/components/staff/BookingDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03-code/src/components/Console.vue" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/src/components/staff/Console.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03-code/src/components/DailyDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/src/components/staff/DailyDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03-code/src/components/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/src/components/staff/Header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03-code/src/components/Homepage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/src/components/staff/Homepage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03-code/src/components/LoginCustomer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/src/components/customer/LoginCustomer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03-code/src/components/StaffHome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/src/components/staff/StaffHome.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03-code/src/components/Timetable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/src/components/staff/Timetable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/03-code/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/src/main.js" afterDir="false" />
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/03-code/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/03-code/src/router/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,8 +70,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+<<<<<<< Updated upstream
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/03-code/src/components/customer" />
+>>>>>>> Stashed changes
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -61,12 +89,15 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\College subjects\大三\大三下\软件课设Ⅱ\github\Veterinary-Hospital-Front-End-\03-code\src\components" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\College subjects\大三\大三下\软件课设Ⅱ\github\Veterinary-Hospital-Front-End-\03-code\src\components\customer" />
       <recent name="D:\College subjects\大三\大三下\软件课设Ⅱ\github\Veterinary-Hospital-Front-End-\03-code\src\assets\image" />
       <recent name="D:\College subjects\大三\大三下\软件课设Ⅱ\github\Veterinary-Hospital-Front-End-\03-code\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\College subjects\大三\大三下\软件课设Ⅱ\github\Veterinary-Hospital-Front-End-\03-code\src\components\staff\Booking" />
+      <recent name="D:\College subjects\大三\大三下\软件课设Ⅱ\github\Veterinary-Hospital-Front-End-\03-code\src\components\staff" />
+      <recent name="D:\College subjects\大三\大三下\软件课设Ⅱ\github\Veterinary-Hospital-Front-End-\03-code\src\components" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm serve">
@@ -146,9 +177,14 @@
       <workItem from="1584408540451" duration="4061000" />
       <workItem from="1585534299400" duration="10130000" />
       <workItem from="1585620636043" duration="2195000" />
+<<<<<<< Updated upstream
       <workItem from="1585828714574" duration="5165000" />
       <workItem from="1585881194585" duration="16572000" />
       <workItem from="1586001176104" duration="13365000" />
+=======
+      <workItem from="1585828714574" duration="9033000" />
+      <workItem from="1586137671366" duration="12904000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
@@ -202,8 +238,18 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
+<<<<<<< Updated upstream
           <url>file://$PROJECT_DIR$/03-code/src/components/Header.vue</url>
           <line>39</line>
+=======
+          <url>file://$PROJECT_DIR$/03-code/src/components/staff/LoginStaff.vue</url>
+          <line>10</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/03-code/src/components/staff/Header.vue</url>
+          <line>25</line>
+>>>>>>> Stashed changes
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
