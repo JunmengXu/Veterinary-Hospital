@@ -17,17 +17,10 @@ public class User {
     String username;
     String password;
     String email;
+    @Column (name = "phonenumber")
+    String phoneNumber;
     String account;
     int type;
-    String phonenumber;
-
-    public String getPhonenumber() {
-        return phonenumber;
-    }
-
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
-    }
 
     public int getId() {
         return id;
@@ -59,6 +52,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phone) {
+        this.phoneNumber = phone;
     }
 
     public String getAccount() {

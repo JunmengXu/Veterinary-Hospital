@@ -9,7 +9,7 @@
 <!--    <router-link to="/login">Login</router-link>-->
       <router-view></router-view>
       <!--在注册页面不显示公共组件也就是登录页面-->
-      <LoginCustomer v-show="!(path ==='/register') "></LoginCustomer>
+<!--      <LoginStaff v-show="!(path ==='/register') "></LoginStaff>-->
 
 
   </div>
@@ -23,7 +23,7 @@
   // import Console from "@/components/Console";
   // import Timetable from "@/components/Timetable";
  // import Register from "../components/Register"
-  import LoginCustomer from "./components/LoginCustomer";
+ //  import LoginStaff from "./components/staff/LoginStaff";
 
   export default {
     name: 'App',
@@ -40,7 +40,7 @@
       // Console: Console,
       // Homepage: Homepage,
       // Header: Header
-        LoginCustomer: LoginCustomer
+      //   LoginStaff: LoginStaff
     },
       mounted() {
           this.path = this.$route.path;

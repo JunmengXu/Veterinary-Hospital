@@ -12,11 +12,11 @@
 <script>
 
   // import Header from '@/components/Header.vue'
-  import BookingDetail from "@/components/BookingDetail";
-  import DailyDetail from "@/components/DailyDetail";
-  import Homepage from "@/components/Homepage";
-  import Console from "@/components/Console";
-  import Timetable from "@/components/Timetable";
+  import BookingDetail from "@/components/staff/BookingDetail";
+  import DailyDetail from "@/components/staff/DailyDetail";
+  import Homepage from "@/components/staff/Homepage";
+  import Console from "@/components/staff/Console";
+  import Timetable from "@/components/staff/Timetable";
 
   //这里导入了主界面里的所有版块，都在此页面显示
 export default {

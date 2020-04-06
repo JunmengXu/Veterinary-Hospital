@@ -18,6 +18,37 @@ USE `hospital`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `booking`
+--
+
+DROP TABLE IF EXISTS `booking`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `booking` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `urgency` int(11) NOT NULL,
+  `hospital` int(11) NOT NULL,
+  `time` datetime NOT NULL,
+  `symptom` varchar(45) NOT NULL,
+  `petId` int(11) DEFAULT NULL,
+  `needtime` date NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `petId_idx` (`petId`) /*!80000 INVISIBLE */,
+  CONSTRAINT `petId` FOREIGN KEY (`petId`) REFERENCES `pet` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `booking`
+--
+
+LOCK TABLES `booking` WRITE;
+/*!40000 ALTER TABLE `booking` DISABLE KEYS */;
+INSERT INTO `booking` VALUES (1,0,0,'2020-04-06 10:20:08','nothing ill',1,'2020-04-08'),(2,1,1,'2020-04-06 11:50:08','very healthy',2,'2020-04-10'),(3,0,2,'2020-04-06 15:24:08','very healthy very healthy',3,'2020-04-16'),(4,0,1,'2020-04-06 18:14:20','it is thirsty',2,'2020-05-10'),(5,0,2,'2020-04-06 19:08:20','hungry!!!',1,'2020-05-18'),(6,0,1,'2020-04-06 20:45:20','I dont know',1,'2020-05-15'),(7,0,0,'2020-04-06 21:34:20','just try',3,'2020-05-23');
+/*!40000 ALTER TABLE `booking` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `customer`
 --
 
@@ -43,6 +74,35 @@ INSERT INTO `customer` VALUES (1,'john','dog'),(2,'Alan','cat'),(3,'mary','cat')
 UNLOCK TABLES;
 
 --
+-- Table structure for table `pet`
+--
+
+DROP TABLE IF EXISTS `pet`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `pet` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `gender` int(11) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `type` varchar(45) NOT NULL,
+  `ownerId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ownerId_idx` (`ownerId`),
+  CONSTRAINT `ownerId` FOREIGN KEY (`ownerId`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pet`
+--
+
+LOCK TABLES `pet` WRITE;
+/*!40000 ALTER TABLE `pet` DISABLE KEYS */;
+INSERT INTO `pet` VALUES (1,0,'xiaomao','cat',1),(2,1,'lalala','dog',1),(3,1,'hahaha','cat',2);
+/*!40000 ALTER TABLE `pet` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user`
 --
 
@@ -59,7 +119,7 @@ CREATE TABLE `user` (
   `type` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +128,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'group5','12345','none','testha@tese.com','654321',0),(2,'test','54321','lalala','test@vds.com','1564321',0);
+INSERT INTO `user` VALUES (1,'group5','12345','none','testha@tese.com','654321',0),(2,'test','54321','lalala','test@vds.com','1564321',0),(3,'lalala','12345','lalala','vvfdbjin','53456123',0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -81,4 +141,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-05 17:41:22
+-- Dump completed on 2020-04-06 20:45:50
