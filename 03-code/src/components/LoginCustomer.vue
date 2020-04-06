@@ -1,4 +1,5 @@
 <template>
+
     <body id="poster">
     <el-form class="login-container" label-position="left"
              label-width="0px">
@@ -14,15 +15,21 @@
         <el-form-item style="width: 100%">
             <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="login">登录</el-button>
         </el-form-item>
+        <el-form-item style="width: 100%">
+          <!--  <router-link to = '/register' target="_blank">去注册</router-link>-->
+            <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="goRegister">还没有账户，先去注册</el-button>
+        </el-form-item>
     </el-form>
     </body>
+
 </template>
 
 <script>
-
+   // import Register from "../components/Register"
     export default {
         //表单
         name: 'Login',
+
         data () {
             return {
                 loginForm: {
@@ -53,6 +60,9 @@
                     // eslint-disable-next-line no-unused-vars
                     .catch(failResponse => {
                     })
+            },
+            goRegister(){
+                this.$router.push({path:'/register'})
             }
         }
         // mounted() {

@@ -7,9 +7,11 @@
 <!--    <DailyDetail/>-->
 <!--    <BookingDetail/>-->
 <!--    <router-link to="/login">Login</router-link>-->
-<!--    <router-view/>-->
-<!--      <LoginCustomer/>-->
-      <router-view/>
+      <router-view></router-view>
+      <!--在注册页面不显示公共组件也就是登录页面-->
+      <LoginCustomer v-show="!(path ==='/register') "></LoginCustomer>
+
+
   </div>
 </template>
 
@@ -20,19 +22,38 @@
   // import Homepage from "./components/Homepage";
   // import Console from "@/components/Console";
   // import Timetable from "@/components/Timetable";
-  // import LoginCustomer from "./components/LoginCustomer";
+ // import Register from "../components/Register"
+  import LoginCustomer from "./components/LoginCustomer";
 
   export default {
     name: 'App',
-    // components: {
-    //   // BookingDetail: BookingDetail,
-    //   // DailyDetail: DailyDetail,
-    //   // Timetable: Timetable,
-    //   // Console: Console,
-    //   // Homepage: Homepage,
-    //   // Header: Header
-    //     LoginCustomer: LoginCustomer
-    // }
+      //声明path变量
+      data(){
+        return{
+            path : ''
+        };
+      },
+      components: {
+      // BookingDetail: BookingDetail,
+      // DailyDetail: DailyDetail,
+      // Timetable: Timetable,
+      // Console: Console,
+      // Homepage: Homepage,
+      // Header: Header
+        LoginCustomer: LoginCustomer
+    },
+      mounted() {
+          this.path = this.$route.path;
+          // console.log(this.$route.path)
+      },
+      //配置监听，方法参考https://www.cnblogs.com/hz-handofgod/p/11982095.html
+      watch: {
+          // eslint-disable-next-line no-unused-vars
+          $route(to, from) {
+              this.path = to.path
+          }
+      }
+
   }
 </script>
 
