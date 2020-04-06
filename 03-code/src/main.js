@@ -7,8 +7,11 @@ Vue.prototype.$http = axios
 import store from './store'
 import 'element-ui/lib/theme-chalk/index.css';
 import './font/iconfont.js';
+// 控件中英文切换
+// import locale from 'element-ui/lib/locale/lang/en'
 
 Vue.config.productionTip = false
+// Vue.use(Element, { locale })
 Vue.use(Element)
 
 //使用钩子函数判断是否拦截.首先判断访问的路径是否需要登录，如果需要，判断 store 里有没有存储 user 的信息，

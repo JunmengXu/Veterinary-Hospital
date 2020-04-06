@@ -58,7 +58,7 @@
             this.$http.get('http://localhost:8181/customer/findAll').then(function (resp){
                 console.log(resp)
                 _this.customer = resp.data
-                alert(_this.customer[1].id + ' ' + _this.customer[1].name + ' ' + _this.customer[1].pet)
+                // alert(_this.customer[1].id + ' ' + _this.customer[1].name + ' ' + _this.customer[1].pet)
             })
         }
     }
