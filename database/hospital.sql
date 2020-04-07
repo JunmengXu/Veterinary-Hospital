@@ -89,7 +89,7 @@ CREATE TABLE `pet` (
   PRIMARY KEY (`id`),
   KEY `ownerId_idx` (`ownerId`),
   CONSTRAINT `ownerId` FOREIGN KEY (`ownerId`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +98,7 @@ CREATE TABLE `pet` (
 
 LOCK TABLES `pet` WRITE;
 /*!40000 ALTER TABLE `pet` DISABLE KEYS */;
-INSERT INTO `pet` VALUES (1,0,'xiaomao','cat',1),(2,1,'lalala','dog',1),(3,1,'hahaha','cat',2);
+INSERT INTO `pet` VALUES (1,0,'xiaomao','cat',1),(2,1,'lalala','dog',1),(3,1,'hahaha','cat',2),(6,0,'bfd','bfdbgd',1);
 /*!40000 ALTER TABLE `pet` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,7 +128,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'group5','12345','none','testha@tese.com','654321',0),(2,'test','54321','lalala','test@vds.com','1564321',0),(3,'lalala','12345','lalala','vvfdbjin','53456123',0);
+INSERT INTO `user` VALUES (1,'group5','12345','none','testha@tese.com','654321',0),(2,'test','54321','lalala','test@vds.com','1564321',0),(3,'lalala','12345','lalala','vvfdbjin','53456123',1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -141,4 +141,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-06 20:45:50
+-- Dump completed on 2020-04-07 21:46:19

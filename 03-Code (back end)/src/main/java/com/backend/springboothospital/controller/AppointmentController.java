@@ -17,6 +17,11 @@ public class AppointmentController {
         return bookingService.list();
     }
 
+    @GetMapping("/api/{id}/oneBooking")
+    public Booking list(@PathVariable("id") int i) throws Exception{
+        return bookingService.findById(i);
+    }
+
 //    紧急预约
     @GetMapping("/api/{urgency}/bookings")
     public List<Booking> listByUrgency(@PathVariable("urgency") int urgency) throws Exception {
@@ -33,7 +38,7 @@ public class AppointmentController {
         return booking;
     }
 
-    @PostMapping("/api/delete")
+    @PostMapping("/api/bookingDelete")
     public void delete(@RequestBody Booking booking) throws Exception {
         bookingService.deleteById(booking.getId());
     }

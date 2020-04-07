@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookingService {
@@ -27,6 +28,11 @@ public class BookingService {
 
     public void addOrUpdate(Booking booking){
         bookingDAO.save(booking);
+    }
+
+    public Booking findById(int i){
+        Optional<Booking> findResult = bookingDAO.findById(i);
+        return findResult.get();
     }
 
     public void deleteById(int id){

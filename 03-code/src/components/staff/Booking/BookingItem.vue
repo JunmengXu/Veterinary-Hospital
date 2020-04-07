@@ -10,7 +10,7 @@
                         <template slot-scope="props">
                             <el-form label-position="left" inline class="demo-table-expand">
                                 <el-form-item label="联系电话">
-                                    <span>{{ props.row.pet.user.phonenumber }}</span>
+                                    <span>{{ props.row.pet.user.phoneNumber }}</span>
                                 </el-form-item>
                                 <el-form-item label="下单时间">
                                     <span>{{ props.row.time }}</span>
@@ -42,8 +42,9 @@
                             label="操作"
                             width="100">
                         <template slot-scope="scope">
-                            <el-button @click="handleClick(scope.row)" type="text" size="small">详情</el-button>
+                            <el-button @click="handleClick(scope.row.id)" type="text" size="small">详情</el-button>
                             <el-button type="text" size="small">私信</el-button>
+                            <el-button size="small" >分配</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -57,7 +58,7 @@
                         <template slot-scope="props">
                             <el-form label-position="left" inline class="demo-table-expand">
                                 <el-form-item label="联系电话">
-                                    <span>{{ props.row.pet.user.phonenumber }}</span>
+                                    <span>{{ props.row.pet.user.phoneNumber }}</span>
                                 </el-form-item>
                                 <el-form-item label="下单时间">
                                     <span>{{ props.row.time }}</span>
@@ -89,8 +90,9 @@
                             label="操作"
                             width="100">
                         <template slot-scope="scope">
-                            <el-button @click="handleClick(scope.row)" type="text" size="small">详情</el-button>
+                            <el-button @click="handleClick(scope.row.id)" type="text" size="small">详情</el-button>
                             <el-button type="text" size="small">私信</el-button>
+                            <el-button size="small" >分配</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -170,6 +172,13 @@
             handleCurrentChange(val) {
                 console.log(`当前页: ${val}`);
                 this.currentPage = val;
+            },
+            handleClick(id){
+                this.$router.push({
+                    path:'/appointment',
+                    query:{
+                        booking:id},
+                })
             }
         }
     }

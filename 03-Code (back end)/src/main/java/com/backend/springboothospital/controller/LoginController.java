@@ -34,7 +34,11 @@ public class LoginController {
         if (null == user) {
             return new Result(400);
         } else {
-            return new Result(200);
+            if(user.getType() == 0){
+                return new Result(300);
+            }else{
+                return new Result(200);
+            }
         }
     }
 }

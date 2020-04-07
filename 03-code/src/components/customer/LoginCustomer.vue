@@ -3,7 +3,7 @@
     <body id="poster">
     <el-form class="login-container" label-position="left"
              label-width="0px">
-        <h3 class="login_title">系统登录</h3>
+        <h3 class="login_title">客户系统登录</h3>
         <el-form-item>
             <el-input type="text" v-model="loginForm.username"
                       auto-complete="off" placeholder="账号"></el-input>
@@ -18,6 +18,9 @@
         <el-form-item style="width: 100%">
           <!--  <router-link to = '/register' target="_blank">去注册</router-link>-->
             <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="goRegister">还没有账户，先去注册</el-button>
+        </el-form-item>
+        <el-form-item style="width: 100%">
+            <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="staff">员工入口</el-button>
         </el-form-item>
     </el-form>
     </body>
@@ -50,11 +53,11 @@
                         password: this.loginForm.password
                     })
                     .then(successResponse => {
-                        if (successResponse.data.code === 200) {
+                        if (successResponse.data.code === 300) {
                             // var data = this.loginForm
                             this.$store.commit('login', this.loginForm)
                             var path = this.$route.query.redirect
-                            this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
+                            this.$router.replace({path: path === '/' || path === undefined ? '/indexc' : path})
                         }
                     })
                     // eslint-disable-next-line no-unused-vars
@@ -63,6 +66,9 @@
             },
             goRegister(){
                 this.$router.push({path:'/register'})
+            },
+            staff(){
+                this.$router.push({path:'/Login'})
             }
         }
         // mounted() {

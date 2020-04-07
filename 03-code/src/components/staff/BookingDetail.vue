@@ -18,6 +18,7 @@
             </el-table-column>
         </el-table>
         </div>
+        <p>{{bookings.id}}</p>
     </div>
 </template>
 
@@ -48,18 +49,44 @@
                         name: '啦啦啦',
                         pet: '狗'
                     }
-                ]
+                ],
+                bookings: [],
+                bookingid: []
             }
 
         },
         //向后端发送请求，获得customer的数据
-        created() {
+        // created() {
+        //     const _this = this
+        //     this.$http.get('http://localhost:8181/customer/findAll').then(function (resp){
+        //         console.log(resp)
+        //         _this.customer = resp.data
+        //         // alert(_this.customer[1].id + ' ' + _this.customer[1].name + ' ' + _this.customer[1].pet)
+        //     })
+        // },
+        created:function(){
+            this.getParams();
             const _this = this
-            this.$http.get('http://localhost:8181/customer/findAll').then(function (resp){
+            var cid = this.bookingid
+            var url = 'http://localhost:8181/api/' + cid + '/oneBooking'
+            this.$http.get(url).then(function (resp){
                 console.log(resp)
-                _this.customer = resp.data
-                // alert(_this.customer[1].id + ' ' + _this.customer[1].name + ' ' + _this.customer[1].pet)
+                _this.bookings = resp.data
+                alert(_this.bookings.id)
             })
+        },
+        watch: {
+            // 监测路由变化,只要变化了就调用获取路由参数方法将数据存储本组件即可
+            '$route': 'getParams'
+        },
+        methods: {
+            getParams: function () {
+                // 取到路由带过来的参数
+                var routerParams = this.$route.query.booking
+                // 将数据放在当前组件的数据内
+                console.log("传来的参数==" + routerParams)
+                this.bookingid = routerParams
+            }
         }
     }
 </script>
