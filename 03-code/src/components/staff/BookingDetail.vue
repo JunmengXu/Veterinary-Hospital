@@ -1,24 +1,30 @@
 <template>
     <div class="daily_detail">
         <h2>预约单详细信息</h2>
-        <div class="bar">
-            <el-table
-                :data="tableData"
-                style="width: 100%">
-            <el-table-column
-                    prop="name"
-                    label="条目"
-                    width="200px"
-                    align="center">
-            </el-table-column>
-            <el-table-column
-                    prop="contain"
-                    label="信息"
-                    align="center">
-            </el-table-column>
-        </el-table>
+<!--        <div class="bar">-->
+<!--            <el-table-->
+<!--                :data="tableData"-->
+<!--                style="width: 100%">-->
+<!--            <el-table-column-->
+<!--                    prop="name"-->
+<!--                    label="条目"-->
+<!--                    width="200px"-->
+<!--                    align="center">-->
+<!--            </el-table-column>-->
+<!--            <el-table-column-->
+<!--                    prop="contain"-->
+<!--                    label="信息"-->
+<!--                    align="center">-->
+<!--            </el-table-column>-->
+<!--        </el-table>-->
+<!--        </div>-->
+        <div class="bar" style="margin-left: 50px; margin-right: 50px">
+            <p>客户信息  <span>{{bookings.pet.user.username}} / {{bookings.pet.user.phoneNumber}} / {{bookings.pet.user.email}} / {{bookings.pet.user.username}}</span> </p>
+            <p>宠物信息 <span>{{bookings.pet.name}} / {{bookings.pet.type}} / <span v-if="bookings.pet.gender==0">male</span><span v-else>female</span></span> </p>
+            <p>病症描述 <span>{{bookings.symptom}}</span></p>
+            <p>下单时间 <span>{{bookings.time}}</span></p>
+            <p>预约时间 <span>{{bookings.needtime}}</span></p>
         </div>
-        <p>{{bookings.id}}</p>
     </div>
 </template>
 
@@ -43,13 +49,6 @@
                     name: '预约时间',
                     contain: '3月13日 下午； 3月14日 上午+下午'
                 }],
-                customer:[
-                    {
-                        id: 1,
-                        name: '啦啦啦',
-                        pet: '狗'
-                    }
-                ],
                 bookings: [],
                 bookingid: []
             }
@@ -72,7 +71,6 @@
             this.$http.get(url).then(function (resp){
                 console.log(resp)
                 _this.bookings = resp.data
-                alert(_this.bookings.id)
             })
         },
         watch: {

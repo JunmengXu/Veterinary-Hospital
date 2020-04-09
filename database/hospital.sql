@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `hospital` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `hospital`;
 -- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: hospital
@@ -32,10 +30,11 @@ CREATE TABLE `booking` (
   `symptom` varchar(45) NOT NULL,
   `petId` int(11) DEFAULT NULL,
   `needtime` date NOT NULL,
+  `distribution` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `petId_idx` (`petId`) /*!80000 INVISIBLE */,
   CONSTRAINT `petId` FOREIGN KEY (`petId`) REFERENCES `pet` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +43,7 @@ CREATE TABLE `booking` (
 
 LOCK TABLES `booking` WRITE;
 /*!40000 ALTER TABLE `booking` DISABLE KEYS */;
-INSERT INTO `booking` VALUES (1,0,0,'2020-04-06 10:20:08','nothing ill',1,'2020-04-08'),(2,1,1,'2020-04-06 11:50:08','very healthy',2,'2020-04-10'),(3,0,2,'2020-04-06 15:24:08','very healthy very healthy',3,'2020-04-16'),(4,0,1,'2020-04-06 18:14:20','it is thirsty',2,'2020-05-10'),(5,0,2,'2020-04-06 19:08:20','hungry!!!',1,'2020-05-18'),(6,0,1,'2020-04-06 20:45:20','I dont know',1,'2020-05-15'),(7,0,0,'2020-04-06 21:34:20','just try',3,'2020-05-23');
+INSERT INTO `booking` VALUES (1,0,0,'2020-04-06 10:20:08','nihao',1,'2020-04-17',1),(2,1,1,'2020-04-06 11:50:08','very healthy',2,'2020-04-10',0),(3,0,2,'2020-04-06 15:24:08','very healthy very healthy',3,'2020-04-24',0),(4,0,1,'2020-04-06 18:14:20','it is thirsty',2,'2020-05-10',1),(5,0,2,'2020-04-06 19:08:20','hungry!!!',1,'2020-04-21',0),(6,0,1,'2020-04-06 20:45:20','I dont know',1,'2020-05-15',1),(7,0,0,'2020-04-06 21:34:20','just try',3,'2020-05-23',0),(9,0,2,'2020-04-08 09:04:48','fdsfds',9,'2020-04-27',0),(10,0,1,'2020-04-09 09:40:01','buzhidao',2,'2020-04-19',0);
 /*!40000 ALTER TABLE `booking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +88,7 @@ CREATE TABLE `pet` (
   PRIMARY KEY (`id`),
   KEY `ownerId_idx` (`ownerId`),
   CONSTRAINT `ownerId` FOREIGN KEY (`ownerId`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +97,7 @@ CREATE TABLE `pet` (
 
 LOCK TABLES `pet` WRITE;
 /*!40000 ALTER TABLE `pet` DISABLE KEYS */;
-INSERT INTO `pet` VALUES (1,0,'xiaomao','cat',1),(2,1,'lalala','dog',1),(3,1,'hahaha','cat',2),(6,0,'bfd','bfdbgd',1);
+INSERT INTO `pet` VALUES (1,0,'xiaomao','cat',1),(2,1,'lalala','dog',1),(3,1,'hahaha','cat',2),(7,1,'nicai','fdsf',2),(8,0,'gf','fdsfsd',2),(9,0,'dade','rgfd',2);
 /*!40000 ALTER TABLE `pet` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,4 +140,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-07 21:46:19
+-- Dump completed on 2020-04-09  9:41:30

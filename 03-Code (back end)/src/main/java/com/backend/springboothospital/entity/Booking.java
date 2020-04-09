@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.sql.Timestamp;
 
 //登录功能 后端链接数据库 并获得数据
 @Entity
@@ -26,6 +25,7 @@ public class Booking {
     String time;
     String symptom;
     Date needtime;
+    int distribution;
 
     public Date getNeedtime() {
         return needtime;
@@ -84,4 +84,11 @@ public class Booking {
         this.symptom = symptom;
     }
 
+    public int getDistribution() {
+        return distribution;
+    }
+
+    public void setDistribution(int distribution) {
+        this.distribution = distribution;
+    }
 }

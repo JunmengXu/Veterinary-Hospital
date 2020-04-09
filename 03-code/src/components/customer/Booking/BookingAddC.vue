@@ -56,7 +56,7 @@
     import store from "../../../store";
 
     export default {
-        name: 'BookingAdd',
+        name: 'BookingAddC',
         data () {
             return {
                 dialogFormVisible: false,

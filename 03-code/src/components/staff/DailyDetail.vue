@@ -110,6 +110,7 @@
 <script>
     import SideMenuBooking from "./Booking/SideMenuBooking";
     import BookingItem from "./Booking/BookingItem";
+
     export default {
         name: "DailyDetail",
         components: {SideMenuBooking, BookingItem},

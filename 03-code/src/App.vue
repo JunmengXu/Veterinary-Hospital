@@ -7,7 +7,11 @@
 <!--    <DailyDetail/>-->
 <!--    <BookingDetail/>-->
 <!--    <router-link to="/login">Login</router-link>-->
-      <router-view></router-view>
+      <keep-alive>
+      <router-view v-show="$route.meta.keepAlive"/>
+      </keep-alive>
+
+      <router-view v-if="isRouterAlive"/>
       <!--在注册页面不显示公共组件也就是登录页面-->
 <!--      <LoginStaff v-show="!(path ==='/register') "></LoginStaff>-->
 
@@ -24,23 +28,23 @@
   // import Timetable from "@/components/Timetable";
  // import Register from "../components/Register"
  //  import LoginStaff from "./components/staff/LoginStaff";
-
+  
   export default {
     name: 'App',
       //声明path变量
+      provide(){
+        return{
+            reload:this.reload
+        }
+      },
       data(){
         return{
-            path : ''
-        };
+            path : '',
+            isRouterAlive:true
+        }
       },
       components: {
-      // BookingDetail: BookingDetail,
-      // DailyDetail: DailyDetail,
-      // Timetable: Timetable,
-      // Console: Console,
-      // Homepage: Homepage,
-      // Header: Header
-      //   LoginStaff: LoginStaff
+
     },
       mounted() {
           this.path = this.$route.path;
@@ -52,6 +56,14 @@
           $route(to, from) {
               this.path = to.path
           }
+      },
+      methods:{
+        reload(){
+            this.isRouterAlive = false
+            this.$nextTick(function () {
+                this.isRouterAlive = true
+            })
+        }
       }
 
   }

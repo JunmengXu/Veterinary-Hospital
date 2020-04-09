@@ -44,7 +44,7 @@
                         <template slot-scope="scope">
                             <el-button @click="handleClick(scope.row.id)" type="text" size="small">详情</el-button>
                             <el-button type="text" size="small">私信</el-button>
-                            <el-button size="small" >分配</el-button>
+                            <el-button size="small" @click="dialogFormVisible = true,bookingId=scope.row.id,urgency=scope.row.urgency,hospital=scope.row.hospital,symptom=scope.row.symptom,petId=scope.row.pet.id,time=scope.row.time" v-if="scope.row.distribution==0">分配</el-button><el-button size="small" disabled v-else>已分配</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -92,7 +92,7 @@
                         <template slot-scope="scope">
                             <el-button @click="handleClick(scope.row.id)" type="text" size="small">详情</el-button>
                             <el-button type="text" size="small">私信</el-button>
-                            <el-button size="small" >分配</el-button>
+                            <el-button size="small" @click="dialogFormVisible = true,bookingId=scope.row.id" v-if="scope.row.distribution==0">分配</el-button><el-button size="small" disabled v-else>已分配</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -112,6 +112,27 @@
                 </el-pagination>
             </div>
         </el-row>
+
+        <el-dialog
+                title="设置手术时间"
+                :visible.sync="dialogFormVisible">
+            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+
+                <el-form-item label="日期" required>
+                    <el-col :span="11">
+                        <el-form-item prop="date">
+                            <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date" value-format="yyyy-MM-dd" style="width: 100%;"></el-date-picker>
+                        </el-form-item>
+                    </el-col>
+                </el-form-item>
+
+                <el-form-item>
+                    <el-button type="primary" @click="submitForm()">立即分配</el-button>
+                    <el-button @click="resetForm()">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
+
     </div>
 </template>
 
@@ -119,6 +140,7 @@
 
     export default {
         name: 'BookingItem',
+        inject:['reload'],
         data () {
             return {
                 tableData: [{
@@ -150,7 +172,23 @@
                 bookingU: [],
                 booking: [],
                 currentPage: 1, //初始页
-                pagesize: 5  //每页的数据
+                pagesize: 5,  //每页的数据
+                dialogFormVisible: false,
+                bookingId: 0,
+                urgency: '',
+                hospital: '',
+                symptom: '',
+                time: '',
+                petId: 0,
+                distribution: 0,
+                ruleForm: {
+                    date: ''
+                },
+                rules: {
+                    date: [
+                        { required: true, message: '请选择日期', trigger: 'change' }
+                    ]
+                }
             }
         },
         created() {
@@ -179,6 +217,44 @@
                     query:{
                         booking:id},
                 })
+            },
+            submitForm() {
+                this.$refs.ruleForm.validate((valid) => {
+                    if (valid) {
+                        var url = 'http://localhost:8181/api/update/'+this.bookingId+'/'+this.ruleForm.date+'/bookings'
+                        this.$http
+                            .put(url, {
+
+                            }).then(resp => {
+                            if (resp && resp.status === 200) {
+                                this.dialogFormVisible = false
+                                this.$emit('onSubmit')
+                                this.$notify({
+                                    title: '成功',
+                                    message: '成功修改手术日期',
+                                    type: 'success'
+                                });
+                                console.log(JSON.stringify(resp))
+                                this.reload();
+                            }else{
+                                this.$notify.error({
+                                    title: '失败',
+                                    message: '修改失败'
+                                });
+                            }
+                        })
+                    } else {
+                        // console.log('error submit!!');
+                        this.$notify.error({
+                            title: '失败',
+                            message: '修改失败'
+                        });
+                        return false;
+                    }
+                });
+            },
+            resetForm() {
+                this.$refs.ruleForm.resetFields();
             }
         }
     }

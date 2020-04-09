@@ -30,6 +30,10 @@ public class BookingService {
         bookingDAO.save(booking);
     }
 
+    public void Update(Booking booking){
+        bookingDAO.save(booking);
+    }
+
     public Booking findById(int i){
         Optional<Booking> findResult = bookingDAO.findById(i);
         return findResult.get();

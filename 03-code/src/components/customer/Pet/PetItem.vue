@@ -43,16 +43,16 @@
 
                     <el-form-item label="需求时间" required>
                         <el-col :span="11">
-                            <el-form-item prop="date">
-                                <el-date-picker type="date" placeholder="选择日期" v-model="formInline2.date" style="width: 100%;"></el-date-picker>
+                            <el-form-item prop="needtime">
+                                <el-date-picker type="date" placeholder="选择日期" v-model="formInline2.needtime" style="width: 100%;"></el-date-picker>
                             </el-form-item>
                         </el-col>
-                        <el-col class="line" :span="2">-</el-col>
-                        <el-col :span="11">
-                            <el-form-item prop="time">
-                                <el-time-picker type="fixed-time" placeholder="选择时间" v-model="formInline2.time" style="width: 100%;"></el-time-picker>
-                            </el-form-item>
-                        </el-col>
+<!--                        <el-col class="line" :span="2">-</el-col>-->
+<!--                        <el-col :span="11">-->
+<!--                            <el-form-item prop="time">-->
+<!--                                <el-time-picker type="fixed-time" placeholder="选择时间" v-model="formInline2.time" style="width: 100%;"></el-time-picker>-->
+<!--                            </el-form-item>-->
+<!--                        </el-col>-->
                     </el-form-item>
 
                     <el-form-item label="所选医院" prop="hospital">
@@ -101,8 +101,8 @@
                     urgency: '',
                     hospital: '',
                     symptom: '',
-                    date: '',
-                    time:''
+                    needtime: ''
+                    // time:''
                 },
                 rules: {
                     symptom: [
@@ -115,12 +115,12 @@
                     hospital: [
                         { required: true, message: '请至少选择一个医院', trigger: 'change' }
                     ],
-                    date: [
+                    needtime: [
                         { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
-                    ],
-                    time: [
-                        { type: 'date', required: true, message: '请选择时间', trigger: 'change' }
                     ]
+                    // time: [
+                    //     { type: 'date', required: true, message: '请选择时间', trigger: 'change' }
+                    // ]
                 },
                 formLabelWidth: '120px'
             }
@@ -138,26 +138,31 @@
             submitForm() {
                 this.$refs.formInline2.validate((valid) => {
                     if (valid) {
-                        // alert('submit!');
-                        // console.log(this.formInline.petName+" "+this.formInline.petType+" "+this.formInline.petGender)
-                        // var username = store.state.user.username
-                        // var url = 'http://localhost:8181/api/addPet/' + username
-                        // this.$http
-                        //     .post(url, {
-                        //         name: this.formInline.petName,
-                        //         gender: this.formInline.petGender,
-                        //         type: this.formInline.petType
-                        //     }).then(resp => {
-                        //     if (resp && resp.status === 200) {
-                        //         this.dialogFormVisible = false
-                        //         this.$emit('onSubmit')
-                        //     }
-                        // })
-                        this.$notify({
-                            title: '成功',
-                            message: '成功添加新的预约',
-                            type: 'success'
-                        });
+                        var petid = this.petId
+                        var url = 'http://localhost:8181/api/' + petid + '/bookings'
+                        this.$http
+                            .post(url, {
+                                urgency: this.formInline2.urgency,
+                                hospital: this.formInline2.hospital,
+                                symptom: this.formInline2.symptom,
+                                needtime: this.formInline2.needtime
+                            }).then(resp => {
+                            if (resp && resp.status === 200) {
+                                this.dialogFormVisible = false
+                                this.$emit('onSubmit')
+                                this.$notify({
+                                    title: '成功',
+                                    message: '成功添加新的预约',
+                                    type: 'success'
+                                });
+                            }else{
+                                this.$notify.error({
+                                    title: '失败',
+                                    message: '添加预约失败'
+                                });
+                                return false;
+                            }
+                        })
                     } else {
                         // console.log('error submit!!');
                         this.$notify.error({

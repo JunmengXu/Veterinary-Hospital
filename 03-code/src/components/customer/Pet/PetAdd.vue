@@ -90,13 +90,19 @@
                             if (resp && resp.status === 200) {
                                 this.dialogFormVisible = false
                                 this.$emit('onSubmit')
+                                this.$notify({
+                                    title: '成功',
+                                    message: '成功添加新的宠物',
+                                    type: 'success'
+                                });
+                            }else{
+                                this.$notify.error({
+                                    title: '失败',
+                                    message: '添加失败'
+                                });
                             }
                         })
-                        this.$notify({
-                            title: '成功',
-                            message: '成功添加新的宠物',
-                            type: 'success'
-                        });
+
                     } else {
                         // console.log('error submit!!');
                         this.$notify.error({
