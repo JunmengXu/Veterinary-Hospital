@@ -9,18 +9,18 @@
 <!--                    </svg>-->
 <!--                </li>-->
 <!--                <li>-->
-<!--                    <el-link :underline="false" id="up1">动物医院员工后台管理系统</el-link>-->
+<!--                    <el-link :underline="false" id="up1">动物医院员工后台管理系统/Management System Of Veterinary hospital</el-link>-->
 <!--                </li>-->
 <!--                <li>-->
-<!--                    <el-link :underline="false" id="up2">处理预约单</el-link>-->
+<!--                    <el-link :underline="false" id="up2">处理预约单/Process appointment form</el-link>-->
 <!--                </li>-->
 <!--                <li>-->
-<!--                    <el-link :underline="false" id="up3">私信</el-link>-->
+<!--                    <el-link :underline="false" id="up3">私信/Messages</el-link>-->
 <!--                </li>-->
 <!--                <li>-->
-<!--                    <el-link :underline="false" id="up4">历史预约单</el-link>-->
+<!--                    <el-link :underline="false" id="up4">历史预约单/Historical appointment form</el-link>-->
 <!--                </li>-->
-<!--                    <el-button id="up9" size="medium" type="primary" v-on:click="loginOut">登出</el-button>-->
+<!--                    <el-button id="up9" size="medium" type="primary" v-on:click="loginOut">登出/Logout</el-button>-->
 <!--            </ul>-->
 <!--        </div>-->
 <!--        <hr style="height:1px;border:none;background-color:#909399 "/>-->
@@ -39,7 +39,7 @@
 <!--        <a href="#nowhere" style="color: #222;float: right;padding: 20px;">更多功能</a>-->
         <el-button id="up10" size="medium" type="primary" v-on:click="loginOut">登出</el-button>
         <i class="el-icon-menu" style="float:right;font-size: 45px;color: #222;padding-top: 8px"></i>
-        <span style="position: absolute;padding-top: 20px;right: 43%;font-size: 20px;font-weight: bold">动物医院员工后台管理系统</span>
+        <span style="position: absolute;padding-top: 20px;right: 20%;font-size: 20px;font-weight: bold">Management System Of Veterinary hospital</span>
     </el-menu>
 
     </div>
@@ -54,11 +54,11 @@ export default {
     data () {
         return {
             navList: [
-                {name: '/index', navItem: '首页'},
-                {name: '/appointment', navItem: '处理预约单'},
-                {name: '/message', navItem: '私信'},
-                {name: '/history', navItem: '历史预约'},
-                {name: '/timetable', navItem: '时间表'}
+                {name: '/index', navItem: 'Home'},
+                {name: '/appointment', navItem: 'Process appointment form'},
+                {name: '/message', navItem: 'Messages'},
+                {name: '/history', navItem: 'Historical appointment form'},
+                {name: '/timetable', navItem: 'Schedule'}
             ]
         }
     },

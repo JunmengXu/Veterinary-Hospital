@@ -28,7 +28,7 @@
   // import Timetable from "@/components/Timetable";
  // import Register from "../components/Register"
  //  import LoginStaff from "./components/staff/LoginStaff";
-  
+
   export default {
     name: 'App',
       //声明path变量
