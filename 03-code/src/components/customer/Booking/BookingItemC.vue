@@ -31,6 +31,14 @@
                 prop="needtime"
                 label="需要时间">
         </el-table-column>
+        <el-table-column
+                prop="distribution"
+                label="分配情况"
+                width="180">
+            <template slot-scope="props">
+                <span v-if="props.row.distribution==0" style="color: chocolate">未分配</span><span v-else style="color: cornflowerblue">已分配</span>
+            </template>
+        </el-table-column>
     </el-table>
 </template>
 
@@ -40,11 +48,12 @@
     export default {
         name: 'BookingItemC',
         methods: {
-            tableRowClassName({rowIndex}) {
-                if (rowIndex === 1) {
+            //rowIndex
+            tableRowClassName({row}) {
+                if (row.distribution === 0) {
                     return 'warning-row';
-                } else if (rowIndex === 3) {
-                    return 'success-row';
+                } else if (row.distribution === 1) {
+                    return 'nothing';
                 }
                 return '';
             }
@@ -69,6 +78,10 @@
 <style>
     .el-table .warning-row {
         background: oldlace;
+    }
+
+    .el-table nothing{
+        background: white;
     }
 
     .el-table .success-row {

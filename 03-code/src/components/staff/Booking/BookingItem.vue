@@ -4,7 +4,7 @@
             <h2>紧急预约</h2>
             <div class="bar">
                 <el-table
-                        :data="bookingU.slice((currentPage-1)*pagesize,currentPage*pagesize)"
+                        :data="bookingU.slice((currentPageU-1)*pagesizeU,currentPageU*pagesizeU)"
                         style="width: 100%">
                     <el-table-column type="expand">
                         <template slot-scope="props">
@@ -44,15 +44,31 @@
                         <template slot-scope="scope">
                             <el-button @click="handleClick(scope.row.id)" type="text" size="small">详情</el-button>
                             <el-button type="text" size="small">私信</el-button>
-                            <el-button size="small" @click="dialogFormVisible = true,bookingId=scope.row.id,urgency=scope.row.urgency,hospital=scope.row.hospital,symptom=scope.row.symptom,petId=scope.row.pet.id,time=scope.row.time" v-if="scope.row.distribution==0">分配</el-button><el-button size="small" disabled v-else>已分配</el-button>
+                            <el-button size="small" @click="dialogFormVisible = true,bookingId=scope.row.id" v-if="scope.row.distribution==0">分配</el-button><el-button size="small" disabled v-else>已分配</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
             </div>
+
+            <el-row>
+                <div class="block">
+                    <span class="demonstration"></span>
+                    <el-pagination
+                            @size-change="handleSizeChange"
+                            @current-change="handleCurrentChange"
+                            :current-page="currentPageU"
+                            :page-sizes="[5, 10, 15, 20]"
+                            :page-size="5"
+                            layout="total, sizes, prev, pager, next, jumper"
+                            :total="bookingU.length">
+                    </el-pagination>
+                </div>
+            </el-row>
+
             <h2>非紧急预约</h2>
             <div class="bar">
                 <el-table
-                        :data="booking"
+                        :data="booking.slice((currentPage-1)*pagesize,currentPage*pagesize)"
                         style="width: 100%">
                     <el-table-column type="expand">
                         <template slot-scope="props">
@@ -100,7 +116,7 @@
         </div>
         <el-row>
             <div class="block">
-                <span class="demonstration">完整功能</span>
+                <span class="demonstration"></span>
                 <el-pagination
                         @size-change="handleSizeChange"
                         @current-change="handleCurrentChange"
@@ -108,7 +124,7 @@
                         :page-sizes="[5, 10, 15, 20]"
                         :page-size="5"
                         layout="total, sizes, prev, pager, next, jumper"
-                        :total="bookingU.length">
+                        :total="booking.length">
                 </el-pagination>
             </div>
         </el-row>
@@ -171,15 +187,12 @@
                 }],
                 bookingU: [],
                 booking: [],
+                currentPageU: 1, //初始页
+                pagesizeU: 5,  //每页的数据
                 currentPage: 1, //初始页
                 pagesize: 5,  //每页的数据
                 dialogFormVisible: false,
                 bookingId: 0,
-                urgency: '',
-                hospital: '',
-                symptom: '',
-                time: '',
-                petId: 0,
                 distribution: 0,
                 ruleForm: {
                     date: ''
@@ -193,11 +206,11 @@
         },
         created() {
             const _this = this
-            this.$http.get('http://localhost:8181/api/0/bookings').then(function (resp){
+            this.$http.get('http://localhost:8181/api/1/bookings').then(function (resp){
                 console.log(resp)
                 _this.bookingU = resp.data
             })
-            this.$http.get('http://localhost:8181/api/1/bookings').then(function (resp){
+            this.$http.get('http://localhost:8181/api/0/bookings').then(function (resp){
                 console.log(resp)
                 _this.booking = resp.data
             })

@@ -7,7 +7,7 @@
                         :key="item.id">
                 <p slot="content" style="font-size: 14px;margin-bottom: 6px;">宠物编号 {{item.id}}</p>
                 <p slot="content" style="font-size: 13px;margin-bottom: 6px">
-                    <span>宠物名称：{{item.name}}</span> /
+                    <span>{{$t('menu.customerPetpagePetname')}} {{item.name}}</span> /
                     宠物性别：<span v-if="item.gender==0">male</span><span v-else>female</span> /
                     <span>宠物种类：{{item.type}}</span>
                 </p>

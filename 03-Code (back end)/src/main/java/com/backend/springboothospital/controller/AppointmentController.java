@@ -43,6 +43,15 @@ public class AppointmentController {
         }
     }
 
+    @GetMapping("/api/{distribution}/calendar/bookings")
+    public List<Booking> listByDistribution(@PathVariable("distribution") int distribution) throws Exception {
+        if (0 == distribution || 1 == distribution ) {
+            return bookingService.listByDistribution(distribution);
+        } else {
+            return list();
+        }
+    }
+
     @PostMapping("/api/{petId}/bookings")
     public Booking addOrUpdate(@RequestBody Booking booking,@PathVariable("petId") int petId) throws Exception {
         Pet pet = petService.get(petId);

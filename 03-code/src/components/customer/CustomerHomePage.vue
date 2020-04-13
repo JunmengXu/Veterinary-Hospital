@@ -13,17 +13,17 @@
             <div class="homepage_box">
                 <img class="homepage_image" src="@/assets/image/11.jpg" alt="">
                 <br/>
-                <el-button id="homepage_btn1" size="medium" type="primary">我的预约单</el-button>
-            </div>
-            <div class="homepage_box">
-                <img class="homepage_image" src="@/assets/image/22.jpg" alt="">
-                <br/>
-                <el-button id="homepage_btn2" size="medium" type="primary">私信</el-button>
+                <el-button id="homepage_btn1" size="medium" type="primary" @click="handleClick1()">{{$t('menu.customerHomepagePet')}}</el-button>
             </div>
             <div class="homepage_box">
                 <img class="homepage_image" src="@/assets/image/33.jpg" alt="">
                 <br/>
-                <el-button id="homepage_btn3" size="medium" type="primary">我的宠物</el-button>
+                <el-button id="homepage_btn3" size="medium" type="primary" @click="handleClick2()">我的预约单</el-button>
+            </div>
+            <div class="homepage_box">
+                <img class="homepage_image" src="@/assets/image/22.jpg" alt="">
+                <br/>
+                <el-button id="homepage_btn2" size="medium" type="primary" @click="handleClick3()">私信</el-button>
             </div>
         </div>
 
@@ -32,7 +32,24 @@
 
 <script>
     export default {
-        name: "CustomerHomePage"
+        name: "CustomerHomePage",
+        methods: {
+            handleClick1() {
+                this.$router.push({
+                    path: '/petc',
+                })
+            },
+            handleClick2() {
+                this.$router.push({
+                    path: '/appointmentc',
+                })
+            },
+            handleClick3() {
+                this.$router.push({
+                    path: '/messagec',
+                })
+            }
+        }
     }
 </script>
 

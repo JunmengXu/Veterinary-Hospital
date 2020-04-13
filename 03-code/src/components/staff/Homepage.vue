@@ -11,19 +11,19 @@
         </div>
         <div id="homepage_box_bar">
             <div class="homepage_box">
-                <img class="homepage_image" src="@/assets/image/11.jpg" alt="">
+                <img class="homepage_image" src="@/assets/image/33.jpg" alt="">
                 <br/>
-                <el-button id="homepage_btn1" size="medium" type="primary">处理预约单 Process appointment form</el-button>
+                <el-button id="homepage_btn3" size="medium" type="primary" @click="handleClick1()">历史预约单 Historical appointment form</el-button>
             </div>
             <div class="homepage_box">
                 <img class="homepage_image" src="@/assets/image/22.jpg" alt="">
                 <br/>
-                <el-button id="homepage_btn2" size="medium" type="primary">私信 Messages</el-button>
+                <el-button id="homepage_btn2" size="medium" type="primary" @click="handleClick2()">私信 Messages</el-button>
             </div>
             <div class="homepage_box">
-                <img class="homepage_image" src="@/assets/image/33.jpg" alt="">
+                <img class="homepage_image" src="@/assets/image/11.jpg" alt="">
                 <br/>
-                <el-button id="homepage_btn3" size="medium" type="primary">历史预约单 Historical appointment form</el-button>
+                <el-button id="homepage_btn1" size="medium" type="primary" @click="handleClick3()">时刻表 Schedule</el-button>
             </div>
         </div>
 
@@ -32,7 +32,24 @@
 
 <script>
     export default {
-        name: "Homepage"
+        name: "Homepage",
+        methods: {
+            handleClick1() {
+                this.$router.push({
+                    path: '/history',
+                })
+            },
+            handleClick2() {
+                this.$router.push({
+                    path: '/message',
+                })
+            },
+            handleClick3() {
+                this.$router.push({
+                    path: '/timetable',
+                })
+            }
+        }
     }
 </script>
 

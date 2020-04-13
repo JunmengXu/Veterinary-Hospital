@@ -26,6 +26,10 @@ public class BookingService {
         return bookingDAO.findByUrgency(i);
     }
 
+    public List<Booking> listByDistribution(int i){
+        return bookingDAO.findByDistribution(i);
+    }
+
     public void addOrUpdate(Booking booking){
         bookingDAO.save(booking);
     }

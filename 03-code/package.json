@@ -13,6 +13,7 @@
     "element-ui": "^2.13.0",
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
+    "vue-i18n": "^8.17.0",
     "vuex": "latest"
   },
   "devDependencies": {

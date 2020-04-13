@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `hospital` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `hospital`;
 -- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: hospital
@@ -43,7 +45,7 @@ CREATE TABLE `booking` (
 
 LOCK TABLES `booking` WRITE;
 /*!40000 ALTER TABLE `booking` DISABLE KEYS */;
-INSERT INTO `booking` VALUES (1,0,0,'2020-04-06 10:20:08','nihao',1,'2020-04-17',1),(2,1,1,'2020-04-06 11:50:08','very healthy',2,'2020-04-10',0),(3,0,2,'2020-04-06 15:24:08','very healthy very healthy',3,'2020-04-24',0),(4,0,1,'2020-04-06 18:14:20','it is thirsty',2,'2020-05-10',1),(5,0,2,'2020-04-06 19:08:20','hungry!!!',1,'2020-04-21',0),(6,0,1,'2020-04-06 20:45:20','I dont know',1,'2020-05-15',1),(7,0,0,'2020-04-06 21:34:20','just try',3,'2020-05-23',0),(9,0,2,'2020-04-08 09:04:48','fdsfds',9,'2020-04-27',0),(10,0,1,'2020-04-09 09:40:01','buzhidao',2,'2020-04-19',0);
+INSERT INTO `booking` VALUES (1,0,0,'2020-04-06 10:20:08','nihao',1,'2020-04-17',1),(2,1,1,'2020-04-06 11:50:08','very healthy',2,'2020-04-10',1),(3,0,2,'2020-04-06 15:24:08','very healthy very healthy',3,'2020-04-28',0),(4,1,1,'2020-04-06 18:14:20','it is thirsty',2,'2020-05-10',1),(5,0,2,'2020-04-06 19:08:20','hungry!!!',1,'2020-04-21',0),(6,0,1,'2020-04-06 20:45:20','I dont know',1,'2020-05-15',1),(7,0,0,'2020-04-06 21:34:20','just try',3,'2020-04-26',0),(9,0,2,'2020-04-08 09:04:48','fdsfds',9,'2020-05-10',1),(10,0,1,'2020-04-09 09:40:01','buzhidao',2,'2020-05-12',0);
 /*!40000 ALTER TABLE `booking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,4 +142,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-09  9:41:30
+-- Dump completed on 2020-04-13 17:04:42
