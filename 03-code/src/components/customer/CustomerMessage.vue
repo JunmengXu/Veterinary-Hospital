@@ -1,6 +1,6 @@
 <template>
     <div id="message_box">
-        <div id="box_head">私信客服</div>
+        <div id="box_head">{{$t('menu.contactStaff')}}</div>
         <div id="message_show">
             <div class="message_time">
                 <span class="time">04/13/2020 15:17</span>

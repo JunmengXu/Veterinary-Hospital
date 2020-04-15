@@ -5,13 +5,13 @@
             <el-tooltip effect="dark" placement="right"
                         v-for="item in myPets"
                         :key="item.id">
-                <p slot="content" style="font-size: 14px;margin-bottom: 6px;">宠物编号 {{item.id}}</p>
+                <p slot="content" style="font-size: 14px;margin-bottom: 6px;">{{$t('column.petNumber')}} {{item.id}}</p>
                 <p slot="content" style="font-size: 13px;margin-bottom: 6px">
-                    <span>{{$t('menu.customerPetpagePetname')}} {{item.name}}</span> /
-                    宠物性别：<span v-if="item.gender==0">male</span><span v-else>female</span> /
-                    <span>宠物种类：{{item.type}}</span>
+                    <span>{{$t('column.petName')}} {{item.name}}</span> /
+                    {{$t('column.petGender')}}<span v-if="item.gender==0">male</span><span v-else>female</span> /
+                    <span>{{$t('column.petType')}}{{item.type}}</span>
                 </p>
-                <p slot="content" style="width: 300px" class="abstract">所属主人: {{item.user.username}}</p>
+                <p slot="content" style="width: 300px" class="abstract">{{$t('column.owner')}}{{item.user.username}}</p>
                 <el-card style="width: 135px;margin-bottom: 20px;height: 233px;float: left;margin-right: 15px" class="book"
                          bodyStyle="padding:10px" shadow="hover">
                     <div class="cover" @click="dialogFormVisible = true, petId = item.id">
@@ -28,23 +28,23 @@
             </el-tooltip>
 
             <el-dialog
-                    title="创建预约"
+                    :title="$t('menu.addAppointment')"
                     :visible.sync="dialogFormVisible">
                 <el-form :model="formInline2" :rules="rules" ref="formInline2" class="demo-form-inline">
-                    <el-form-item label="症状" prop="symptom">
-                        <el-input v-model="formInline2.symptom" placeholder="症状"></el-input>
+                    <el-form-item :label="$t('column.symptom')" prop="symptom" >
+                        <el-input v-model="formInline2.symptom" :placeholder="$t('placeholder.symptom')"></el-input>
                     </el-form-item>
-                    <el-form-item label="紧急度" prop="urgency">
-                        <el-select v-model="formInline2.urgency" placeholder="紧急度">
-                            <el-option label="normal" value="0"></el-option>
-                            <el-option label="urgent" value="1"></el-option>
+                    <el-form-item :label="$t('column.urgency')" prop="urgency">
+                        <el-select v-model="formInline2.urgency" :placeholder="$t('placeholder.urgency')" style="width:50%">
+                            <el-option :label="$t('choices.normal')" value="0"></el-option>
+                            <el-option :label="$t('choices.urgent')" value="1"></el-option>
                         </el-select>
                     </el-form-item>
 
-                    <el-form-item label="需求时间" required>
+                    <el-form-item :label="$t('column.time')" required>
                         <el-col :span="11">
                             <el-form-item prop="needtime">
-                                <el-date-picker type="date" placeholder="选择日期" v-model="formInline2.needtime" style="width: 100%;"></el-date-picker>
+                                <el-date-picker type="date" :placeholder="$t('placeholder.time')" v-model="formInline2.needtime" style="width: 100%;"></el-date-picker>
                             </el-form-item>
                         </el-col>
 <!--                        <el-col class="line" :span="2">-</el-col>-->
@@ -55,22 +55,22 @@
 <!--                        </el-col>-->
                     </el-form-item>
 
-                    <el-form-item label="所选医院" prop="hospital">
-                        <el-select v-model="formInline2.hospital" placeholder="所选医院">
-                            <el-option label="北京" value="0"></el-option>
-                            <el-option label="上海" value="1"></el-option>
-                            <el-option label="成都" value="2"></el-option>
+                    <el-form-item :label="$t('column.hospital')" prop="hospital">
+                        <el-select v-model="formInline2.hospital" :placeholder="$t('placeholder.hospital')" style="width:50%">
+                            <el-option :label="$t('choices.Beijing')" value="0"></el-option>
+                            <el-option :label="$t('choices.Shanghai')" value="1"></el-option>
+                            <el-option :label="$t('choices.Chengdu')" value="2"></el-option>
                         </el-select>
                     </el-form-item>
 
                     <el-form-item>
-                        <el-button type="primary" @click="submitForm()">添加</el-button>
-                        <el-button @click="resetForm()">重置</el-button>
+                        <el-button type="primary" @click="submitForm()">{{$t('button.add')}}</el-button>
+                        <el-button @click="resetForm()">{{$t('button.reset')}}</el-button>
                     </el-form-item>
                 </el-form>
 
                 <div slot="footer" class="dialog-footer">
-                    <el-button @click="dialogFormVisible = false">取 消</el-button>
+                    <el-button @click="dialogFormVisible = false">{{$t('button.cancel')}}</el-button>
                 </div>
             </el-dialog>
             <pet-add></pet-add>
@@ -106,17 +106,17 @@
                 },
                 rules: {
                     symptom: [
-                        { required: true, message: '请输入宠物症状', trigger: 'blur' },
-                        { min: 1, max: 100, message: '长度在 1 到 100 个字符', trigger: 'blur' }
+                        { required: true, message: this.$t('message.symptom'), trigger: 'blur' },
+                        { min: 1, max: 100, message: this.$t('message.symptomLength'), trigger: 'blur' }
                     ],
                     urgency: [
-                        { required: true, message: '请至少选择一个紧急度', trigger: 'change' }
+                        { required: true, message: this.$t('message.urgency'), trigger: 'change' }
                     ],
                     hospital: [
-                        { required: true, message: '请至少选择一个医院', trigger: 'change' }
+                        { required: true, message: this.$t('message.hospital'), trigger: 'change' }
                     ],
                     needtime: [
-                        { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
+                        { type: 'date', required: true, message: this.$t('message.time'), trigger: 'change' }
                     ]
                     // time: [
                     //     { type: 'date', required: true, message: '请选择时间', trigger: 'change' }
@@ -151,14 +151,14 @@
                                 this.dialogFormVisible = false
                                 this.$emit('onSubmit')
                                 this.$notify({
-                                    title: '成功',
-                                    message: '成功添加新的预约',
+                                    title: this.$t('message.successed'),
+                                    message: this.$t('message.successAppointment'),
                                     type: 'success'
                                 });
                             }else{
                                 this.$notify.error({
-                                    title: '失败',
-                                    message: '添加预约失败'
+                                    title: this.$t('message.failed'),
+                                    message: this.$t('message.failingAppointment')
                                 });
                                 return false;
                             }
@@ -166,8 +166,8 @@
                     } else {
                         // console.log('error submit!!');
                         this.$notify.error({
-                            title: '失败',
-                            message: '添加预约失败'
+                            title: this.$t('message.failed'),
+                            message: this.$t('message.failingAppointment')
                         });
                         return false;
                     }

@@ -3,25 +3,25 @@
         <div id = 'a'>
            <el-form class="register-container" label-position="left"
                      label-width="0px">
-              <h3 class="register_title">用户注册</h3>
+              <h3 class="register_title">{{$t('menu.register')}}</h3>
                 <el-form-item>
                     <el-input type="text" v-model="registerForm.username"
-                              auto-complete="off" placeholder="账号"></el-input>
+                              auto-complete="off" :placeholder= "$t('placeholder.account')" ></el-input>
                 </el-form-item>
                  <el-form-item>
                     <el-input type="password" v-model="registerForm.password"
-                              auto-complete="off" placeholder="密码"></el-input>
+                              auto-complete="off" :placeholder="$t('placeholder.password')"></el-input>
                 </el-form-item>
                <el-form-item>
                    <el-input type="text" v-model="registerForm.email"
-                             auto-complete="off" placeholder="邮箱"></el-input>
+                             auto-complete="off" :placeholder="$t('placeholder.email')"></el-input>
                </el-form-item>
                <el-form-item>
                    <el-input type="text" v-model="registerForm.phone"
-                             auto-complete="off" placeholder="手机号"></el-input>
+                             auto-complete="off" :placeholder="$t('placeholder.phone')"></el-input>
                </el-form-item>
                 <el-form-item style="width: 100%">
-                    <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="register">注册</el-button>
+                    <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="register">{{$t('button.register')}}</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -60,7 +60,7 @@
                             this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
                         }
                         else if(successResponse.data.code === 400){
-                            alert("用户已存在，请重试！")
+                            alert(this.$t('message.alreadyExist'))
                         }
                     })
                     // eslint-disable-next-line no-unused-vars

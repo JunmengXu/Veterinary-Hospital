@@ -2,24 +2,24 @@
     <body id="poster">
     <el-form class="login-container" label-position="left"
              label-width="0px">
-        <h3 class="login_title">员工系统登录</h3>
+        <h3 class="login_title">{{$t('menu.staffLogin')}}</h3>
         <el-form-item>
             <el-input type="text" v-model="loginForm.username"
-                      auto-complete="off" placeholder="账号"></el-input>
+                      auto-complete="off" :placeholder="$t('placeholder.account')"></el-input>
         </el-form-item>
         <el-form-item>
             <el-input type="password" v-model="loginForm.password"
-                      auto-complete="off" placeholder="密码"></el-input>
+                      auto-complete="off" :placeholder="$t('placeholder.password')"></el-input>
         </el-form-item>
         <el-form-item style="width: 100%">
-            <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="login">登录</el-button>
+            <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="login">{{$t('button.login')}}</el-button>
         </el-form-item>
 <!--        <el-form-item style="width: 100%">-->
 <!--            &lt;!&ndash;  <router-link to = '/register' target="_blank">去注册</router-link>&ndash;&gt;-->
 <!--            <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="goRegister">还没有账户，先去注册</el-button>-->
 <!--        </el-form-item>-->
         <el-form-item style="width: 100%">
-            <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="customer">客户入口</el-button>
+            <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="customer">{{$t('button.customerEntrance')}}</el-button>
         </el-form-item>
     </el-form>
     </body>

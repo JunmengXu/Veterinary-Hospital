@@ -7,27 +7,28 @@
         <!--        @select="handleSelect"-->
         <el-menu-item index="0">
             <i class="el-icon-menu"></i>
-            <span slot="title">全部</span>
+            <span slot="title">{{$t('sideMenu.all')}}</span>
         </el-menu-item>
         <el-menu-item index="1">
             <i class="el-icon-menu"></i>
-            <span slot="title">待审批</span>
+            <span slot="title">{{$t('sideMenu.waitingDistribution')}}
+</span>
         </el-menu-item>
         <el-menu-item index="2">
             <i class="el-icon-menu"></i>
-            <span slot="title">待手术</span>
+            <span slot="title">{{$t('sideMenu.waitingOperation')}}</span>
         </el-menu-item>
         <el-menu-item index="3">
             <i class="el-icon-menu"></i>
-            <span slot="title">手术中</span>
+            <span slot="title">{{$t('sideMenu.duringOperation')}}</span>
         </el-menu-item>
         <el-menu-item index="4">
             <i class="el-icon-menu"></i>
-            <span slot="title">待释放</span>
+            <span slot="title">{{$t('sideMenu.waitingRelease')}}</span>
         </el-menu-item>
         <el-menu-item index="5">
             <i class="el-icon-menu"></i>
-            <span slot="title">无预约</span>
+            <span slot="title">{{$t('sideMenu.noAppointment')}}</span>
         </el-menu-item>
     </el-menu>
 </template>
@@ -42,8 +43,8 @@
     .categories {
         position: fixed;
         margin-left: 50%;
-        left: -700px;
+        left: -730px;
         top: 100px;
-        width: 150px;
+        width: 210px;
     }
 </style>

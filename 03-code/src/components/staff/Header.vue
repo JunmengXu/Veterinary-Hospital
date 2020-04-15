@@ -37,21 +37,21 @@
             {{ item.navItem }}
         </el-menu-item>
 <!--        <a href="#nowhere" style="color: #222;float: right;padding: 20px;">更多功能</a>-->
-        <el-button id="up10" size="medium" type="primary" v-on:click="loginOut">登出</el-button>
+        <el-button id="up10" size="medium" type="primary" v-on:click="loginOut">{{$t('button.logOut')}}</el-button>
 
         <el-dropdown id="up9" @command="handleCommand">
                 <span class="el-dropdown-link">
-                        中英文切换
+                         {{$t('button.switchLanguage')}}
                     <i class="el-icon-arrow-down el-icon--right"></i>
                 </span>
             <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item command="cn">中文</el-dropdown-item>
-                <el-dropdown-item command="en">英文</el-dropdown-item>
+                <el-dropdown-item command="cn">{{$t('column.Chinese')}}</el-dropdown-item>
+                <el-dropdown-item command="en">{{$t('column.English')}}</el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
 
         <i class="el-icon-menu" style="float:right;font-size: 45px;color: #222;padding-top: 8px"></i>
-        <span style="position: absolute;padding-top: 20px;right: 20%;font-size: 20px;font-weight: bold">Management System Of Veterinary hospital</span>
+        <span style="position: absolute;padding-top: 20px;right: 20%;font-size: 20px;font-weight: bold">{{$t('menu.staffHome')}}</span>
     </el-menu>
 
     </div>
@@ -65,20 +65,32 @@ export default {
     },
     data () {
         return {
-            navList: [
+           /* navList: [
                 {name: '/index', navItem: 'Home'},
                 {name: '/history', navItem: 'Historical appointment form'},
                 {name: '/message', navItem: 'Messages'},
                 {name: '/timetable', navItem: 'Schedule'},
                 {name: '/appointment', navItem: 'Process appointment form'}
+            ]*/
+        }
+    },
+    computed:{
+        navList:function () {
+            return [
+                {name: '/index', navItem: this.$t('menu.home')},
+                {name: '/history', navItem: this.$t('button.allAppointments')},
+                {name: '/message', navItem: this.$t('button.customerMessages')},
+                {name: '/timetable', navItem: this.$t('button.schedule')},
+              //  {name: '/appointment', navItem: 'Process appointment form'}
             ]
+
         }
     },
     methods: {
         loginOut () {
             localStorage.removeItem('user')
             // localStorage.removeItem('login')
-            alert('退出成功')
+            alert(this.$t('message.exit'))
             this.$router.replace('/login')
             },
         // 根据下拉框的中被选中的值切换语言
@@ -88,11 +100,13 @@ export default {
                 case "cn": {
                     this.lang = "cn";
                     this.$i18n.locale = this.lang;
+                    localStorage.setItem('lang', this.lang);
                     break;
                 }
                 case "en": {
                     this.lang = "en";
                     this.$i18n.locale = this.lang;
+                    localStorage.setItem('lang', this.lang);
                     break;
                 }
 
@@ -110,7 +124,7 @@ export default {
         float: left;
         margin-top: 10px;
         font-size: 20px;
-        margin-left: 40px;
+        margin-left: 50px;
     }
     #up1,#up2,#up3,#up4{
         float: left;

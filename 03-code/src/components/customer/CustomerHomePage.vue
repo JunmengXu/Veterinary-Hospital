@@ -5,7 +5,7 @@
                 <svg class="icon" id="icon" aria-hidden="true">
                     <use xlink:href="#icon-gou"></use>
                 </svg>
-                <h1 id="homepage_title_inside_1">动物医院预约系统</h1>
+                <h1 id="homepage_title_inside_1">{{$t('menu.title')}}</h1>
             </div>
             <!--            <hr style="height:1px;border:none;border-top:1px solid "/>-->
         </div>
@@ -13,17 +13,17 @@
             <div class="homepage_box">
                 <img class="homepage_image" src="@/assets/image/11.jpg" alt="">
                 <br/>
-                <el-button id="homepage_btn1" size="medium" type="primary" @click="handleClick1()">{{$t('menu.customerHomepagePet')}}</el-button>
+                <el-button id="homepage_btn1" size="medium" type="primary" @click="handleClick1()">{{$t('button.customerHomepagePet')}}</el-button>
             </div>
             <div class="homepage_box">
                 <img class="homepage_image" src="@/assets/image/33.jpg" alt="">
                 <br/>
-                <el-button id="homepage_btn3" size="medium" type="primary" @click="handleClick2()">我的预约单</el-button>
+                <el-button id="homepage_btn3" size="medium" type="primary" @click="handleClick2()">{{$t('button.customerHomepageAppointment')}}</el-button>
             </div>
             <div class="homepage_box">
                 <img class="homepage_image" src="@/assets/image/22.jpg" alt="">
                 <br/>
-                <el-button id="homepage_btn2" size="medium" type="primary" @click="handleClick3()">私信</el-button>
+                <el-button id="homepage_btn2" size="medium" type="primary" @click="handleClick3()">{{$t('button.customerHomepageMessage')}}</el-button>
             </div>
         </div>
 

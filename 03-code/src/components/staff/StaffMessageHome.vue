@@ -7,7 +7,7 @@
                 <el-autocomplete
                         v-model="state"
                         :fetch-suggestions="querySearchAsync"
-                        placeholder="请输入搜索用户名"
+                        :placeholder="$t('placeholder.searchUser')"
                         prefix-icon="el-icon-search"
                         @select="handleSelect"
                         style="width: 200px">
@@ -20,7 +20,7 @@
                     @row-click="handle"
                     style="width: 100%">
                 <el-table-column
-                        label="日期"
+                        :label="$t('column.date')"
                         width="180">
                     <template slot-scope="scope">
                         <i class="el-icon-time"></i>
@@ -28,7 +28,7 @@
                     </template>
                 </el-table-column>
                 <el-table-column
-                        label="用户"
+                        :label="$t('column.customer')"
                         width="180">
                     <template slot-scope="scope">
                         <el-avatar size="small" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
@@ -37,7 +37,7 @@
                 </el-table-column>
                 <el-table-column
                         prop="message"
-                        label="最新消息">
+                        :label="$t('column.newMessage')">
                 </el-table-column>
             </el-table>
         </div>

@@ -11,7 +11,7 @@ import './font/iconfont.js';
 // import VueI18n from 'vue-i18n'
 import i18n from "./i18n/i18n";
 Vue.use(Element)
-// Vue.use(VueI18n)
+//Vue.use(VueI18n)
 // import locale from 'element-ui/lib/locale/lang/en'
 
 // const i18n = new VueI18n({

@@ -5,38 +5,38 @@
             :row-class-name="tableRowClassName">
         <el-table-column
                 prop="urgency"
-                label="紧急度"
+                :label="$t('column.urgency')"
                 width="180">
             <template slot-scope="props">
-                <span v-if="props.row.urgency==0" style="color: darkgreen">Normal</span><span v-else style="color: crimson">Urgent</span>
+                <span v-if="props.row.urgency==0" style="color: darkgreen">{{$t('choices.normal')}}</span><span v-else style="color: crimson">{{$t('choices.urgent')}}</span>
             </template>
         </el-table-column>
         <el-table-column
                 prop="hospital"
-                label="医院"
+                :label="$t('column.hospital')"
                 width="180">
             <template slot-scope="props">
-                <span v-if="props.row.hospital==0">北京</span><span v-else-if="props.row.hospital==1">上海</span><span v-else>成都</span>
+                <span v-if="props.row.hospital==0">{{$t('choices.Beijing')}}</span><span v-else-if="props.row.hospital==1">{{$t('choices.Shanghai')}}</span><span v-else>{{$t('choices.Chengdu')}}</span>
             </template>
         </el-table-column>
         <el-table-column
                 prop="pet.name"
-                label="宠物">
+                :label="$t('column.pet')">
         </el-table-column>
         <el-table-column
                 prop="symptom"
-                label="症状">
+                :label="$t('column.symptom')">
         </el-table-column>
         <el-table-column
                 prop="needtime"
-                label="需要时间">
+                :label="$t('column.time')">
         </el-table-column>
         <el-table-column
                 prop="distribution"
-                label="分配情况"
+                :label="$t('column.distribution')"
                 width="180">
             <template slot-scope="props">
-                <span v-if="props.row.distribution==0" style="color: chocolate">未分配</span><span v-else style="color: cornflowerblue">已分配</span>
+                <span v-if="props.row.distribution==0" style="color: chocolate">{{$t('sideMenu.unassigned')}}</span><span v-else style="color: cornflowerblue">{{$t('sideMenu.assigned')}}</span>
             </template>
         </el-table-column>
     </el-table>

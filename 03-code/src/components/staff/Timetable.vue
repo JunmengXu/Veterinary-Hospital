@@ -83,12 +83,12 @@
                                 <div v-if="(item.needtime.split('-').slice(1)[0]).indexOf(data.day.split('-').slice(1)[0])!=-1">
                                     <div v-if="(item.needtime.split('-').slice(2).join('-')).indexOf(data.day.split('-').slice(2).join('-'))!=-1">
                                         <el-tooltip effect="dark" placement="right">
-                                            <p class="item" slot="content">Customer: {{item.pet.user.username}}</p>
-                                            <p class="item" slot="content">Pet: {{item.pet.name}}</p>
-                                            <p class="item" slot="content">Symptom: {{item.symptom}}</p>
-                                            <p class="item" slot="content">Urgency: <span v-if="item.urgency==0" style="color: lawngreen">normal</span><span v-else style="color: crimson">urgent</span></p>
-                                            <p class="item" slot="content">Hospital: <span v-if="item.hospital==0">Beijing</span><span v-else-if="item.hospital==1">Shanghai</span><span v-else>Chengdu</span></p>
-                                            <div class="is-selected">Cus:{{item.pet.user.username}} / Pet:{{item.pet.name}}</div>
+                                            <p class="item" slot="content">{{$t('column.customer')}}{{item.pet.user.username}}</p>
+                                            <p class="item" slot="content">{{$t('column.pet')}}{{item.pet.name}}</p>
+                                            <p class="item" slot="content">{{$t('column.symptom')}}{{item.symptom}}</p>
+                                            <p class="item" slot="content">{{$t('column.urgency')}}<span v-if="item.urgency==0" style="color: lawngreen">{{$t('choices.normal')}}</span><span v-else style="color: crimson">{{$t('choices.urgent')}}</span></p>
+                                            <p class="item" slot="content">{{$t('column.hospital')}}<span v-if="item.hospital==0">{{$t('choices.Beijing')}}</span><span v-else-if="item.hospital==1">{{$t('choices.Shanghai')}}</span><span v-else>{{$t('choices.Chengdu')}}</span></p>
+                                            <div class="is-selected">{{$t('column.customer')}}{{item.pet.user.username}} / {{$t('column.pet')}}{{item.pet.name}}</div>
                                         </el-tooltip>
                                     </div>
                                     <div v-else></div>

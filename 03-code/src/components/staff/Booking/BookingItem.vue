@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="daily_detail">
-            <h2>紧急预约</h2>
+            <h2>{{$t('menu.urgentAppointment')}}</h2>
             <div class="bar">
                 <el-table
                         :data="bookingU.slice((currentPageU-1)*pagesizeU,currentPageU*pagesizeU)"
@@ -9,42 +9,42 @@
                     <el-table-column type="expand">
                         <template slot-scope="props">
                             <el-form label-position="left" inline class="demo-table-expand">
-                                <el-form-item label="联系电话">
+                                <el-form-item :label="$t('column.phone')">
                                     <span>{{ props.row.pet.user.phoneNumber }}</span>
                                 </el-form-item>
-                                <el-form-item label="下单时间">
+                                <el-form-item :label="$t('column.reserveTime')">
                                     <span>{{ props.row.time }}</span>
                                 </el-form-item>
-                                <el-form-item label="病症描述">
+                                <el-form-item :label="$t('column.symptom')">
                                     <span>{{ props.row.symptom }}</span>
                                 </el-form-item>
                             </el-form>
                         </template>
                     </el-table-column>
                     <el-table-column
-                            label="编号"
+                            :label="$t('column.appointmentNumber')"
                             prop="id">
                     </el-table-column>
                     <el-table-column
-                            label="需要时间"
+                            :label="$t('column.time')"
                             prop="needtime">
                     </el-table-column>
                     <el-table-column
-                            label="客户姓名"
+                            :label="$t('column.owner')"
                             prop="pet.user.username">
                     </el-table-column>
                     <el-table-column
-                            label="宠物名字"
+                            :label="$t('column.petName')"
                             prop="pet.name">
                     </el-table-column>
                     <el-table-column
                             fixed="right"
-                            label="操作"
+                            :label="$t('column.operation')"
                             width="100">
                         <template slot-scope="scope">
-                            <el-button @click="handleClick(scope.row.id)" type="text" size="small">详情</el-button>
-                            <el-button type="text" size="small">私信</el-button>
-                            <el-button size="small" @click="dialogFormVisible = true,bookingId=scope.row.id" v-if="scope.row.distribution==0">分配</el-button><el-button size="small" disabled v-else>已分配</el-button>
+                            <el-button @click="handleClick(scope.row.id)" type="text" size="small">{{$t('button.detail')}}</el-button>
+                            <el-button type="text" size="small">{{$t('button.sendMessage')}}</el-button>
+                            <el-button size="small" @click="dialogFormVisible = true,bookingId=scope.row.id" v-if="scope.row.distribution==0">{{$t('button.assign')}}</el-button><el-button size="small" disabled v-else>{{$t('sideMenu.assigned')}}</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -65,7 +65,7 @@
                 </div>
             </el-row>
 
-            <h2>非紧急预约</h2>
+            <h2>{{$t('menu.normalAppointment')}}</h2>
             <div class="bar">
                 <el-table
                         :data="booking.slice((currentPage-1)*pagesize,currentPage*pagesize)"
@@ -73,42 +73,42 @@
                     <el-table-column type="expand">
                         <template slot-scope="props">
                             <el-form label-position="left" inline class="demo-table-expand">
-                                <el-form-item label="联系电话">
+                                <el-form-item :label="$t('column.phone')">
                                     <span>{{ props.row.pet.user.phoneNumber }}</span>
                                 </el-form-item>
-                                <el-form-item label="下单时间">
+                                <el-form-item :label="$t('column.reserveTime')">
                                     <span>{{ props.row.time }}</span>
                                 </el-form-item>
-                                <el-form-item label="病症描述">
+                                <el-form-item :label="$t('column.symptom')">
                                     <span>{{ props.row.symptom }}</span>
                                 </el-form-item>
                             </el-form>
                         </template>
                     </el-table-column>
                     <el-table-column
-                            label="编号"
+                            :label="$t('column.appointmentNumber')"
                             prop="id">
                     </el-table-column>
                     <el-table-column
-                            label="需要时间"
+                            :label="$t('column.time')"
                             prop="needtime">
                     </el-table-column>
                     <el-table-column
-                            label="客户姓名"
+                            :label="$t('column.owner')"
                             prop="pet.user.username">
                     </el-table-column>
                     <el-table-column
-                            label="宠物名字"
+                            :label="$t('column.petName')"
                             prop="pet.name">
                     </el-table-column>
                     <el-table-column
                             fixed="right"
-                            label="操作"
+                            :label="$t('column.operation')"
                             width="100">
                         <template slot-scope="scope">
-                            <el-button @click="handleClick(scope.row.id)" type="text" size="small">详情</el-button>
-                            <el-button type="text" size="small">私信</el-button>
-                            <el-button size="small" @click="dialogFormVisible = true,bookingId=scope.row.id" v-if="scope.row.distribution==0">分配</el-button><el-button size="small" disabled v-else>已分配</el-button>
+                            <el-button @click="handleClick(scope.row.id)" type="text" size="small">{{$t('button.detail')}}</el-button>
+                            <el-button type="text" size="small">{{$t('button.sendMessage')}}</el-button>
+                            <el-button size="small" @click="dialogFormVisible = true,bookingId=scope.row.id" v-if="scope.row.distribution==0">{{$t('button.assign')}}</el-button><el-button size="small" disabled v-else>{{$t('sideMenu.assigned')}}</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -130,21 +130,21 @@
         </el-row>
 
         <el-dialog
-                title="设置手术时间"
+                :title="$t('menu.setOperationTime')"
                 :visible.sync="dialogFormVisible">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
 
-                <el-form-item label="日期" required>
+                <el-form-item :label="$t('column.date')" required>
                     <el-col :span="11">
                         <el-form-item prop="date">
-                            <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date" value-format="yyyy-MM-dd" style="width: 100%;"></el-date-picker>
+                            <el-date-picker type="date" :placeholder="$t('placeholder.time')" v-model="ruleForm.date" value-format="yyyy-MM-dd" style="width: 100%;"></el-date-picker>
                         </el-form-item>
                     </el-col>
                 </el-form-item>
 
                 <el-form-item>
-                    <el-button type="primary" @click="submitForm()">立即分配</el-button>
-                    <el-button @click="resetForm()">重置</el-button>
+                    <el-button type="primary" @click="submitForm()">{{$t('button.assign')}}</el-button>
+                    <el-button @click="resetForm()">{{$t('button.reset')}}</el-button>
                 </el-form-item>
             </el-form>
         </el-dialog>
@@ -199,7 +199,7 @@
                 },
                 rules: {
                     date: [
-                        { required: true, message: '请选择日期', trigger: 'change' }
+                        { required: true, message:this.$t('message.time') , trigger: 'change' }
                     ]
                 }
             }
@@ -243,24 +243,24 @@
                                 this.dialogFormVisible = false
                                 this.$emit('onSubmit')
                                 this.$notify({
-                                    title: '成功',
-                                    message: '成功修改手术日期',
+                                    title: this.$t('message.successed'),
+                                    message: this.$t('message.successAssign'),
                                     type: 'success'
                                 });
                                 console.log(JSON.stringify(resp))
                                 this.reload();
                             }else{
                                 this.$notify.error({
-                                    title: '失败',
-                                    message: '修改失败'
+                                    title: this.$t('message.failed'),
+                                    message: this.$t('message.failingAssign')
                                 });
                             }
                         })
                     } else {
                         // console.log('error submit!!');
                         this.$notify.error({
-                            title: '失败',
-                            message: '修改失败'
+                            title: this.$t('message.failed'),
+                            message: this.$t('message.failingAssign')
                         });
                         return false;
                     }

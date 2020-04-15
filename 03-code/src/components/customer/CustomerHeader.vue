@@ -12,22 +12,22 @@
                 {{ item.navItem }}
             </el-menu-item>
             <!--        <a href="#nowhere" style="color: #222;float: right;padding: 20px;">更多功能</a>-->
-            <el-button id="up10" size="medium" type="primary" v-on:click="loginOut">登出</el-button>
+            <el-button id="up10" size="medium" type="primary" v-on:click="loginOut">{{$t('button.logOut')}}</el-button>
 <!--            <el-button id="up11" size="medium" type="primary" v-on:click="langChange">切换语言</el-button>-->
             <el-dropdown id="up9" @command="handleCommand">
                 <span class="el-dropdown-link">
-                        中英文切换
+                        {{$t('button.switchLanguage')}}
                     <i class="el-icon-arrow-down el-icon--right"></i>
                 </span>
                 <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item command="cn">中文</el-dropdown-item>
-                    <el-dropdown-item command="en">英文</el-dropdown-item>
+                    <el-dropdown-item command="cn">{{$t('column.Chinese')}}</el-dropdown-item>
+                    <el-dropdown-item command="en">{{$t('column.English')}}</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
 
 
             <i class="el-icon-menu" style="float:right;font-size: 45px;color: #222;padding-top: 8px"></i>
-            <span style="position: absolute;padding-top: 20px;right: 43%;font-size: 20px;font-weight: bold">动物医院预约系统</span>
+            <span style="position: absolute;padding-top: 20px;right: 43%;font-size: 20px;font-weight: bold">{{$t('menu.title')}}</span>
         </el-menu>
     </div>
 </template>
@@ -41,20 +41,27 @@
         data () {
             return {
                 lang: "",
-                navList: [
-                    {name: '/indexc', navItem: '首页'},
-                    {name: '/petc', navItem: '我的宠物'},
-                    {name: '/appointmentc', navItem: '我的预约'},
-                    {name: '/messagec', navItem: '私信'}
-
-                ]
             }
+        },
+        //这里需要把数据写到computed里面否则组件不会实时刷新
+        computed:{
+           navList:function () {
+               return [
+                   {name: '/indexc', navItem: this.$t('menu.home')},
+                   {name: '/petc', navItem: this.$t('button.customerHomepagePet')},
+                   {name: '/appointmentc', navItem: this.$t('button.customerHomepageAppointment')},
+                   {name: '/messagec', navItem: this.$t('button.customerHomepageMessage')}
+
+               ]
+
+           }
+
         },
         methods: {
             loginOut () {
                 localStorage.removeItem('user')
                 // localStorage.removeItem('login')
-                alert('退出成功')
+                alert(this.$t('message.exit'))
                 this.$router.replace('/loginc')
             },
             // 根据下拉框的中被选中的值切换语言
@@ -64,11 +71,14 @@
                     case "cn": {
                         this.lang = "cn";
                         this.$i18n.locale = this.lang;
+                        //本地保存语言设置，刷新页面或重新进入后也可维持原有的设置
+                        localStorage.setItem('lang', this.lang);
                         break;
                     }
                     case "en": {
                         this.lang = "en";
                         this.$i18n.locale = this.lang;
+                        localStorage.setItem('lang', this.lang);
                         break;
                     }
 

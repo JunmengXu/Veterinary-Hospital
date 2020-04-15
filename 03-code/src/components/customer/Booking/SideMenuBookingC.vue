@@ -7,15 +7,15 @@
         <!--        @select="handleSelect"-->
         <el-menu-item index="0">
             <i class="el-icon-menu"></i>
-            <span slot="title">全部</span>
+            <span slot="title">{{$t('sideMenu.all')}}</span>
         </el-menu-item>
         <el-menu-item index="1">
             <i class="el-icon-menu"></i>
-            <span slot="title">未处理</span>
+            <span slot="title">{{$t('sideMenu.unassigned')}}</span>
         </el-menu-item>
         <el-menu-item index="2">
             <i class="el-icon-menu"></i>
-            <span slot="title">已处理</span>
+            <span slot="title">{{$t('sideMenu.assigned')}}</span>
         </el-menu-item>
     </el-menu>
 </template>
