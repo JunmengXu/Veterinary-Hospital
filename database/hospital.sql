@@ -36,7 +36,7 @@ CREATE TABLE `booking` (
   PRIMARY KEY (`id`),
   KEY `petId_idx` (`petId`) /*!80000 INVISIBLE */,
   CONSTRAINT `petId` FOREIGN KEY (`petId`) REFERENCES `pet` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `booking` (
 
 LOCK TABLES `booking` WRITE;
 /*!40000 ALTER TABLE `booking` DISABLE KEYS */;
-INSERT INTO `booking` VALUES (1,0,0,'2020-04-06 10:20:08','nihao',1,'2020-04-17',1),(2,1,1,'2020-04-06 11:50:08','very healthy',2,'2020-04-10',1),(3,0,2,'2020-04-06 15:24:08','very healthy very healthy',3,'2020-04-28',0),(4,1,1,'2020-04-06 18:14:20','it is thirsty',2,'2020-05-10',1),(5,0,2,'2020-04-06 19:08:20','hungry!!!',1,'2020-04-21',0),(6,0,1,'2020-04-06 20:45:20','I dont know',1,'2020-05-15',1),(7,0,0,'2020-04-06 21:34:20','just try',3,'2020-04-26',0),(9,0,2,'2020-04-08 09:04:48','fdsfds',9,'2020-05-10',1),(10,0,1,'2020-04-09 09:40:01','buzhidao',2,'2020-05-12',0);
+INSERT INTO `booking` VALUES (1,0,0,'2020-04-06 10:20:08','have a fever',1,'2020-04-17',1),(2,1,1,'2020-04-06 11:50:08','red eyes',2,'2020-04-10',1),(3,0,2,'2020-04-07 15:24:08','Lack of vitality',3,'2020-04-28',0),(4,1,1,'2020-04-07 18:14:20','loss of appetite',2,'2020-05-10',1),(5,0,2,'2020-04-08 19:08:20','constipation',1,'2020-04-21',0),(6,0,1,'2020-04-09 20:45:20','drowsiness',1,'2020-05-15',1),(7,0,0,'2020-04-10 21:34:20','caugh',3,'2020-04-26',0),(9,0,2,'2020-04-12 09:04:48','emesis',6,'2020-05-10',1),(10,0,1,'2020-04-14 09:40:01','loose bowels',2,'2020-05-12',0),(11,1,0,'2020-04-15 09:40:01','psoriasis',4,'2020-04-28',1),(12,0,0,'2020-04-16 12:40:01','always nervous',5,'2020-06-07',0);
 /*!40000 ALTER TABLE `booking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -99,7 +99,7 @@ CREATE TABLE `pet` (
 
 LOCK TABLES `pet` WRITE;
 /*!40000 ALTER TABLE `pet` DISABLE KEYS */;
-INSERT INTO `pet` VALUES (1,0,'xiaomao','cat',1),(2,1,'lalala','dog',1),(3,1,'hahaha','cat',2),(7,1,'nicai','fdsf',2),(8,0,'gf','fdsfsd',2),(9,0,'dade','rgfd',2);
+INSERT INTO `pet` VALUES (1,0,'Maru','cat',1),(2,1,'Abigail','cat',1),(3,1,'Leah','dog',2),(4,1,'Haley','cat',2),(5,0,'Pierre','dog',2),(6,0,'Vincent','cat',2);
 /*!40000 ALTER TABLE `pet` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,7 +129,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'group5','12345','none','testha@tese.com','654321',0),(2,'test','54321','lalala','test@vds.com','1564321',0),(3,'lalala','12345','lalala','vvfdbjin','53456123',1);
+INSERT INTO `user` VALUES (1,'mycust','12345','none','testha@tese.com','537-231456',0),(2,'test','54321','lalala','test@vds.com','1564321',0),(3,'group5','12345','lalala','vvfdbjin','53456123',1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -142,4 +142,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-13 17:04:42
+-- Dump completed on 2020-04-16  9:50:47

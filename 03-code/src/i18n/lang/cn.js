@@ -95,7 +95,11 @@ const cn = {
         date:"日期: ",
         customer:"客户: ",
         newMessage:"最新消息: ",
-
+        customerInfo: "客户信息",
+        petInfo: "宠物信息",
+        symptomInfo: "病症描述",
+        bookingMadeTime:"下单时间",
+        bookingNeedTime:"预约时间"
     },
     choices:{
         normal:"普通",

@@ -19,11 +19,11 @@
 <!--        </el-table>-->
 <!--        </div>-->
         <div class="bar" style="margin-left: 50px; margin-right: 50px">
-            <p>客户信息  <span>{{bookings.pet.user.username}} / {{bookings.pet.user.phoneNumber}} / {{bookings.pet.user.email}} / {{bookings.pet.user.username}}</span> </p>
-            <p>宠物信息 <span>{{bookings.pet.name}} / {{bookings.pet.type}} / <span v-if="bookings.pet.gender==0">male</span><span v-else>female</span></span> </p>
-            <p>病症描述 <span>{{bookings.symptom}}</span></p>
-            <p>下单时间 <span>{{bookings.time}}</span></p>
-            <p>预约时间 <span>{{bookings.needtime}}</span></p>
+            <p class="title">{{$t('column.customerInfo')}}:  <span>{{bookings.pet.user.username}} / {{bookings.pet.user.phoneNumber}} / {{bookings.pet.user.email}} / {{bookings.pet.user.username}}</span> </p>
+            <p class="title">{{$t('column.petInfo')}}:  <span>{{bookings.pet.name}} / {{bookings.pet.type}} / <span v-if="bookings.pet.gender==0">male</span><span v-else>female</span></span> </p>
+            <p class="title">{{$t('column.symptomInfo')}}:  <span>{{bookings.symptom}}</span></p>
+            <p class="title">{{$t('column.bookingMadeTime')}}:  <span>{{bookings.time}}</span></p>
+            <p class="title">{{$t('column.bookingNeedTime')}}:  <span>{{bookings.needtime}}</span></p>
         </div>
     </div>
 </template>
@@ -96,5 +96,12 @@
     }
     h2{
         text-align: center;
+    }
+    .title{
+        font-weight: bold;
+    }
+
+    .title span{
+        font-weight: normal;
     }
 </style>
