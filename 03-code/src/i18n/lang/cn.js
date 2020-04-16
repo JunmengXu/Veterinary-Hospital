@@ -95,17 +95,11 @@ const cn = {
         date:"日期: ",
         customer:"客户: ",
         newMessage:"最新消息: ",
-<<<<<<< HEAD
-        customerInfo:" 客户信息: ",
-        petInfo:" 宠物信息: ",
-
-=======
-        customerInfo: "客户信息",
-        petInfo: "宠物信息",
-        symptomInfo: "病症描述",
-        bookingMadeTime:"下单时间",
-        bookingNeedTime:"预约时间"
->>>>>>> 8b83b7d733f1e5c0d44455f4296dc91d17a12064
+        customerInfo: "客户信息: ",
+        petInfo: "宠物信息: ",
+        symptomInfo: "病症描述: ",
+        bookingMadeTime:"下单时间: ",
+        bookingNeedTime:"预约时间: "
     },
     choices:{
         normal:"普通",
