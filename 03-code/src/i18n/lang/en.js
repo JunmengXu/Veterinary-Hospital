@@ -103,8 +103,16 @@ const en = {
         date:"Date: ",
         customer:"Customer: ",
         newMessage:"New Message: ",
+<<<<<<< HEAD
         customerInfo:" Customer Info: ",
         petInfo:" Pet Info: ",
+=======
+        customerInfo: "Customer information",
+        petInfo: "Pet information",
+        symptomInfo: "Symptom description",
+        bookingMadeTime:"Order time",
+        bookingNeedTime:"Time of appointment"
+>>>>>>> 8b83b7d733f1e5c0d44455f4296dc91d17a12064
     },
     choices:{
         normal:"normal",

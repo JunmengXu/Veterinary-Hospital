@@ -19,11 +19,19 @@
 <!--        </el-table>-->
 <!--        </div>-->
         <div class="bar" style="margin-left: 50px; margin-right: 50px">
+<<<<<<< HEAD
             <p>{{$t('column.customerInfo')}}  <span>{{bookings.pet.user.username}} / {{bookings.pet.user.phoneNumber}} / {{bookings.pet.user.email}} / {{bookings.pet.user.username}}</span> </p>
             <p>{{$t('column.petInfo')}} <span>{{bookings.pet.name}} / {{bookings.pet.type}} / <span v-if="bookings.pet.gender==0">male</span><span v-else>female</span></span> </p>
             <p>{{$t('column.symptom')}} <span>{{bookings.symptom}}</span></p>
             <p>{{$t('column.reserveTime')}} <span>{{bookings.time}}</span></p>
             <p>{{$t('column.time')}} <span>{{bookings.needtime}}</span></p>
+=======
+            <p class="title">{{$t('column.customerInfo')}}:  <span>{{bookings.pet.user.username}} / {{bookings.pet.user.phoneNumber}} / {{bookings.pet.user.email}} / {{bookings.pet.user.username}}</span> </p>
+            <p class="title">{{$t('column.petInfo')}}:  <span>{{bookings.pet.name}} / {{bookings.pet.type}} / <span v-if="bookings.pet.gender==0">male</span><span v-else>female</span></span> </p>
+            <p class="title">{{$t('column.symptomInfo')}}:  <span>{{bookings.symptom}}</span></p>
+            <p class="title">{{$t('column.bookingMadeTime')}}:  <span>{{bookings.time}}</span></p>
+            <p class="title">{{$t('column.bookingNeedTime')}}:  <span>{{bookings.needtime}}</span></p>
+>>>>>>> 8b83b7d733f1e5c0d44455f4296dc91d17a12064
         </div>
     </div>
 </template>
@@ -96,5 +104,12 @@
     }
     h2{
         text-align: center;
+    }
+    .title{
+        font-weight: bold;
+    }
+
+    .title span{
+        font-weight: normal;
     }
 </style>
