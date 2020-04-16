@@ -103,6 +103,8 @@ const en = {
         date:"Date: ",
         customer:"Customer: ",
         newMessage:"New Message: ",
+        customerInfo:" Customer Info: ",
+        petInfo:" Pet Info: ",
     },
     choices:{
         normal:"normal",

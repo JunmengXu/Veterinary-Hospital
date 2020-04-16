@@ -95,6 +95,8 @@ const cn = {
         date:"日期: ",
         customer:"客户: ",
         newMessage:"最新消息: ",
+        customerInfo:" 客户信息: ",
+        petInfo:" 宠物信息: ",
 
     },
     choices:{
