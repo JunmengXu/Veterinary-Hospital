@@ -2,7 +2,7 @@
     <el-menu
             class="categories"
             default-active="0"
-
+            @select="handleSelect"
             active-text-color="blue">
         <!--        @select="handleSelect"-->
         <el-menu-item index="0">
@@ -11,31 +11,41 @@
         </el-menu-item>
         <el-menu-item index="1">
             <i class="el-icon-menu"></i>
-            <span slot="title">{{$t('sideMenu.waitingDistribution')}}
-</span>
+            <span slot="title">{{$t('sideMenu.noAppointment')}}</span>
         </el-menu-item>
         <el-menu-item index="2">
             <i class="el-icon-menu"></i>
-            <span slot="title">{{$t('sideMenu.waitingOperation')}}</span>
+            <span slot="title">{{$t('sideMenu.waitingDistribution')}}</span>
         </el-menu-item>
         <el-menu-item index="3">
             <i class="el-icon-menu"></i>
-            <span slot="title">{{$t('sideMenu.duringOperation')}}</span>
+            <span slot="title">{{$t('sideMenu.waitingOperation')}}</span>
         </el-menu-item>
+<!--        <el-menu-item index="3">-->
+<!--            <i class="el-icon-menu"></i>-->
+<!--            <span slot="title">{{$t('sideMenu.duringOperation')}}</span>-->
+<!--        </el-menu-item>-->
         <el-menu-item index="4">
             <i class="el-icon-menu"></i>
             <span slot="title">{{$t('sideMenu.waitingRelease')}}</span>
-        </el-menu-item>
-        <el-menu-item index="5">
-            <i class="el-icon-menu"></i>
-            <span slot="title">{{$t('sideMenu.noAppointment')}}</span>
         </el-menu-item>
     </el-menu>
 </template>
 
 <script>
     export default {
-        name: 'SideMenuPet'
+        name: 'SideMenuPet',
+        data (){
+            return {
+                select: 0
+            }
+        },
+        methods:{
+            handleSelect (key){
+                this.select = key
+                this.$emit('indexSelect')
+            }
+        }
     }
 </script>
 

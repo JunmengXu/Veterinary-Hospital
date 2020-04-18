@@ -29,14 +29,14 @@ CREATE TABLE `booking` (
   `urgency` int(11) NOT NULL,
   `hospital` int(11) NOT NULL,
   `time` datetime NOT NULL,
-  `symptom` varchar(45) NOT NULL,
+  `symptom` varchar(100) NOT NULL,
   `petId` int(11) DEFAULT NULL,
   `needtime` date NOT NULL,
   `distribution` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `petId_idx` (`petId`) /*!80000 INVISIBLE */,
   CONSTRAINT `petId` FOREIGN KEY (`petId`) REFERENCES `pet` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,6 +75,35 @@ INSERT INTO `customer` VALUES (1,'john','dog'),(2,'Alan','cat'),(3,'mary','cat')
 UNLOCK TABLES;
 
 --
+-- Table structure for table `message`
+--
+
+DROP TABLE IF EXISTS `message`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `message` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` varchar(300) NOT NULL,
+  `type` int(11) NOT NULL,
+  `time` datetime NOT NULL,
+  `custid` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `custid_idx` (`custid`),
+  CONSTRAINT `custid` FOREIGN KEY (`custid`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `message`
+--
+
+LOCK TABLES `message` WRITE;
+/*!40000 ALTER TABLE `message` DISABLE KEYS */;
+INSERT INTO `message` VALUES (1,'hello,this is me',0,'2020-04-06 10:20:08',1),(2,'how could I help you',1,'2020-04-06 10:30:58',1),(3,'nothing',0,'2020-04-06 10:37:58',1),(4,'nothing',0,'2020-04-06 10:37:58',1),(5,'nothing',0,'2020-04-06 10:37:58',1),(6,'nothing',0,'2020-04-06 10:37:58',1),(7,'aCXSA',0,'2020-04-17 23:39:51',1),(8,'vfvbd',0,'2020-04-17 23:40:09',1),(9,'你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好',0,'2020-04-17 23:42:47',1),(10,'吃的是草',0,'2020-04-17 23:43:05',1),(11,'吃饭',0,'2020-04-17 23:43:24',1),(12,'下次',0,'2020-04-17 23:47:12',1),(13,'',0,'2020-04-17 23:47:26',1),(14,'口是心非',0,'2020-04-18 19:32:19',1),(15,'你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好',0,'2020-04-18 19:51:32',1),(16,'你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好',0,'2020-04-18 19:51:47',1);
+/*!40000 ALTER TABLE `message` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `pet`
 --
 
@@ -87,10 +116,12 @@ CREATE TABLE `pet` (
   `name` varchar(45) NOT NULL,
   `type` varchar(45) NOT NULL,
   `ownerId` int(11) DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `cover` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `ownerId_idx` (`ownerId`),
   CONSTRAINT `ownerId` FOREIGN KEY (`ownerId`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +130,7 @@ CREATE TABLE `pet` (
 
 LOCK TABLES `pet` WRITE;
 /*!40000 ALTER TABLE `pet` DISABLE KEYS */;
-INSERT INTO `pet` VALUES (1,0,'Maru','cat',1),(2,1,'Abigail','cat',1),(3,1,'Leah','dog',2),(4,1,'Haley','cat',2),(5,0,'Pierre','dog',2),(6,0,'Vincent','cat',2);
+INSERT INTO `pet` VALUES (1,0,'Maru','cat',1,1,''),(2,1,'Abigail','cat',1,2,''),(3,1,'Leah','dog',2,0,''),(4,1,'Haley','cat',2,0,''),(5,0,'Pierre','dog',2,0,''),(6,0,'Vincent','cat',2,0,''),(10,0,'noodle','cat',1,0,'');
 /*!40000 ALTER TABLE `pet` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,4 +173,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-16  9:50:47
+-- Dump completed on 2020-04-18 23:50:22

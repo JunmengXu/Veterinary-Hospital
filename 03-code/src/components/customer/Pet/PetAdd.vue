@@ -10,6 +10,12 @@
                 <el-form-item :label="$t('column.petName')" prop="petName">
                     <el-input v-model="formInline.petName" :placeholder="$t('placeholder.petName')"></el-input>
                 </el-form-item>
+
+                <el-form-item label="封面" :label-width="formLabelWidth">
+                    <el-input v-model="formInline.petImg" autocomplete="off" placeholder="图片 URL" disabled></el-input>
+                    <pet-image @onUpload="uploadImg" @removeUpload="removeImg" ref="PetImage"></pet-image>
+                </el-form-item>
+
                 <el-form-item :label="$t('column.petGender')" prop="petGender">
                     <el-select v-model="formInline.petGender" :placeholder="$t('placeholder.petGender')">
                         <el-option :label="$t('choices.male')" value="0"></el-option>
@@ -34,16 +40,20 @@
 
 <script>
     import store from "../../../store";
+    import PetImage from "../../uploadimg/PetImage";
 
     export default {
         name: 'PetAdd',
+        components: {PetImage},
+        inject:['reload'],
         data () {
             return {
                 dialogFormVisible: false,
                 formInline: {
                     petName: '',
                     petGender: '',
-                    petType: ''
+                    petType: '',
+                    petImg: ''
                 },
                 rules: {
                     petName: [
@@ -85,7 +95,8 @@
                             .post(url, {
                                 name: this.formInline.petName,
                                 gender: this.formInline.petGender,
-                                type: this.formInline.petType
+                                type: this.formInline.petType,
+                                cover: this.formInline.petImg
                             }).then(resp => {
                             if (resp && resp.status === 200) {
                                 this.dialogFormVisible = false
@@ -95,6 +106,8 @@
                                     message: this.$t('message.successAddPet'),
                                     type: 'success'
                                 });
+                                console.log(JSON.stringify(resp))
+                                this.reload();
                             }else{
                                 this.$notify.error({
                                     title: this.$t('message.failed'),
@@ -115,6 +128,12 @@
             },
             resetForm() {
                 this.$refs.formInline.resetFields();
+            },
+            uploadImg () {
+                this.formInline.petImg = this.$refs.PetImage.imageUrl
+            },
+            removeImg () {
+                this.formInline.petImg = ''
             }
         }
     }

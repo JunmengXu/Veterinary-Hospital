@@ -1,113 +1,103 @@
 <template>
     <div id="message_box">
         <div id="box_head">{{$t('menu.contactStaff')}}</div>
-        <div id="message_show">
-            <div class="message_time">
-                <span class="time">04/13/2020 15:17</span>
-            </div>
-            <div class="message_not_me">
-                <div class="col_not_me">
-                    <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+        <div id="message_show" class="message_show">
+            <div v-for="item in myMessages" :key="item.id">
+                <div class="message_time">
+                    <span class="time">{{item.time}}</span>
                 </div>
-                <div class="message_not_me_content">
-                    Hello! Welcome to ask questions
+                <div class="message_not_me" v-if="item.type == 1">
+                    <div class="col_not_me">
+                        <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+                    </div>
+                    <div class="message_not_me_content">
+                        {{item.content}}
+                    </div>
                 </div>
-            </div>
-            <div class="message_time">
-                <span class="time">04/13/2020 18:24</span>
-            </div>
-            <div class="message_is_me">
-                <div class="col_is_me">
-                    <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
-                </div>
-                <div class="message_is_me_content">
-                    <span>Could you change the time of my appointment</span>
-                </div>
-            </div>
-            <div class="message_time">
-                <span class="time">04/13/2020 18:30</span>
-            </div>
-            <div class="message_is_me">
-                <div class="col_is_me">
-                    <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
-                </div>
-                <div class="message_is_me_content">
-                    <span>aaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
-                </div>
-            </div>
-            <div class="message_time">
-                <span class="time">04/13/2020 18:30</span>
-            </div>
-            <div class="message_is_me">
-                <div class="col_is_me">
-                    <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
-                </div>
-                <div class="message_is_me_content">
-                    <span>aaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
-                </div>
-            </div>
-            <div class="message_time">
-                <span class="time">04/13/2020 18:30</span>
-            </div>
-            <div class="message_is_me">
-                <div class="col_is_me">
-                    <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
-                </div>
-                <div class="message_is_me_content">
-                    <span>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
-                </div>
-            </div>
-            <div class="message_time">
-                <span class="time">04/13/2020 18:30</span>
-            </div>
-            <div class="message_is_me">
-                <div class="col_is_me">
-                    <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
-                </div>
-                <div class="message_is_me_content">
-                    <span>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
-                </div>
-            </div>
-            <div class="message_time">
-                <span class="time">04/13/2020 18:30</span>
-            </div>
-            <div class="message_is_me">
-                <div class="col_is_me">
-                    <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
-                </div>
-                <div class="message_is_me_content">
-                    <span>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
-                </div>
-            </div>
-            <div class="message_time">
-                <span class="time">04/13/2020 18:30</span>
-            </div>
-            <div class="message_is_me">
-                <div class="col_is_me">
-                    <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
-                </div>
-                <div class="message_is_me_content">
-                    <span>aaaaaaaaaaaaaaaaaaaaa</span>
+                <div class="message_is_me" v-if="item.type == 0">
+                    <div class="col_is_me">
+                        <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+                    </div>
+                    <div class="message_is_me_content">
+                        <span>{{item.content}}</span>
+                    </div>
                 </div>
             </div>
         </div>
+
         <div id="message_send">
             <svg class="icon" id="icon" aria-hidden="true">
                 <use xlink:href="#icon-tupian"></use>
             </svg>
 
             <br/>
-            <textarea  id="input_box"  style="border:none;outline:none;background: #f4f5f7"></textarea>
+<!--            <textarea  id="input_box"  style="border:none;outline:none;background: #f4f5f7"></textarea>-->
+            <el-input
+                    type="textarea"
+                    :autosize="{ minRows: 3, maxRows: 4}"
+                    placeholder="请输入内容"
+                    v-model="textarea"
+                    maxlength="300"
+                    show-word-limit>
+            </el-input>
             <br/>
-            <el-button id="send" size="medium" type="primary">send</el-button>
+            <el-button id="send" size="medium" type="primary" @click="sendMessage()">send</el-button>
         </div>
+
     </div>
 
 </template>
 
 <script>
+    import store from "../../store";
+
     export default {
-        name: "CustomerMessage"
+        name: "CustomerMessage",
+        inject:['reload'],
+        data () {
+            return{
+                myMessages: [],
+                textarea: ''
+            }
+        },
+        created() {
+            const _this = this
+            var username = store.state.user.username
+            var url = 'http://localhost:8181/api/messages/' + username
+            this.$http.get(url).then(function (resp){
+                console.log(resp)
+                _this.myMessages = resp.data
+            })
+
+            //延缓100毫秒执行，将滑动栏默认到最底端
+            setTimeout(function () {
+                var container = _this.$el.querySelector("#message_show");
+                container.scrollTop = container.scrollHeight;
+            },100);
+        },
+        methods: {
+            sendMessage() {
+                var username = store.state.user.username
+                var url = 'http://localhost:8181/api/addMessage/' + username
+                this.$http
+                    .post(url, {
+                        content: this.textarea,
+                        type: 0
+                    }).then(resp => {
+                    if (resp && resp.status === 200) {
+                        // this.textarea = ''
+                        console.log(JSON.stringify(resp))
+                        this.reload();
+                    }else{
+                        this.$notify.error({
+                            title: this.$t('message.failed'),
+                            message: '发送消息失败'
+                        });
+                        return false;
+                    }
+                })
+            }
+        }
     }
 </script>
 
@@ -138,7 +128,7 @@
     #message_show{
         height: 430px;
         border-bottom: 1px solid #d7dae2;
-        overflow:auto;
+        overflow-y:auto;
     }
     ::-webkit-scrollbar {/*滚动条整体样式*/
         width: 10px;     /*高宽分别对应横竖滚动条的尺寸*/
@@ -160,6 +150,7 @@
     }
     #send{
         float: right;
+        margin-top: 5px;
     }
     .message_not_me{
         width: 100%;

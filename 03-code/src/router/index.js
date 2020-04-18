@@ -29,6 +29,7 @@ export default new Router({
     {
       //员工登录界面
       path: '/login',
+      alias:'/',
       name: 'Login',
       component: Login
     },

@@ -12,17 +12,21 @@
                     <span>{{$t('column.petType')}}{{item.type}}</span>
                 </p>
                 <p slot="content" style="width: 300px" class="abstract">{{$t('column.owner')}}{{item.user.username}}</p>
-                <el-card style="width: 135px;margin-bottom: 20px;height: 233px;float: left;margin-right: 15px" class="book"
+
+                <el-card style="width: 135px;margin-bottom: 20px;height: 270px;float: left;margin-right: 15px" class="book"
                          bodyStyle="padding:10px" shadow="hover">
-                    <div class="cover" @click="dialogFormVisible = true, petId = item.id">
-                        <img src="http://n.sinaimg.cn/sinacn20119/654/w1417h837/20181219/8fc7-hqnkypr2320016.jpg" alt="封面">
+                    <div class="cover" @click="petId = item.id, petStatus = item.status, judgeStatus()">
+                        <img :src="item.cover" v-if="item.cover"> <img src="http://n.sinaimg.cn/sinacn20119/654/w1417h837/20181219/8fc7-hqnkypr2320016.jpg" alt="封面" v-else>
                     </div>
                     <div class="info">
                         <div class="title">
                             <a>{{item.name}}</a>
                         </div>
                     </div>
-                    <div class="author">{{item.type}}</div>
+                    <div class="author">
+                        <span class="petstatus0" v-if="item.status==0">{{$t('sideMenu.noAppointment')}}</span><span class="petstatus1" v-else-if="item.status==1">{{$t('sideMenu.waitingDistribution')}}</span><span class="petstatus2" v-else-if="item.status==2">{{$t('sideMenu.waitingOperation')}}</span><span class="petstatus3" v-else>{{$t('sideMenu.waitingRelease')}}</span>
+                    </div>
+                    <el-button size="small" style="float: right" v-if="item.status==0" @click="deleteBooking(item.id)">删除</el-button><el-button size="small" style="float: right" disabled v-else>删除</el-button>
                 </el-card>
 
             </el-tooltip>
@@ -87,6 +91,7 @@
     export default {
         name: "PetItem",
         components:{PetAdd},
+        inject:['reload'],
         data () {
             return {
                 myPets: [],
@@ -96,6 +101,7 @@
                     petType: ''
                 },
                 dialogFormVisible: false,
+                petStatus: 0,
                 petId: 0,
                 formInline2: {
                     urgency: '',
@@ -155,6 +161,8 @@
                                     message: this.$t('message.successAppointment'),
                                     type: 'success'
                                 });
+                                console.log(JSON.stringify(resp))
+                                this.reload();
                             }else{
                                 this.$notify.error({
                                     title: this.$t('message.failed'),
@@ -175,6 +183,34 @@
             },
             resetForm() {
                 this.$refs.formInline2.resetFields();
+            },
+            judgeStatus(){
+                if(this.petStatus == 0){
+                    this.dialogFormVisible = true
+                }else{
+                    this.$message.error('该宠物已在预约中');
+                }
+            },
+            deleteBooking (id){
+                this.$confirm('此操作将永久删除该宠物, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                        this.$http
+                            .post('http://localhost:8181/api/petDelete', {id: id}).then(resp => {
+                            if (resp && resp.status === 200) {
+                                console.log(JSON.stringify(resp))
+                                this.reload();
+                            }
+                        })
+                    }
+                ).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    })
+                })
             }
         }
     }
@@ -207,7 +243,7 @@
 
     .author {
         color: #333;
-        width: 102px;
+        width: 140px;
         font-size: 13px;
         margin-bottom: 6px;
         text-align: left;
@@ -216,6 +252,26 @@
     .abstract {
         display: block;
         line-height: 17px;
+    }
+
+    .petstatus0 {
+        margin-left: 5px;
+        color: #409EFF;
+    }
+
+    .petstatus1 {
+        margin-left: 5px;
+        color: goldenrod;
+    }
+
+    .petstatus2 {
+        margin-left: 5px;
+        color: brown;
+    }
+
+    .petstatus3 {
+        margin-left: 5px;
+        color: forestgreen;
     }
 
     a {

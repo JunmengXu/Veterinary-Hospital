@@ -2,7 +2,7 @@
     <el-menu
             class="categories"
             default-active="0"
-
+            @select="handleSelect"
             active-text-color="blue">
         <!--        @select="handleSelect"-->
         <el-menu-item index="0">
@@ -22,7 +22,18 @@
 
 <script>
     export default {
-        name: 'SideMenuBookingC'
+        name: 'SideMenuBookingC',
+        data (){
+            return {
+                select: 0
+            }
+        },
+        methods:{
+            handleSelect (key){
+                this.select = key
+                this.$emit('indexSelect')
+            }
+        }
     }
 </script>
 

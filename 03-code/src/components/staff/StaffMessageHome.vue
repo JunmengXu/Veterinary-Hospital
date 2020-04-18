@@ -53,23 +53,23 @@
                 tableData: [{
                     id: 0,
                     date: '2020-05-02',
-                    name: '王小虎',
-                    message: '请问开门了吗 点击行控制台返回参数'
+                    name: 'John',
+                    message: 'Are you online?'
                 }, {
                     id: 1,
                     date: '2020-05-04',
-                    name: '王小虎',
-                    message: '请问开门了吗1'
+                    name: 'Snow',
+                    message: 'Hello?'
                 }, {
                     id: 2,
                     date: '2020-05-01',
-                    name: '王小虎',
-                    message: '请问开门了吗2'
+                    name: 'Bob',
+                    message: 'I am happy'
                 }, {
                     id: 3,
                     date: '2020-05-03',
-                    name: '王小虎',
-                    message: '请问开门了吗3'
+                    name: 'Jen',
+                    message: 'My pets feel bad'
                 }],
                 restaurants: [],
                 state: '',

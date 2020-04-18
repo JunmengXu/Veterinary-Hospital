@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 //登录功能 后端链接数据库 并获得数据
 @Entity
-//对于user数据库
+//对于pet数据库
 @Table(name = "pet")
 @JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
 public class Pet {
@@ -22,6 +22,24 @@ public class Pet {
     int gender;
     String name;
     String type;
+    int status;
+    String cover;
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public User getUser(){
         return user;

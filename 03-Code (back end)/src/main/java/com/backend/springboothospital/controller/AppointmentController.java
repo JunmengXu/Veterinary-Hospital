@@ -55,10 +55,19 @@ public class AppointmentController {
     @PostMapping("/api/{petId}/bookings")
     public Booking addOrUpdate(@RequestBody Booking booking,@PathVariable("petId") int petId) throws Exception {
         Pet pet = petService.get(petId);
+        pet.setStatus(1);
         booking.setPet(pet);
         Date day = new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         booking.setTime(df.format(day));
+
+        Calendar c = Calendar.getInstance();
+        c.setTime(booking.getNeedtime());
+        c.add(Calendar.DAY_OF_MONTH, 1);// 今天+1天
+        Date d3 = c.getTime();
+        java.sql.Date sqlDate = new java.sql.Date(d3.getTime());
+        booking.setNeedtime(sqlDate);
+
         bookingService.addOrUpdate(booking);
         return booking;
     }
@@ -82,6 +91,12 @@ public class AppointmentController {
 
     @PostMapping("/api/bookingDelete")
     public void delete(@RequestBody Booking booking) throws Exception {
+        Booking booking1 = bookingService.findById(booking.getId());
+        Pet pet = booking1.getPet();
+        List<Booking> bookings = bookingService.listByPet(pet.getId());
+        if(bookings.size()==1){
+            pet.setStatus(0);
+        }
         bookingService.deleteById(booking.getId());
     }
 
@@ -107,5 +122,26 @@ public class AppointmentController {
             }
         }
         return bookings2;
+    }
+
+    @GetMapping("/api/customerBookings/{username}/{distribution}")
+    public List<Booking> listByUserAndAssign(@PathVariable("username") String username,@PathVariable("distribution") int distribution) throws Exception{
+        User user = userService.getByName(username);
+        List<Booking> bookings = bookingService.list();
+        List<Booking> bookings2 = bookingService.list();
+        List<Booking> bookings3 = bookingService.list();
+        List<Pet> pet = petService.listByUser(user);
+        for(int i = 0; i < bookings.size(); i++){
+            if(!pet.contains(bookings.get(i).getPet())){
+                bookings2.remove(bookings.get(i));
+                bookings3.remove(bookings.get(i));
+            }
+        }
+        for(int i = 0 ; i < bookings2.size() ; i++){
+            if(bookings2.get(i).getDistribution() != distribution){
+                bookings3.remove(bookings2.get(i));
+            }
+        }
+        return bookings3;
     }
 }
