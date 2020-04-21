@@ -21,6 +21,15 @@ public class User {
     String phoneNumber;
     String account;
     int type;
+    String userimage;
+
+    public String getUserimage() {
+        return userimage;
+    }
+
+    public void setUserimage(String userimage) {
+        this.userimage = userimage;
+    }
 
     public int getId() {
         return id;

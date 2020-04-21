@@ -149,6 +149,7 @@ CREATE TABLE `user` (
   `email` varchar(45) NOT NULL,
   `phoneNumber` varchar(45) NOT NULL,
   `type` int(11) NOT NULL,
+  `userimage` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_UNIQUE` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -160,7 +161,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'mycust','12345','none','testha@tese.com','537-231456',0),(2,'test','54321','lalala','test@vds.com','1564321',0),(3,'group5','12345','lalala','vvfdbjin','53456123',1);
+INSERT INTO `user` VALUES (1,'mycust','12345','你猜','testha@tese.com','537-231456',0,''),(2,'test','54321','lalala','test@vds.com','1564321',0,''),(3,'group5','12345','lalala','vvfdbjin','53456123',1,'');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -173,4 +174,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-18 23:50:22
+-- Dump completed on 2020-04-21 22:04:02

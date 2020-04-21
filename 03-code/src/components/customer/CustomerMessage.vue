@@ -16,7 +16,7 @@
                 </div>
                 <div class="message_is_me" v-if="item.type == 0">
                     <div class="col_is_me">
-                        <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+                        <el-avatar shape="circle" fit="scale-down" :src="userinfo.userimage" v-if="userinfo.userimage"></el-avatar><el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" v-else></el-avatar>
                     </div>
                     <div class="message_is_me_content">
                         <span>{{item.content}}</span>
@@ -57,7 +57,8 @@
         data () {
             return{
                 myMessages: [],
-                textarea: ''
+                textarea: '',
+                userinfo: ''
             }
         },
         created() {
@@ -67,6 +68,12 @@
             this.$http.get(url).then(function (resp){
                 console.log(resp)
                 _this.myMessages = resp.data
+            })
+
+            var url2 = 'http://localhost:8181/api/personInfo/' + username
+            this.$http.get(url2).then(function (resp){
+                console.log(resp)
+                _this.userinfo = resp.data
             })
 
             //延缓100毫秒执行，将滑动栏默认到最底端

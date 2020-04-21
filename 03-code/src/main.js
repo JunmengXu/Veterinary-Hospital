@@ -21,6 +21,8 @@ Vue.use(Element)
 //         'en': require('./assets/lang/en')
 //     }
 // })
+//    移动端访问时，在package.json里加 "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 192.168.1.12",
+//    并修改向后端传数据的端口
 
 Vue.config.productionTip = false
 // Vue.use(Element, { locale })
