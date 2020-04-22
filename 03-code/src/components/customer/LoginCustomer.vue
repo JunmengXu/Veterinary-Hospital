@@ -41,9 +41,24 @@
                 },
                 responseResult: []
             }
+
+        },
+        created:function(){
+            this.getParams();
+        },
+        watch: {
+            // 监测路由变化,只要变化了就调用获取路由参数方法将数据存储本组件即可
+            '$route': 'getParams'
         },
         //向后端发送用户名密码，进行验证
         methods: {
+            getParams(){
+                var name = this.$route.query.username
+                var password = this.$route.query.password
+                // 将数据放在当前组件的数据内
+                this.loginForm.username = name
+                this.loginForm.password = password
+            },
             login () {
                 // var _this = this
                 console.log(this.$store.state)

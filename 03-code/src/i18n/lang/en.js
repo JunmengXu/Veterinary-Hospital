@@ -71,6 +71,7 @@ const en = {
         detail:"More Detail",
         sendMessage:"Send Message",
         assign:"Assign",
+        back:"Back to login",
     },
     sideMenu:{
         all:"All",

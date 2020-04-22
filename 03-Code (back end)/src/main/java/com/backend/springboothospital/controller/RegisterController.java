@@ -31,21 +31,22 @@ public class RegisterController {
 // 对 html 标签进行转义，防止 XSS 攻击
         User user = new User();
         String username = requestUser.getUsername();
+        String password = requestUser.getPassword();
+        String email = requestUser.getEmail();
+        String phoneNumber = requestUser.getPhoneNumber();
         username = HtmlUtils.htmlEscape(username);
         boolean isExisted = userService.isExist(username);
         if (isExisted){
             return new Result(400);
         }
         else{
-            String password = requestUser.getPassword();
-            String email = requestUser.getEmail();
-            String phoneNumber = requestUser.getPhoneNumber();
             user.setUsername(username);
             user.setPassword(password);
             user.setEmail(email);
             user.setPhoneNumber(phoneNumber);
             user.setAccount(username);
             user.setType(0);
+            user.setUserimage("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
             userService.add(user);
             return new Result(200);
         }

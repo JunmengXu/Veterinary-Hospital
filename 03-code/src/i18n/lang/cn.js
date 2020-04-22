@@ -62,7 +62,7 @@ const cn = {
         detail:"详情",
         sendMessage:"私信",
         assign:"分配",
-
+        back:"返回登录",
     },
     sideMenu:{
         all:"全部",
