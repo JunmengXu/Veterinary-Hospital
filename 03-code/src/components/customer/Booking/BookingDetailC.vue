@@ -1,7 +1,23 @@
 <template>
     <div class="daily_detail">
         <h2>预约单详细信息</h2>
-
+        <!--        <div class="bar">-->
+        <!--            <el-table-->
+        <!--                :data="tableData"-->
+        <!--                style="width: 100%">-->
+        <!--            <el-table-column-->
+        <!--                    prop="name"-->
+        <!--                    label="条目"-->
+        <!--                    width="200px"-->
+        <!--                    align="center">-->
+        <!--            </el-table-column>-->
+        <!--            <el-table-column-->
+        <!--                    prop="contain"-->
+        <!--                    label="信息"-->
+        <!--                    align="center">-->
+        <!--            </el-table-column>-->
+        <!--        </el-table>-->
+        <!--        </div>-->
         <div :class="[{'bar': (bookings.ratedis==0 )},{'bar2': (bookings.ratedis==1)}]" style="margin-left: 50px; margin-right: 50px">
             <div style="max-width: 60%">
                 <p class="title">{{$t('column.customerInfo')}}  <span>{{bookings.pet.user.username}} / {{bookings.pet.user.phoneNumber}} / {{bookings.pet.user.email}} / {{bookings.pet.user.username}}</span> </p>
@@ -19,11 +35,8 @@
                                class="el-switch"
                                disabled>
                     </el-switch><span v-if="bookings.distribution==0" class="el-switchtitle">Unassigned</span>
-                    <el-button size="small" @click="dialogFormVisible = true" style="margin-left: 15px" v-if="bookings.distribution==1 && bookings.pet.status==2">再分配</el-button><el-button size="small" @click="dialogFormVisible = true" style="margin-left: 15px" v-if="bookings.distribution==0 && bookings.pet.status==1">{{$t('button.assign')}}</el-button>
                 </p>
-                <p class="title">释放时间: <span v-if="bookings.releasetime">{{bookings.releasetime}}</span><span v-else>待定</span>
-                    <el-button size="small" @click="dialogFormReVisible = true" style="margin-left: 15px" v-if="bookings.pet.status==2">设置释放时间</el-button><el-button size="small" style="margin-left: 15px" v-else disabled>设置释放时间</el-button>
-                </p>
+                <p class="title">释放时间: <span v-if="bookings.releasetime">{{bookings.releasetime}}</span><span v-else>待定</span></p>
                 <p class="title">所属医院:  <span v-if="bookings.hospital==0">{{$t('choices.Beijing')}}</span><span v-else-if="bookings.hospital==1">{{$t('choices.Shanghai')}}</span><span v-else>{{$t('choices.Chengdu')}}</span></p>
             </div>
 
@@ -41,56 +54,36 @@
                 </el-steps>
             </div>
 
-            <div>
-                <p class="title">本次服务客户评价<span v-if="!bookings.ratevalue && !bookings.ratecontent">(暂无)</span>:  <span class="demonstration">评分1-5: {{bookings.ratevalue}}</span> <span>| 评语: {{bookings.ratecontent}}</span></p>
-                <div class="block" style="margin-left: 10%;padding-bottom: 20px">
-                    <el-rate
-                            v-model="bookings.ratevalue"
-                            :colors="colors"
-                            disabled
-                            show-score>
-                    </el-rate>
+            <el-button style="margin-left: 50%;margin-bottom: 20px" @click="writeRate" v-if="bookings.ratedis==0 && bookings.pet.status==3">评价</el-button><el-button style="margin-left: 50%;margin-bottom: 20px" v-else disabled>评价</el-button>
+            <span v-if="bookings.ratedis==1" style="margin-left: 10px">已评价</span>
+            <el-dialog
+                    title='服务评价'
+                    :visible.sync="dialogFormInfVisible">
+                <el-form :model="formInf" :rules="rules" ref="formInf" class="demo-form-inline" @submit.native.prevent>
+                    <el-form-item label="星级" prop="ratevalue">
+                        <div class="block">
+                            <span class="demonstration">1-5</span>
+                            <el-rate
+                                    v-model="formInf.ratevalue"
+                                    :colors="colors"
+                                    @change="changerate">
+                            </el-rate>
+                        </div>
+                    </el-form-item>
+
+                    <el-form-item label="具体评价" prop="ratecontent">
+                        <el-input v-model="formInf.ratecontent" placeholder="评价"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="submitInfForm()">{{$t('button.add')}}</el-button>
+                        <el-button @click="resetInfForm()">{{$t('button.reset')}}</el-button>
+                    </el-form-item>
+                    <p style="color: crimson">*评价后宠物状态将自动变为无预约</p>
+                </el-form>
+
+                <div slot="footer" class="dialog-footer">
+                    <el-button @click="dialogFormInfVisible = false">{{$t('button.cancel')}}</el-button>
                 </div>
-            </div>
-
-            <el-dialog
-                    :title="$t('menu.setOperationTime')"
-                    :visible.sync="dialogFormVisible">
-                <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-
-                    <el-form-item :label="$t('column.date')" required>
-                        <el-col :span="11">
-                            <el-form-item prop="date">
-                                <el-date-picker type="date" :placeholder="$t('placeholder.time')" v-model="ruleForm.date" value-format="yyyy-MM-dd" style="width: 100%;"></el-date-picker>
-                            </el-form-item>
-                        </el-col>
-                    </el-form-item>
-
-                    <el-form-item>
-                        <el-button type="primary" @click="submitForm()">{{$t('button.assign')}}</el-button>
-                        <el-button @click="resetForm()">{{$t('button.reset')}}</el-button>
-                    </el-form-item>
-                </el-form>
-            </el-dialog>
-
-            <el-dialog
-                    title="设置释放时间"
-                    :visible.sync="dialogFormReVisible">
-                <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
-
-                    <el-form-item :label="$t('column.date')" required>
-                        <el-col :span="11">
-                            <el-form-item prop="date">
-                                <el-date-picker type="date" :placeholder="$t('placeholder.time')" v-model="ruleForm2.date" value-format="yyyy-MM-dd" style="width: 100%;"></el-date-picker>
-                            </el-form-item>
-                        </el-col>
-                    </el-form-item>
-
-                    <el-form-item>
-                        <el-button type="primary" @click="submitForm2()">{{$t('button.assign')}}</el-button>
-                        <el-button @click="resetForm2()">{{$t('button.reset')}}</el-button>
-                    </el-form-item>
-                </el-form>
             </el-dialog>
 
         </div>
@@ -98,8 +91,9 @@
 </template>
 
 <script>
+
     export default {
-        name: "BookingDetail",
+        name: "BookingDetailC",
         inject:['reload'],
         data() {
             return {
@@ -124,24 +118,19 @@
                 value1: true,
                 value2: false,
                 colors: ['#99A9BF', '#F7BA2A', '#FF9900'],  // 等同于 { 2: '#99A9BF', 4: { value: '#F7BA2A', excluded: true }, 5: '#FF9900' }
-                dialogFormVisible: false,
-                dialogFormReVisible: false,
-                ruleForm: {
-                    date: ''
+                dialogFormInfVisible: false,
+                formInf: {
+                    ratevalue: null,
+                    ratecontent: ''
                 },
                 rules: {
-                    date: [
-                        { required: true, message:this.$t('message.time') , trigger: 'change' }
+                    ratevalue: [
+                        { required: true, message: "请评价等级", trigger: 'blur' }
+                    ],
+                    ratecontent: [
+                        { required: true, message: "请填写评价", trigger: 'blur' }
                     ]
                 },
-                ruleForm2: {
-                    date: ''
-                },
-                rules2: {
-                    date: [
-                        { required: true, message:this.$t('message.time') , trigger: 'change' }
-                    ]
-                }
             }
 
         },
@@ -176,10 +165,21 @@
                 console.log("传来的参数==" + routerParams)
                 this.bookingid = routerParams
             },
-            submitForm() {
-                this.$refs.ruleForm.validate((valid) => {
+            changerate(){
+                console.log(this.formInf.ratevalue)
+            },
+            writeRate(){
+                this.dialogFormInfVisible = true
+            },
+            resetInfForm() {
+                this.$refs.formInf.resetFields();
+            },
+            submitInfForm() {
+                this.$refs.formInf.validate((valid) => {
                     if (valid) {
-                        var url = 'http://localhost:8181/api/update/'+this.bookingid+'/'+this.ruleForm.date+'/bookings'
+                        // alert('submit!');
+                        // console.log(this.formInline.petName+" "+this.formInline.petType+" "+this.formInline.petGender)
+                        var url = 'http://localhost:8181/api/updateRate/' + this.bookingid + '/' + this.formInf.ratevalue + '/' + this.formInf.ratecontent + '/bookings'
                         this.$http
                             .put(url, {
 
@@ -189,7 +189,7 @@
                                 this.$emit('onSubmit')
                                 this.$notify({
                                     title: this.$t('message.successed'),
-                                    message: this.$t('message.successAssign'),
+                                    message: "评价成功",
                                     type: 'success'
                                 });
                                 console.log(JSON.stringify(resp))
@@ -197,62 +197,21 @@
                             }else{
                                 this.$notify.error({
                                     title: this.$t('message.failed'),
-                                    message: this.$t('message.failingAssign')
+                                    message: "评价失败"
                                 });
                             }
                         })
-                    } else {
-                        // console.log('error submit!!');
-                        this.$notify.error({
-                            title: this.$t('message.failed'),
-                            message: this.$t('message.failingAssign')
-                        });
-                        return false;
-                    }
-                });
-            },
-            resetForm() {
-                this.$refs.ruleForm.resetFields();
-            },
-            submitForm2() {
-                this.$refs.ruleForm2.validate((valid) => {
-                    if (valid) {
-                        var url = 'http://localhost:8181/api/updateRe/'+this.bookingid+'/'+this.ruleForm2.date+'/bookings'
-                        this.$http
-                            .put(url, {
 
-                            }).then(resp => {
-                            if (resp && resp.status === 200) {
-                                this.dialogFormReVisible = false
-                                this.$emit('onSubmit')
-                                this.$notify({
-                                    title: this.$t('message.successed'),
-                                    message: this.$t('message.successAssign'),
-                                    type: 'success'
-                                });
-                                console.log(JSON.stringify(resp))
-                                this.reload();
-                            }else{
-                                this.$notify.error({
-                                    title: this.$t('message.failed'),
-                                    message: this.$t('message.failingAssign')
-                                });
-                            }
-                        })
                     } else {
                         // console.log('error submit!!');
                         this.$notify.error({
                             title: this.$t('message.failed'),
-                            message: this.$t('message.failingAssign')
+                            message: "评价失败"
                         });
                         return false;
                     }
                 });
-            },
-            resetForm2() {
-                this.$refs.ruleForm2.resetFields();
             }
-
         }
     }
 </script>
@@ -267,7 +226,7 @@
         margin-top: 20px;
         margin-bottom: 20px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-        background-image: url("../../assets/image/completed.jpg")
+        background-image: url("../../../assets/image/completed.jpg")
     }
     h2{
         text-align: center;

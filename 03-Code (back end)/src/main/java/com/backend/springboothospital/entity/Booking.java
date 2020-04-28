@@ -26,6 +26,42 @@ public class Booking {
     String symptom;
     Date needtime;
     int distribution;
+    Date releasetime;
+    int ratedis;
+    int ratevalue;
+    String ratecontent;
+
+    public int getRatedis() {
+        return ratedis;
+    }
+
+    public void setRatedis(int ratedis) {
+        this.ratedis = ratedis;
+    }
+
+    public int getRatevalue() {
+        return ratevalue;
+    }
+
+    public void setRatevalue(int ratevalue) {
+        this.ratevalue = ratevalue;
+    }
+
+    public String getRatecontent() {
+        return ratecontent;
+    }
+
+    public void setRatecontent(String ratecontent) {
+        this.ratecontent = ratecontent;
+    }
+
+    public Date getReleasetime() {
+        return releasetime;
+    }
+
+    public void setReleasetime(Date releasetime) {
+        this.releasetime = releasetime;
+    }
 
     public Date getNeedtime() {
         return needtime;

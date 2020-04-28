@@ -215,10 +215,27 @@
         },
         methods: {
             loginOut () {
-                localStorage.removeItem('user')
-                // localStorage.removeItem('login')
-                alert(this.$t('message.exit'))
-                this.$router.replace('/loginc')
+                // localStorage.removeItem('user')
+                // // localStorage.removeItem('login')
+                // alert(this.$t('message.exit'))
+                // this.$router.replace('/loginc')
+                this.$confirm('此操作退出当前账号, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.$message({
+                        type: 'success',
+                        message: '注销成功!'
+                    });
+                    localStorage.removeItem('user')
+                    this.$router.replace('/loginc')
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消登出'
+                    });
+                });
             },
             // 根据下拉框的中被选中的值切换语言
             handleCommand(command) {

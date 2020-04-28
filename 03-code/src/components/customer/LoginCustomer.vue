@@ -2,7 +2,7 @@
 
     <body id="poster">
     <el-form class="login-container" label-position="left"
-             label-width="0px">
+             label-width="0px" >
         <h3 class="login_title">{{$t('menu.customerLogin')}}</h3>
         <el-form-item>
             <el-input type="text" v-model="loginForm.username"
@@ -45,6 +45,15 @@
         },
         created:function(){
             this.getParams();
+
+            //添加监听回车按键
+            var _this = this;
+            document.addEventListener("keydown", _this.watchEnter);
+        },
+        destroyed() {
+            //移除监听回车按键
+            var _this = this;
+            document.removeEventListener("keydown", _this.watchEnter);
         },
         watch: {
             // 监测路由变化,只要变化了就调用获取路由参数方法将数据存储本组件即可
@@ -86,6 +95,14 @@
             },
             staff(){
                 this.$router.push({path:'/Login'})
+            },
+            //监听回车按钮事件
+            watchEnter(e) {
+                var keyNum = window.event ? e.keyCode : e.which; //获取被按下的键值
+                //判断如果用户按下了回车键（keycody=13）
+                if (keyNum == 13) {
+                    this.login();
+                }
             }
         }
         // mounted() {

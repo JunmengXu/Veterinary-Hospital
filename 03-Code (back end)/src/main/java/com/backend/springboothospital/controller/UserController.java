@@ -67,4 +67,16 @@ public class UserController {
             return "";
         }
     }
+
+    @GetMapping("/api/messageHome/allUsers")
+    public List<User> listAllUser() throws Exception {
+        List<User> list1 = userService.list();
+        List<User> list2 = userService.list();
+        for(int i=0; i<list1.size(); i++){
+            if(list1.get(i).getType() == 1){
+                list2.remove(list1.get(i));
+            }
+        }
+        return list2;
+    }
 }

@@ -9,6 +9,7 @@ import Homepage from "../components/staff/Homepage"
 // import Console from "../components/staff/Console"
 import Timetable from "../components/staff/Timetable";
 import StaffMessageHome from "../components/staff/StaffMessageHome"
+import StaffMessage from "../components/staff/StaffMessage";
 // 客户界面
 import Register from "../components/Register"
 import LoginCustomer from "../components/customer/LoginCustomer";
@@ -17,6 +18,7 @@ import CustomerHomePage from "../components/customer/CustomerHomePage";
 import CustomerBooking from "../components/customer/CustomerBooking";
 import CustomerMessage from "../components/customer/CustomerMessage";
 import CustomerPet from "../components/customer/CustomerPet";
+import BookingDetailC from "../components/customer/Booking/BookingDetailC";
 
 
 Vue.use(Router)
@@ -79,6 +81,14 @@ export default new Router({
           meta: {
             requireAuth: true
           }
+        },
+        {
+          path: '/messageDetail',
+          name: 'StaffMessage',
+          component: StaffMessage,
+          meta: {
+            requireAuth: true
+          }
         }
         ]
     },
@@ -114,6 +124,14 @@ export default new Router({
           path: '/appointmentc',
           name: 'CustomerBooking',
           component: CustomerBooking,
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: '/appointmentDetailc',
+          name: 'BookingDetailC',
+          component: BookingDetailC,
           meta: {
             requireAuth: true
           }

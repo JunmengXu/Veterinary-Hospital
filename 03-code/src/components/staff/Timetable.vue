@@ -67,6 +67,15 @@
 <!--                </li>-->
 <!--            </ul>-->
 <!--        </div>-->
+        <el-select style="padding-left: 20px" v-model="value" placeholder="请选择" @change="cityChange">
+            <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+            </el-option>
+        </el-select>
+
         <div>
             <el-calendar>
                 <!-- 这里使用的是 2.5 slot 语法，对于新项目请使用 2.6 slot 语法-->
@@ -88,7 +97,7 @@
                                             <p class="item" slot="content">{{$t('column.symptom')}}{{item.symptom}}</p>
                                             <p class="item" slot="content">{{$t('column.urgency')}}<span v-if="item.urgency==0" style="color: lawngreen">{{$t('choices.normal')}}</span><span v-else style="color: crimson">{{$t('choices.urgent')}}</span></p>
                                             <p class="item" slot="content">{{$t('column.hospital')}}<span v-if="item.hospital==0">{{$t('choices.Beijing')}}</span><span v-else-if="item.hospital==1">{{$t('choices.Shanghai')}}</span><span v-else>{{$t('choices.Chengdu')}}</span></p>
-                                            <div class="is-selected">{{$t('column.customer')}}{{item.pet.user.username}} / {{$t('column.pet')}}{{item.pet.name}}</div>
+                                            <div class="is-selected" @click="handleClick(item.id)">{{$t('column.customer')}}{{item.pet.user.username}} / {{$t('column.pet')}}{{item.pet.name}}</div>
                                         </el-tooltip>
                                     </div>
                                     <div v-else></div>
@@ -110,15 +119,43 @@
         name: 'Timetable',
         data () {
             return{
-                booking: []
+                booking: [],
+                options: [{
+                    value: '0',
+                    label: '北京'
+                }, {
+                    value: '1',
+                    label: '上海'
+                }, {
+                    value: '2',
+                    label: '成都'
+                }],
+                value: '0'
             }
         },
         created() {
             const _this = this
-            this.$http.get('http://localhost:8181/api/1/calendar/bookings').then(function (resp){
+            this.$http.get('http://localhost:8181/api/1/0/calendar/bookings').then(function (resp){
                 console.log(resp)
                 _this.booking = resp.data
             })
+        },
+        methods: {
+            cityChange(){
+                const _this = this
+                var url = 'http://localhost:8181/api/1/'+ this.value + '/calendar/bookings'
+                this.$http.get(url).then(function (resp){
+                    console.log(resp)
+                    _this.booking = resp.data
+                })
+            },
+            handleClick(id){
+                this.$router.push({
+                    path:'/appointment',
+                    query:{
+                        booking:id},
+                })
+            }
         }
     }
 </script>

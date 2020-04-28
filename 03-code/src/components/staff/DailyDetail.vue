@@ -2,106 +2,10 @@
     <el-container>
         <el-aside>
             <switch></switch>
-            <SideMenuBooking></SideMenuBooking>
+            <SideMenuBooking @indexSelect="listByBookingCity" ref="sideMenu"></SideMenuBooking>
         </el-aside>
         <el-main>
-            <BookingItem class="booking-area"></BookingItem>
-<!--            <div class="daily_detail">-->
-<!--                <h2>紧急预约</h2>-->
-<!--                <div class="bar">-->
-<!--                    <el-table-->
-<!--                            :data="tableData"-->
-<!--                            style="width: 100%">-->
-<!--                        <el-table-column type="expand">-->
-<!--                            <template slot-scope="props">-->
-<!--                                <el-form label-position="left" inline class="demo-table-expand">-->
-<!--                                    <el-form-item label="联系电话">-->
-<!--                                        <span>{{ props.row.phone }}</span>-->
-<!--                                    </el-form-item>-->
-<!--                                    <el-form-item label="下单时间">-->
-<!--                                        <span>{{ props.row.make_time }}</span>-->
-<!--                                    </el-form-item>-->
-<!--                                    <el-form-item label="病症描述">-->
-<!--                                        <span>{{ props.row.description }}</span>-->
-<!--                                    </el-form-item>-->
-<!--                                </el-form>-->
-<!--                            </template>-->
-<!--                        </el-table-column>-->
-<!--                        <el-table-column-->
-<!--                                label="编号"-->
-<!--                                prop="id">-->
-<!--                        </el-table-column>-->
-<!--                        <el-table-column-->
-<!--                                label="需要时间"-->
-<!--                                prop="need_time">-->
-<!--                        </el-table-column>-->
-<!--                        <el-table-column-->
-<!--                                label="客户姓名"-->
-<!--                                prop="name">-->
-<!--                        </el-table-column>-->
-<!--                        <el-table-column-->
-<!--                                label="宠物名字"-->
-<!--                                prop="pet">-->
-<!--                        </el-table-column>-->
-<!--                        <el-table-column-->
-<!--                                fixed="right"-->
-<!--                                label="操作"-->
-<!--                                width="100">-->
-<!--                            <template slot-scope="scope">-->
-<!--                                <el-button @click="handleClick(scope.row)" type="text" size="small">详情</el-button>-->
-<!--                                <el-button type="text" size="small">私信</el-button>-->
-<!--                            </template>-->
-<!--                        </el-table-column>-->
-<!--                    </el-table>-->
-<!--                </div>-->
-<!--                <h2>非紧急预约</h2>-->
-<!--                <div class="bar">-->
-<!--                    <el-table-->
-<!--                            :data="tableData2"-->
-<!--                            style="width: 100%">-->
-<!--                        <el-table-column type="expand">-->
-<!--                            <template slot-scope="props">-->
-<!--                                <el-form label-position="left" inline class="demo-table-expand">-->
-<!--                                    <el-form-item label="联系电话">-->
-<!--                                        <span>{{ props.row.phone }}</span>-->
-<!--                                    </el-form-item>-->
-<!--                                    <el-form-item label="下单时间">-->
-<!--                                        <span>{{ props.row.make_time }}</span>-->
-<!--                                    </el-form-item>-->
-<!--                                    <el-form-item label="病症描述">-->
-<!--                                        <span>{{ props.row.description }}</span>-->
-<!--                                    </el-form-item>-->
-<!--                                </el-form>-->
-<!--                            </template>-->
-<!--                        </el-table-column>-->
-<!--                        <el-table-column-->
-<!--                                label="编号"-->
-<!--                                prop="id">-->
-<!--                        </el-table-column>-->
-<!--                        <el-table-column-->
-<!--                                label="需要时间"-->
-<!--                                prop="need_time">-->
-<!--                        </el-table-column>-->
-<!--                        <el-table-column-->
-<!--                                label="客户姓名"-->
-<!--                                prop="name">-->
-<!--                        </el-table-column>-->
-<!--                        <el-table-column-->
-<!--                                label="宠物名字"-->
-<!--                                prop="pet">-->
-<!--                        </el-table-column>-->
-<!--                        <el-table-column-->
-<!--                                fixed="right"-->
-<!--                                label="操作"-->
-<!--                                width="100">-->
-<!--                            <template slot-scope="scope">-->
-<!--                                <el-button @click="handleClick(scope.row)" type="text" size="small">详情</el-button>-->
-<!--                                <el-button type="text" size="small">私信</el-button>-->
-<!--                            </template>-->
-<!--                        </el-table-column>-->
-<!--                    </el-table>-->
-<!--                </div>-->
-<!--            </div>-->
+            <BookingItem class="booking-area" ref="bookingsArea"></BookingItem>
         </el-main>
     </el-container>
 
@@ -117,39 +21,36 @@
         methods: {
             handleClick(row) {
                 console.log(row);
+            },
+            listByBookingCity() {
+                if (this.$refs.sideMenu.select == 0) {
+                    const _this = this
+                    var url = 'http://localhost:8181/api/1/bookings'
+                    this.$http.get(url).then(function (resp) {
+                        console.log(resp)
+                        _this.$refs.bookingsArea.bookingU = resp.data
+                    })
+                    var url2 = 'http://localhost:8181/api/0/bookings'
+                    this.$http.get(url2).then(function (resp) {
+                        console.log(resp)
+                        _this.$refs.bookingsArea.booking = resp.data
+                    })
+                } else {
+                    const _this = this
+                    var t = this.$refs.sideMenu.select - 1
+                    var url3 = 'http://localhost:8181/api/0/' + t + '/bookings'
+                    this.$http.get(url3).then(function (resp) {
+                        console.log(resp)
+                        _this.$refs.bookingsArea.booking = resp.data
+                    })
+                    var url4 = 'http://localhost:8181/api/1/' + t + '/bookings'
+                    this.$http.get(url4).then(function (resp) {
+                        console.log(resp)
+                        _this.$refs.bookingsArea.bookingU = resp.data
+                    })
+                }
             }
         }
-        // data() {
-        //     return {
-        //         tableData: [{
-        //             id: '12987122',
-        //             need_time: '3月13日 下午； 3月14日 上午+下午',
-        //             name: '张三',
-        //             pet: '张二狗',
-        //             make_time: '3月10日 13:00',
-        //             phone: '13912341234',
-        //             description: '晕车'
-        //         }],
-        //         tableData2: [{
-        //             id: '12987122',
-        //             need_time: '3月13日 下午； 3月14日 上午+下午',
-        //             name: '李四',
-        //             pet: '李二狗',
-        //             make_time: '3月10日 13:00',
-        //             phone: '13912341234',
-        //             description: '晕车'
-        //         },{
-        //             id: '12987122',
-        //             need_time: '3月13日 下午； 3月14日 上午+下午',
-        //             name: '李四',
-        //             pet: '李二狗',
-        //             make_time: '3月10日 13:00',
-        //             phone: '13912341234',
-        //             description: '晕车'
-        //         }]
-        //     }
-
-        // }
 
     }
 </script>

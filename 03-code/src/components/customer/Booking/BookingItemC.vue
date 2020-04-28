@@ -9,6 +9,7 @@
                 width="120">
             <template slot-scope="props">
                 <span v-if="props.row.urgency==0" style="color: darkgreen">{{$t('choices.normal')}}</span><span v-else style="color: crimson">{{$t('choices.urgent')}}</span>
+                <span v-if="props.row.ratedis==1" style="color: green">(已完成)</span>
             </template>
         </el-table-column>
         <el-table-column
@@ -89,11 +90,11 @@
                 return '';
             },
             handleClicks (id){
-                // this.$router.push({
-                //     path:'/appointment',
-                //     query:{
-                //         booking:id},
-                // })
+                this.$router.push({
+                    path:'/appointmentDetailc',
+                    query:{
+                        booking:id},
+                })
                 console.log(id)
             },
             deleteBooking (id){

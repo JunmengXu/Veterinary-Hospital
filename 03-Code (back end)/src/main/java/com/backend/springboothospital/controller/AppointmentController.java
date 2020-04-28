@@ -43,10 +43,33 @@ public class AppointmentController {
         }
     }
 
-    @GetMapping("/api/{distribution}/calendar/bookings")
-    public List<Booking> listByDistribution(@PathVariable("distribution") int distribution) throws Exception {
+    @GetMapping("/api/{urgency}/{city}/bookings")
+    public List<Booking> listByUrgencyCity(@PathVariable("urgency") int urgency, @PathVariable("city") int city) throws Exception {
+        if (0 == urgency || 1 == urgency ) {
+            List<Booking> list1 = bookingService.listByUrgency(urgency);
+            List<Booking> list2 = bookingService.listByUrgency(urgency);
+            for(int i=0; i<list1.size(); i++){
+                if(list1.get(i).getHospital() != city){
+                    list2.remove(list1.get(i));
+                }
+            }
+            return list2;
+        } else {
+            return list();
+        }
+    }
+
+    @GetMapping("/api/{distribution}/{city}/calendar/bookings")
+    public List<Booking> listByDistribution(@PathVariable("distribution") int distribution,@PathVariable("city") int city) throws Exception {
         if (0 == distribution || 1 == distribution ) {
-            return bookingService.listByDistribution(distribution);
+            List<Booking> list1 = bookingService.listByDistribution(distribution);
+            List<Booking> list2 = bookingService.listByDistribution(distribution);
+            for(int i=0; i<list1.size(); i++){
+                if(list1.get(i).getHospital() != city){
+                    list2.remove(list1.get(i));
+                }
+            }
+            return list2;
         } else {
             return list();
         }
@@ -85,8 +108,39 @@ public class AppointmentController {
         Booking booking = bookingService.findById(bookingId);
         booking.setNeedtime(sqlDate);
         booking.setDistribution(1);
+        booking.getPet().setStatus(2);
+        petService.addOrUpdate(booking.getPet());
         bookingService.addOrUpdate(booking);
         return booking;
+    }
+
+    @PutMapping("/api/updateRe/{bookingId}/{releaseTime}/bookings")
+    public Booking UpdateRe(@PathVariable("bookingId") int bookingId,@PathVariable("releaseTime") String releaseTime) throws Exception {
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println(releaseTime);
+        Date d2 = sdf2.parse(releaseTime);
+        Calendar c = Calendar.getInstance();
+        c.setTime(d2);
+        c.add(Calendar.DAY_OF_MONTH, 1);// 今天+1天
+        Date d3 = c.getTime();
+        java.sql.Date sqlDate = new java.sql.Date(d3.getTime());
+        Booking booking = bookingService.findById(bookingId);
+        booking.setReleasetime(sqlDate);
+        booking.getPet().setStatus(3);
+        petService.addOrUpdate(booking.getPet());
+        bookingService.addOrUpdate(booking);
+        return booking;
+    }
+
+    @PutMapping("/api/updateRate/{bookingId}/{rate}/{content}/bookings")
+    public Booking UpdateRate(@PathVariable("content") String content,@PathVariable("bookingId") int bookingId,@PathVariable("rate") int rate) throws Exception {
+        Booking booking1 = bookingService.findById(bookingId);
+        booking1.setRatevalue(rate);
+        booking1.setRatecontent(content);
+        booking1.setRatedis(1);
+        booking1.getPet().setStatus(0);
+        bookingService.addOrUpdate(booking1);
+        return booking1;
     }
 
     @PostMapping("/api/bookingDelete")

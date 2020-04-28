@@ -39,8 +39,30 @@
                 responseResult: []
             }
         },
+        created:function() {
+            this.getParams();
+            //添加监听回车按键
+            var _this = this;
+            document.addEventListener("keydown", _this.watchEnter);
+        },
+        destroyed() {
+            //移除监听回车按键
+            var _this = this;
+            document.removeEventListener("keydown", _this.watchEnter);
+        },
+        watch: {
+            // 监测路由变化,只要变化了就调用获取路由参数方法将数据存储本组件即可
+            '$route': 'getParams'
+        },
         //向后端发送用户名密码，进行验证
         methods: {
+            getParams(){
+                var name = this.$route.query.username
+                var password = this.$route.query.password
+                // 将数据放在当前组件的数据内
+                this.loginForm.username = name
+                this.loginForm.password = password
+            },
             login () {
                 // var _this = this
                 console.log(this.$store.state)
@@ -69,6 +91,14 @@
             // },
             customer(){
                 this.$router.push({path:'/loginc'})
+            },
+            //监听回车按钮事件
+            watchEnter(e) {
+                var keyNum = window.event ? e.keyCode : e.which; //获取被按下的键值
+                //判断如果用户按下了回车键（keycody=13）
+                if (keyNum == 13) {
+                    this.login();
+                }
             }
         }
         // mounted() {

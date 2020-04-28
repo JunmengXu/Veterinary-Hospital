@@ -24,10 +24,21 @@
                     <el-table-column
                             :label="$t('column.appointmentNumber')"
                             prop="id">
+                        <template slot-scope="props">
+                            <span>{{props.row.id}}</span>
+                            <span v-if="props.row.ratedis==1" style="color: green">(已完成)</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
                             :label="$t('column.time')"
                             prop="needtime">
+                    </el-table-column>
+                    <el-table-column
+                            :label="$t('column.hospital')"
+                            prop="hospital">
+                        <template slot-scope="props">
+                            <span v-if="props.row.hospital==0">{{$t('choices.Beijing')}}</span><span v-else-if="props.row.hospital==1">{{$t('choices.Shanghai')}}</span><span v-else>{{$t('choices.Chengdu')}}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
                             :label="$t('column.owner')"
@@ -43,7 +54,7 @@
                             width="100">
                         <template slot-scope="scope">
                             <el-button @click="handleClick(scope.row.id)" type="text" size="small">{{$t('button.detail')}}</el-button>
-                            <el-button type="text" size="small">{{$t('button.sendMessage')}}</el-button>
+                            <el-button @click="sendMessage(scope.row.pet.user.username)" type="text" size="small">{{$t('button.sendMessage')}}</el-button>
                             <el-button size="small" @click="dialogFormVisible = true,bookingId=scope.row.id" v-if="scope.row.distribution==0">{{$t('button.assign')}}</el-button><el-button size="small" disabled v-else>{{$t('sideMenu.assigned')}}</el-button>
                         </template>
                     </el-table-column>
@@ -88,10 +99,21 @@
                     <el-table-column
                             :label="$t('column.appointmentNumber')"
                             prop="id">
+                        <template slot-scope="props">
+                            <span>{{props.row.id}}</span>
+                            <span v-if="props.row.ratedis==1" style="color: green">(已完成)</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
                             :label="$t('column.time')"
                             prop="needtime">
+                    </el-table-column>
+                    <el-table-column
+                            :label="$t('column.hospital')"
+                            prop="hospital">
+                        <template slot-scope="props">
+                            <span v-if="props.row.hospital==0">{{$t('choices.Beijing')}}</span><span v-else-if="props.row.hospital==1">{{$t('choices.Shanghai')}}</span><span v-else>{{$t('choices.Chengdu')}}</span>
+                        </template>
                     </el-table-column>
                     <el-table-column
                             :label="$t('column.owner')"
@@ -107,7 +129,7 @@
                             width="100">
                         <template slot-scope="scope">
                             <el-button @click="handleClick(scope.row.id)" type="text" size="small">{{$t('button.detail')}}</el-button>
-                            <el-button type="text" size="small">{{$t('button.sendMessage')}}</el-button>
+                            <el-button @click="sendMessage(scope.row.pet.user.username)" type="text" size="small">{{$t('button.sendMessage')}}</el-button>
                             <el-button size="small" @click="dialogFormVisible = true,bookingId=scope.row.id" v-if="scope.row.distribution==0">{{$t('button.assign')}}</el-button><el-button size="small" disabled v-else>{{$t('sideMenu.assigned')}}</el-button>
                         </template>
                     </el-table-column>
@@ -268,6 +290,13 @@
             },
             resetForm() {
                 this.$refs.ruleForm.resetFields();
+            },
+            sendMessage(username){
+                this.$router.push({
+                    path:'/messageDetail',
+                    query:{
+                        user:username},
+                })
             }
         }
     }
@@ -308,4 +337,5 @@
     a:link, a:visited, a:focus {
         color: #3377aa;
     }
+
 </style>
