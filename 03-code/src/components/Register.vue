@@ -31,6 +31,7 @@
 </template>
 
 <script>
+    import crypto from 'crypto'
     export default {
         name: "Register",
         data(){
@@ -74,11 +75,14 @@
             register () {
                 this.$refs.registerForm.validate((valid) => {
                     if(valid){
-                        console.log(this.$store.state)
+                        var md5 = crypto.createHash("md5")
+                        md5.update(this.registerForm.password)
+                        this.pw = md5.digest('hex')
+
                         this.$http
                             .post('http://localhost:8181/api/register', {
                                 username: this.registerForm.username,
-                                password: this.registerForm.password,
+                                password: this.pw,
                                 email:this.registerForm.email,
                                 phoneNumber:this.registerForm.phone
                             })

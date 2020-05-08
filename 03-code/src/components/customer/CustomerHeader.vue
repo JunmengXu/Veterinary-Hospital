@@ -117,6 +117,7 @@
 <script>
     import store from "../../store";
     import UserAva from "../uploadimg/UserAva";
+    import crypto from 'crypto'
 
     export default {
         name: "CustomerHeader",
@@ -326,13 +327,21 @@
                     if (valid) {
                         // alert('submit!');
                         // console.log(this.formInline.petName+" "+this.formInline.petType+" "+this.formInline.petGender)
-                        if (this.originPass == this.formPas.originPas){
+                        var md5 = crypto.createHash("md5")
+                        md5.update(this.formPas.originPas)
+                        this.pw1 = md5.digest('hex')
+
+                        var md52 = crypto.createHash("md5")
+                        md52.update(this.formPas.newPas)
+                        this.pw2 = md52.digest('hex')
+
+                        if (this.originPass == this.pw1){
                             var username = store.state.user.username
                             const _this = this
                             var url = 'http://localhost:8181/api/changePas/' + username
                             this.$http
                                 .post(url, {
-                                    password: this.formPas.newPas
+                                    password: this.pw2
                                 }).then(resp => {
                                 if (resp && resp.status === 200) {
                                     this.dialogFormVisible = false

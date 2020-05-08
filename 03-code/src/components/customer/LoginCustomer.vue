@@ -28,7 +28,7 @@
 </template>
 
 <script>
-   // import Register from "../components/Register"
+    import crypto from 'crypto'
     export default {
         //表单
         name: 'Login',
@@ -70,11 +70,14 @@
             },
             login () {
                 // var _this = this
+                var md5 = crypto.createHash("md5")
+                md5.update(this.loginForm.password)
+                this.pw = md5.digest('hex')
                 console.log(this.$store.state)
                 this.$http
                     .post('http://localhost:8181/api/login', {
                         username: this.loginForm.username,
-                        password: this.loginForm.password
+                        password: this.pw
                     })
                     .then(successResponse => {
                         if (successResponse.data.code === 300) {
