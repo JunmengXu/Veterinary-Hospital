@@ -26,7 +26,7 @@
                             prop="id">
                         <template slot-scope="props">
                             <span>{{props.row.id}}</span>
-                            <span v-if="props.row.ratedis==1" style="color: green">(已完成)</span>
+                            <span v-if="props.row.ratedis==1" style="color: green">(completed)</span>
                         </template>
                     </el-table-column>
                     <el-table-column
@@ -101,7 +101,7 @@
                             prop="id">
                         <template slot-scope="props">
                             <span>{{props.row.id}}</span>
-                            <span v-if="props.row.ratedis==1" style="color: green">(已完成)</span>
+                            <span v-if="props.row.ratedis==1" style="color: green">(completed)</span>
                         </template>
                     </el-table-column>
                     <el-table-column
