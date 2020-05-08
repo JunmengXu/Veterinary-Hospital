@@ -9,7 +9,7 @@
                         v-model="state"
                         style="margin-right: 10px"
                         :fetch-suggestions="querySearch"
-                        placeholder="请输入内容"
+                        :placeholder = "$t('placeholder.content')"
                         @select="handleSelect"
                         @input="handleChange"
                         @keyup.enter.native="sendMessages">
@@ -23,7 +23,7 @@
                         <span class="addr">{{ item.email }}</span>
                     </template>
                 </el-autocomplete>
-                <el-button size="medium" type="primary" @click="sendMessages">查找</el-button>
+                <el-button size="medium" type="primary" @click="sendMessages">{{$t('button.search')}}</el-button>
             </div>
 
             <el-table
@@ -52,7 +52,7 @@
                         :label="$t('column.newMessage')">
                 </el-table-column>
                 <el-table-column
-                        label="操作"
+                        :label="$t('column.operation')"
                         width="150">
                     <template slot-scope="scope">
                         <el-button size="medium" type="primary" @click="sendMessage(scope.row.user.username)">{{$t('button.sendMessage')}}</el-button>

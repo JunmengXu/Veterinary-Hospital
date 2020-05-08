@@ -148,9 +148,10 @@ public class AppointmentController {
         Booking booking1 = bookingService.findById(booking.getId());
         Pet pet = booking1.getPet();
         List<Booking> bookings = bookingService.listByPet(pet.getId());
-        if(bookings.size()==1){
+        /*if(bookings.size()==1){
             pet.setStatus(0);
-        }
+        }*/
+        pet.setStatus(0);
         bookingService.deleteById(booking.getId());
     }
 

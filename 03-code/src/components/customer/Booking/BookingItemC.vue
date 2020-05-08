@@ -9,7 +9,7 @@
                 width="120">
             <template slot-scope="props">
                 <span v-if="props.row.urgency==0" style="color: darkgreen">{{$t('choices.normal')}}</span><span v-else style="color: crimson">{{$t('choices.urgent')}}</span>
-                <span v-if="props.row.ratedis==1" style="color: green">(已完成)</span>
+                <span v-if="props.row.ratedis==1" style="color: green">{{$t('choices.completed')}}</span>
             </template>
         </el-table-column>
         <el-table-column
@@ -53,7 +53,7 @@
                 width="100">
             <template slot-scope="props">
                 <el-button @click="handleClicks(props.row.id)" type="text" size="small">{{$t('button.detail')}}</el-button>
-                <el-button size="small" v-if="props.row.distribution==0" @click="deleteBooking(props.row.id)">删除</el-button><el-button size="small" disabled v-else>删除</el-button>
+                <el-button size="small" v-if="props.row.distribution==0" @click="deleteBooking(props.row.id)">{{$t('button.delete')}}</el-button><el-button size="small" disabled v-else>{{$t('button.delete')}}</el-button>
             </template>
         </el-table-column>
     </el-table>
@@ -98,9 +98,9 @@
                 console.log(id)
             },
             deleteBooking (id){
-                this.$confirm('此操作将永久删除该预约, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
+                this.$confirm(this.$t('message.confirmDeletePet'), this.$t('menu.hint'), {
+                    confirmButtonText: this.$t('button.confirm'),
+                    cancelButtonText: this.$t('button.cancel'),
                     type: 'warning'
                 }).then(() => {
                         this.$http
@@ -114,7 +114,7 @@
                 ).catch(() => {
                     this.$message({
                         type: 'info',
-                        message: '已取消删除'
+                        message: this.$t('message.deletionCancelled')
                     })
                 })
             }

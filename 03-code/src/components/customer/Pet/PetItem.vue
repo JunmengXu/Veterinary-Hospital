@@ -26,7 +26,7 @@
                     <div class="author">
                         <span class="petstatus0" v-if="item.status==0">{{$t('sideMenu.noAppointment')}}</span><span class="petstatus1" v-else-if="item.status==1">{{$t('sideMenu.waitingDistribution')}}</span><span class="petstatus2" v-else-if="item.status==2">{{$t('sideMenu.waitingOperation')}}</span><span class="petstatus3" v-else>{{$t('sideMenu.waitingRelease')}}</span>
                     </div>
-                    <el-button size="small" style="float: right" v-if="item.status==0" @click="deleteBooking(item.id)">删除</el-button><el-button size="small" style="float: right" disabled v-else>删除</el-button>
+                    <el-button size="small" style="float: right" v-if="item.status==0" @click="deleteBooking(item.id)">{{$t('button.delete')}}</el-button><el-button size="small" style="float: right" disabled v-else>{{$t('button.delete')}}</el-button>
                 </el-card>
 
             </el-tooltip>
@@ -188,13 +188,13 @@
                 if(this.petStatus == 0){
                     this.dialogFormVisible = true
                 }else{
-                    this.$message.error('该宠物已在预约中');
+                    this.$message.error(this.$t('message.hasAppointment'));
                 }
             },
             deleteBooking (id){
-                this.$confirm('此操作将永久删除该宠物, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
+                this.$confirm(this.$t('message.confirmDeletePet'), this.$t('menu.hint'), {
+                    confirmButtonText: this.$t('button.confirm'),
+                    cancelButtonText: this.$t('button.cancel'),
                     type: 'warning'
                 }).then(() => {
                         this.$http
@@ -208,7 +208,7 @@
                 ).catch(() => {
                     this.$message({
                         type: 'info',
-                        message: '已取消删除'
+                        message: this.$t('message.deletionCancelled')
                     })
                 })
             }

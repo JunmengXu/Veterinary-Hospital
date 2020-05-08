@@ -1,6 +1,6 @@
 <template>
     <div class="daily_detail">
-        <h2>预约单详细信息</h2>
+        <h2>{{$t('menu.bookingDetail')}}</h2>
         <!--        <div class="bar">-->
         <!--            <el-table-->
         <!--                :data="tableData"-->
@@ -36,8 +36,8 @@
                                disabled>
                     </el-switch><span v-if="bookings.distribution==0" class="el-switchtitle">Unassigned</span>
                 </p>
-                <p class="title">释放时间: <span v-if="bookings.releasetime">{{bookings.releasetime}}</span><span v-else>待定</span></p>
-                <p class="title">所属医院:  <span v-if="bookings.hospital==0">{{$t('choices.Beijing')}}</span><span v-else-if="bookings.hospital==1">{{$t('choices.Shanghai')}}</span><span v-else>{{$t('choices.Chengdu')}}</span></p>
+                <p class="title">{{$t('column.releaseTime')}} <span v-if="bookings.releasetime">{{bookings.releasetime}}</span><span v-else>{{$t('choices.pending')}}</span></p>
+                <p class="title">{{$t('column.hospital')}} <span v-if="bookings.hospital==0">{{$t('choices.Beijing')}}</span><span v-else-if="bookings.hospital==1">{{$t('choices.Shanghai')}}</span><span v-else>{{$t('choices.Chengdu')}}</span></p>
             </div>
 
             <div style="position: absolute;left: 780px;top: 200px">
@@ -45,22 +45,22 @@
             </div>
 
             <div style= "padding-bottom: 20px">
-                <p class="title">宠物状态</p>
+                <p class="title">{{$t('column.status')}} </p>
                 <el-steps :active="bookings.pet.status+1" align-center finish-status="success">
-                    <el-step title="状态1" :description="$t('sideMenu.noAppointment')"></el-step>
-                    <el-step title="状态2" :description="$t('sideMenu.waitingDistribution')"></el-step>
-                    <el-step title="状态3" :description="$t('sideMenu.waitingOperation')"></el-step>
-                    <el-step title="状态4" :description="$t('sideMenu.waitingRelease')"></el-step>
+                    <el-step :title="$t('choices.status1')" :description="$t('sideMenu.noAppointment')"></el-step>
+                    <el-step :title="$t('choices.status2')" :description="$t('sideMenu.waitingDistribution')"></el-step>
+                    <el-step :title="$t('choices.status3')" :description="$t('sideMenu.waitingOperation')"></el-step>
+                    <el-step :title="$t('choices.status4')" :description="$t('sideMenu.waitingRelease')"></el-step>
                 </el-steps>
             </div>
 
-            <el-button style="margin-left: 50%;margin-bottom: 20px" @click="writeRate" v-if="bookings.ratedis==0 && bookings.pet.status==3">评价</el-button><el-button style="margin-left: 50%;margin-bottom: 20px" v-else disabled>评价</el-button>
-            <span v-if="bookings.ratedis==1" style="margin-left: 10px">已评价</span>
+            <el-button style="margin-left: 50%;margin-bottom: 20px" @click="writeRate" v-if="bookings.ratedis==0 && bookings.pet.status==3">{{$t('button.rate')}}</el-button><el-button style="margin-left: 50%;margin-bottom: 20px" v-else disabled>{{$t('button.rate')}}</el-button>
+            <span v-if="bookings.ratedis==1" style="margin-left: 10px">{{$t('choices.rated')}}</span>
             <el-dialog
-                    title='服务评价'
+                    :title="$t('menu.rate')"
                     :visible.sync="dialogFormInfVisible">
                 <el-form :model="formInf" :rules="rules" ref="formInf" class="demo-form-inline" @submit.native.prevent>
-                    <el-form-item label="星级" prop="ratevalue">
+                    <el-form-item :label="$t('column.star')" prop="ratevalue">
                         <div class="block">
                             <span class="demonstration">1-5</span>
                             <el-rate
@@ -71,14 +71,14 @@
                         </div>
                     </el-form-item>
 
-                    <el-form-item label="具体评价" prop="ratecontent">
-                        <el-input v-model="formInf.ratecontent" placeholder="评价"></el-input>
+                    <el-form-item :label="$t('column.comment')" prop="ratecontent">
+                        <el-input v-model="formInf.ratecontent" :placeholder="$t('column.comment')"></el-input>
                     </el-form-item>
                     <el-form-item>
                         <el-button type="primary" @click="submitInfForm()">{{$t('button.add')}}</el-button>
                         <el-button @click="resetInfForm()">{{$t('button.reset')}}</el-button>
                     </el-form-item>
-                    <p style="color: crimson">*评价后宠物状态将自动变为无预约</p>
+                    <p style="color: crimson">{{$t('message.statusChange')}}</p>
                 </el-form>
 
                 <div slot="footer" class="dialog-footer">
@@ -189,7 +189,7 @@
                                 this.$emit('onSubmit')
                                 this.$notify({
                                     title: this.$t('message.successed'),
-                                    message: "评价成功",
+                                    message: this.$t('message.successRate'),
                                     type: 'success'
                                 });
                                 console.log(JSON.stringify(resp))
@@ -197,7 +197,7 @@
                             }else{
                                 this.$notify.error({
                                     title: this.$t('message.failed'),
-                                    message: "评价失败"
+                                    message: this.$t('message.failingRate')
                                 });
                             }
                         })
@@ -206,7 +206,7 @@
                         // console.log('error submit!!');
                         this.$notify.error({
                             title: this.$t('message.failed'),
-                            message: "评价失败"
+                            message: this.$t('message.failingRate')
                         });
                         return false;
                     }

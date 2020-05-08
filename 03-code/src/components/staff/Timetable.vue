@@ -122,13 +122,13 @@
                 booking: [],
                 options: [{
                     value: '0',
-                    label: '北京'
+                    label: this.$t('choices.Beijing')
                 }, {
                     value: '1',
-                    label: '上海'
+                    label: this.$t('choices.Shanghai')
                 }, {
                     value: '2',
-                    label: '成都'
+                    label: this.$t('choices.Chengdu')
                 }],
                 value: '0'
             }

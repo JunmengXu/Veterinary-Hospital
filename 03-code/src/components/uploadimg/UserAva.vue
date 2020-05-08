@@ -13,7 +13,7 @@
     >
         <img v-if="url" :src="url" class="avatar">
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-        <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过2MB</div>
+        <div slot="tip" class="el-upload__tip">{{$t('message.imageRule')}}</div>
     </el-upload>
 </template>
 
@@ -40,16 +40,16 @@
             handleExceed (files, fileList) {
                 // this.$message.warning(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`)
                 console.log(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`)
-                this.$message.warning(`限制选择 1 个图片，请先移除当前的图片`)
+                this.$message.warning(this.$t('message.imageAmount'))
             },
             beforeRemove (file, fileList) {
                 console.log(fileList)
-                return this.$confirm(`确定移除 ${file.name}？`)
+                return this.$confirm(this.$t('message.confirmRemove')+`${file.name}?`)
             },
             handleSuccess (response) {
                 this.url = response
                 this.$emit('onUpload')
-                this.$message.warning('上传成功')
+                this.$message.warning(this.$t('message.successUpload'))
             },
             clear () {
                 this.$refs.upload.clearFiles()
@@ -62,10 +62,10 @@
                 const isLt2M = file.size / 1024 / 1024 < 2;
 
                 if (!isIMG) {
-                    this.$message.error('上传头像图片只能是 JPG 或 PNG 格式!');
+                    this.$message.error(this.$t('message.imageFormat'));
                 }
                 if (!isLt2M) {
-                    this.$message.error('上传头像图片大小不能超过 2MB!');
+                    this.$message.error(this.$t('message.imageSize'));
                 }
                 return isIMG && isLt2M;
             },
@@ -73,7 +73,7 @@
                 this.imageUrl = response[0].response
                 this.url = URL.createObjectURL(file.raw);
                 this.$emit('onUpload')
-                this.$message.success('上传图片成功')
+                this.$message.success(this.$t('message.successUpload'))
             }
         }
     }

@@ -81,7 +81,7 @@
                             var path = this.$route.query.redirect
                             this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
                         }else{
-                            this.$message.error('账号或密码错误');
+                            this.$message.error(this.$t('message.failingLogin'));
                         }
                     })
                     // eslint-disable-next-line no-unused-vars

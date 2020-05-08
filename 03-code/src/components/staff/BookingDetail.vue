@@ -1,6 +1,6 @@
 <template>
     <div class="daily_detail">
-        <h2>预约单详细信息</h2>
+        <h2>{{$t('menu.bookingDetail')}}</h2>
 
         <div :class="[{'bar': (bookings.ratedis==0 )},{'bar2': (bookings.ratedis==1)}]" style="margin-left: 50px; margin-right: 50px">
             <div style="max-width: 60%">
@@ -19,12 +19,12 @@
                                class="el-switch"
                                disabled>
                     </el-switch><span v-if="bookings.distribution==0" class="el-switchtitle">Unassigned</span>
-                    <el-button size="small" @click="dialogFormVisible = true" style="margin-left: 15px" v-if="bookings.distribution==1 && bookings.pet.status==2">再分配</el-button><el-button size="small" @click="dialogFormVisible = true" style="margin-left: 15px" v-if="bookings.distribution==0 && bookings.pet.status==1">{{$t('button.assign')}}</el-button>
+                    <el-button size="small" @click="dialogFormVisible = true" style="margin-left: 15px" v-if="bookings.distribution==1 && bookings.pet.status==2">{{$t('button.reassign')}}</el-button><el-button size="small" @click="dialogFormVisible = true" style="margin-left: 15px" v-if="bookings.distribution==0 && bookings.pet.status==1">{{$t('button.assign')}}</el-button>
                 </p>
-                <p class="title">释放时间: <span v-if="bookings.releasetime">{{bookings.releasetime}}</span><span v-else>待定</span>
-                    <el-button size="small" @click="dialogFormReVisible = true" style="margin-left: 15px" v-if="bookings.pet.status==2">设置释放时间</el-button><el-button size="small" style="margin-left: 15px" v-else disabled>设置释放时间</el-button>
+                <p class="title">{{$t('column.releaseTime')}} <span v-if="bookings.releasetime">{{bookings.releasetime}}</span><span v-else>{{$t('choices.pending')}}</span>
+                    <el-button size="small" @click="dialogFormReVisible = true" style="margin-left: 15px" v-if="bookings.pet.status==2">{{$t('button.release')}}</el-button><el-button size="small" style="margin-left: 15px" v-else disabled>{{$t('button.release')}}</el-button>
                 </p>
-                <p class="title">所属医院:  <span v-if="bookings.hospital==0">{{$t('choices.Beijing')}}</span><span v-else-if="bookings.hospital==1">{{$t('choices.Shanghai')}}</span><span v-else>{{$t('choices.Chengdu')}}</span></p>
+                <p class="title">{{$t('column.hospital')}}  <span v-if="bookings.hospital==0">{{$t('choices.Beijing')}}</span><span v-else-if="bookings.hospital==1">{{$t('choices.Shanghai')}}</span><span v-else>{{$t('choices.Chengdu')}}</span></p>
             </div>
 
             <div style="position: absolute;left: 780px;top: 200px">
@@ -32,17 +32,17 @@
             </div>
 
             <div style= "padding-bottom: 20px">
-                <p class="title">宠物状态</p>
+                <p class="title">{{$t('column.status')}} </p>
                 <el-steps :active="bookings.pet.status+1" align-center finish-status="success">
-                    <el-step title="状态1" :description="$t('sideMenu.noAppointment')"></el-step>
-                    <el-step title="状态2" :description="$t('sideMenu.waitingDistribution')"></el-step>
-                    <el-step title="状态3" :description="$t('sideMenu.waitingOperation')"></el-step>
-                    <el-step title="状态4" :description="$t('sideMenu.waitingRelease')"></el-step>
+                    <el-step :title="$t('choices.status1')" :description="$t('sideMenu.noAppointment')"></el-step>
+                    <el-step :title="$t('choices.status2')" :description="$t('sideMenu.waitingDistribution')"></el-step>
+                    <el-step :title="$t('choices.status3')" :description="$t('sideMenu.waitingOperation')"></el-step>
+                    <el-step :title="$t('choices.status4')" :description="$t('sideMenu.waitingRelease')"></el-step>
                 </el-steps>
             </div>
 
             <div>
-                <p class="title">本次服务客户评价<span v-if="!bookings.ratevalue && !bookings.ratecontent">(暂无)</span>:  <span class="demonstration">评分1-5: {{bookings.ratevalue}}</span> <span>| 评语: {{bookings.ratecontent}}</span></p>
+                <p class="title">{{$t('column.customerRate')}}<span v-if="!bookings.ratevalue && !bookings.ratecontent">{{$t('choices.noRate')}}</span>:  <span class="demonstration">{{$t('column.star')}} 1-5: {{bookings.ratevalue}}</span> <span>| {{$t('column.comment')}} {{bookings.ratecontent}}</span></p>
                 <div class="block" style="margin-left: 10%;padding-bottom: 20px">
                     <el-rate
                             v-model="bookings.ratevalue"
@@ -74,7 +74,7 @@
             </el-dialog>
 
             <el-dialog
-                    title="设置释放时间"
+                    :title="$t('button.release')"
                     :visible.sync="dialogFormReVisible">
                 <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
 

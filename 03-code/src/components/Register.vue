@@ -38,7 +38,7 @@
             var validateEmail = (rule, value, callback) => {
                 const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
                 if (!emailRegex.test(value)) {
-                    callback(new Error('邮箱格式不正确！'))
+                    callback(new Error(this.$t('message.emailFormat')))
                 } else {
                     callback()
                 }
@@ -52,19 +52,17 @@
                 },
                 rules: {
                     username: [
-                        { required: true, message: "请输入用户名", trigger: 'blur' },
-                        { min: 1, max: 10, message: "长度需在1至10个字符", trigger: 'change' }
+                        { required: true, message: this.$t('placeholder.account'), trigger: 'blur' },
                     ],
                     password: [
-                        { required: true, message: "请输入密码", trigger: 'blur' },
-                        { min: 1, max: 10, message: "长度需在1至10个字符", trigger: 'change' }
+                        { required: true, message: this.$t('placeholder.password'), trigger: 'blur' }
                     ],
                     email: [
-                        { required: true, message: "请输入邮箱", trigger: 'blur' },
+                        { required: true, message: this.$t('placeholder.email'), trigger: 'blur' },
                         {validator: validateEmail}
                     ],
                     phone: [
-                        { required: true, message: "请输入电话号码", trigger: 'blur' }
+                        { required: true, message: this.$t('placeholder.phone'), trigger: 'blur' }
                     ]
 
                 },
@@ -89,6 +87,10 @@
                             .then(successResponse => {
                                 if (successResponse.data.code === 200) {
                                     // var data = this.loginForm
+                                    this.$message({
+                                        type: 'success',
+                                        message: this.$t('message.successRegister')
+                                    });
                                     this.$store.commit('register', this.registerForm)
                                     var path = this.$route.query.redirect
                                     this.$router.replace({path: path === '/' || path === undefined ? '/loginc' : path ,query:{username:this.registerForm.username, password: this.registerForm.password}})
@@ -96,7 +98,7 @@
                                 else if(successResponse.data.code === 400){
                                     this.$notify.error({
                                         title: this.$t('message.failed'),
-                                        message: "注册失败，用户已存在！"
+                                        message: this.$t('message.userExist')
                                     });
                                 }
                             })
@@ -107,7 +109,7 @@
                     else{
                         this.$notify.error({
                             title: this.$t('message.failed'),
-                            message: "注册失败，请填写全部项目！"
+                            message: this.$t('message.failingRegister')
                         });
                     }
                 });

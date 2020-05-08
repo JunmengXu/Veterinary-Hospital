@@ -17,9 +17,9 @@
             <el-dropdown id="up11" @command="personInfo">
                 <el-avatar shape="circle" fit="scale-down" :src="userinfo.userimage" v-if="userinfo.userimage"></el-avatar><el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" v-else></el-avatar>
                 <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item command="inf">修改个人信息</el-dropdown-item>
-                    <el-dropdown-item command="ava">修改头像</el-dropdown-item>
-                    <el-dropdown-item command="pas">修改密码</el-dropdown-item>
+                    <el-dropdown-item command="inf">{{$t('button.modifyInformation')}}</el-dropdown-item>
+                    <el-dropdown-item command="ava">{{$t('button.modifyImage')}}</el-dropdown-item>
+                    <el-dropdown-item command="pas">{{$t('button.modifyPassword')}}</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
 
@@ -40,22 +40,22 @@
         </el-menu>
 
         <el-dialog
-                title='修改个人信息'
+                :title="$t('button.modifyInformation')"
                 :visible.sync="dialogFormInfVisible"
         >
             <el-form :model="formInf" :rules="rules" ref="formInf" class="demo-form-inline">
-                <el-form-item label="账户" prop="account">
-                    <el-input v-model="formInf.account" placeholder="账户"></el-input>
+                <el-form-item :label="$t('column.account')" prop="account">
+                    <el-input v-model="formInf.account" :placeholder="$t('column.account')"></el-input>
                 </el-form-item>
 
-                <el-form-item label="电子邮箱" prop="email">
-                    <el-input v-model="formInf.email" placeholder="电子邮箱"></el-input>
+                <el-form-item :label="$t('column.email')" prop="email">
+                    <el-input v-model="formInf.email" :placeholder="$t('column.email')"></el-input>
                 </el-form-item>
-                <el-form-item label="电话" prop="phoneNumber">
-                    <el-input v-model="formInf.phoneNumber" placeholder="电话号码"></el-input>
+                <el-form-item :label = "$t('column.phone')" prop="phoneNumber">
+                    <el-input v-model="formInf.phoneNumber" :placeholder="$t('column.phone')"></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submitInfForm()">{{$t('button.add')}}</el-button>
+                    <el-button type="primary" @click="submitInfForm()">{{$t('button.modify')}}</el-button>
                     <el-button @click="resetInfForm()">{{$t('button.reset')}}</el-button>
                 </el-form-item>
             </el-form>
@@ -71,18 +71,18 @@
                 :visible.sync="dialogFormPasVisible"
         >
             <el-form :model="formPas" :rules="rules2" ref="formPas" class="demo-form-inline">
-                <el-form-item label="原密码" prop="originPas">
-                    <el-input v-model="formPas.originPas" placeholder="原密码" show-password></el-input>
+                <el-form-item :label="$t('column.oldPassword')" prop="originPas">
+                    <el-input v-model="formPas.originPas" :placeholder="$t('column.oldPassword')" show-password></el-input>
                 </el-form-item>
 
-                <el-form-item label="新密码" prop="newPas">
-                    <el-input v-model="formPas.newPas" placeholder="新密码" show-password></el-input>
+                <el-form-item :label="$t('column.newPassword')" prop="newPas">
+                    <el-input v-model="formPas.newPas" :placeholder="$t('column.newPassword')" show-password></el-input>
                 </el-form-item>
-                <el-form-item label="二次确认" prop="new2Pas">
-                    <el-input v-model="formPas.new2Pas" placeholder="二次确认" show-password></el-input>
+                <el-form-item :label="$t('column.doubleCheck')" prop="new2Pas">
+                    <el-input v-model="formPas.new2Pas" :placeholder="$t('column.doubleCheck')"  show-password></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submitPasForm()">{{$t('button.add')}}</el-button>
+                    <el-button type="primary" @click="submitPasForm()">{{$t('button.modify')}}</el-button>
                     <el-button @click="resetPasForm()">{{$t('button.reset')}}</el-button>
                 </el-form-item>
             </el-form>
@@ -93,16 +93,16 @@
         </el-dialog>
 
         <el-dialog
-                title='修改头像'
+                :title="$t('button.modifyImage')"
                 :visible.sync="dialogFormAvaVisible"
         >
             <el-form :model="formAva" ref="formAva" class="demo-form-inline">
-                <el-form-item label="头像" :label-width="formLabelWidth">
-                    <el-input v-model="formAva.avatar" autocomplete="off" placeholder="图片 URL" disabled></el-input>
+                <el-form-item :label="$t('column.userImage')"  :label-width="formLabelWidth">
+                    <el-input v-model="formAva.avatar" autocomplete="off" :placeholder="$t('placeholder.URL')"  disabled></el-input>
                     <user-ava @onUpload="uploadImg" @removeUpload="removeImg" ref="UserAva"></user-ava>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submitAvaForm()">{{$t('button.add')}}</el-button>
+                    <el-button type="primary" @click="submitAvaForm()">{{$t('button.modify')}}</el-button>
                 </el-form-item>
             </el-form>
 
@@ -130,9 +130,9 @@
             // <!--二次验证密码-->
             let validatePass2 = (rule, value, callback) => {
                 if (value === "") {
-                    callback(new Error("请再次输入密码"));
+                    callback(new Error(this.$t('message.doubleCheck')));
                 } else if (value !== this.formPas.newPas) {
-                    callback(new Error("两次输入密码不一致!"));
+                    callback(new Error(this.$t('message.inconsistent')));
                 } else {
                     callback();
                 }
@@ -154,13 +154,13 @@
                 },
                 rules: {
                     account: [
-                        { required: true, message: "请填写账户", trigger: 'blur' }
+                        { required: true, message: this.$t('placeholder.account'), trigger: 'blur' }
                     ],
                     email: [
-                        { required: true, message: "请填写邮箱", trigger: 'blur' }
+                        { required: true, message: this.$t('placeholder.email'), trigger: 'blur' }
                     ],
                     phoneNumber: [
-                        { required: true, message: "请填写电话号码", trigger: 'blur' }
+                        { required: true, message: this.$t('placeholder.phone'), trigger: 'blur' }
                     ]
                 },
 
@@ -171,10 +171,10 @@
                 },
                 rules2: {
                     originPas: [
-                        { required: true, message: "请填写原密码", trigger: 'blur' }
+                        { required: true, message: this.$t('message.oldPassword'), trigger: 'blur' }
                     ],
                     newPas: [
-                        { required: true, message: "请填写新密码", trigger: 'blur' }
+                        { required: true, message: this.$t('message.newPassword'), trigger: 'blur' }
                     ],
                     new2Pas: [
                         { required: true, validator: validatePass2, trigger: 'blur' }
@@ -221,21 +221,21 @@
                 // // localStorage.removeItem('login')
                 // alert(this.$t('message.exit'))
                 // this.$router.replace('/login')
-                this.$confirm('此操作退出当前账号, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
+                this.$confirm(this.$t('message.logOut'), this.$t('menu.hint'), {
+                    confirmButtonText: this.$t('button.confirm'),
+                    cancelButtonText: this.$t('button.cancel'),
                     type: 'warning'
                 }).then(() => {
                     this.$message({
                         type: 'success',
-                        message: '注销成功!'
+                        message: this.$t('message.successLogout')
                     });
                     localStorage.removeItem('user')
                     this.$router.replace('/login')
                 }).catch(() => {
                     this.$message({
                         type: 'info',
-                        message: '已取消登出'
+                        message: this.$t('message.failingLogout')
                     });
                 });
             },
@@ -297,7 +297,7 @@
                                 this.$emit('onSubmit')
                                 this.$notify({
                                     title: this.$t('message.successed'),
-                                    message: "修改成功",
+                                    message: this.$t('message.successModify'),
                                     type: 'success'
                                 });
                                 console.log(JSON.stringify(resp))
@@ -305,7 +305,7 @@
                             }else{
                                 this.$notify.error({
                                     title: this.$t('message.failed'),
-                                    message: "修改失败"
+                                    message: this.$t('message.failingModify')
                                 });
                             }
                         })
@@ -314,7 +314,7 @@
                         // console.log('error submit!!');
                         this.$notify.error({
                             title: this.$t('message.failed'),
-                            message: "修改失败"
+                            message: this.$t('message.failingModify')
                         });
                         return false;
                     }
@@ -349,7 +349,7 @@
                                     this.$emit('onSubmit')
                                     this.$notify({
                                         title: this.$t('message.successed'),
-                                        message: "修改成功，请重新登录",
+                                        message: this.$t('message.reLogin'),
                                         type: 'success'
                                     });
                                     setTimeout(function () {
@@ -358,14 +358,14 @@
                                 }else{
                                     this.$notify.error({
                                         title: this.$t('message.failed'),
-                                        message: "修改失败"
+                                        message: this.$t('message.failingModify')
                                     });
                                 }
                             })
                         }else{
                             this.$notify.error({
                                 title: this.$t('message.failed'),
-                                message: "修改失败,原密码错误"
+                                message:this.$t('message.oldPasswordWrong')
                             });
                         }
 
@@ -374,7 +374,7 @@
                         // console.log('error submit!!');
                         this.$notify.error({
                             title: this.$t('message.failed'),
-                            message: "修改失败"
+                            message: this.$t('message.failingModify')
                         });
                         return false;
                     }
@@ -403,7 +403,7 @@
                                 this.$emit('onSubmit')
                                 this.$notify({
                                     title: this.$t('message.successed'),
-                                    message: "上传头像成功",
+                                    message:this.$t('message.successUpload'),
                                     type: 'success'
                                 });
                                 console.log(JSON.stringify(resp))
@@ -411,7 +411,7 @@
                             }else{
                                 this.$notify.error({
                                     title: this.$t('message.failed'),
-                                    message: "上传头像失败"
+                                    message: this.$t('message.failingUpload')
                                 });
                             }
                         })
@@ -420,7 +420,7 @@
                         // console.log('error submit!!');
                         this.$notify.error({
                             title: this.$t('message.failed'),
-                            message: "上传头像失败"
+                            message: this.$t('message.failingUpload')
                         });
                         return false;
                     }

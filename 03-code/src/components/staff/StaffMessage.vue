@@ -1,6 +1,6 @@
 <template>
     <div id="message_box">
-        <div id="box_head">联系客户</div>
+        <div id="box_head">{{$t('menu.contactCustomer')}}</div>
         <div id="message_show" class="message_show">
             <div v-for="item in myMessages" :key="item.id">
                 <div class="message_time">

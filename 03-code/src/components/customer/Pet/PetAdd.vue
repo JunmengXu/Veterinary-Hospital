@@ -11,8 +11,8 @@
                     <el-input v-model="formInline.petName" :placeholder="$t('placeholder.petName')"></el-input>
                 </el-form-item>
 
-                <el-form-item label="封面" :label-width="formLabelWidth">
-                    <el-input v-model="formInline.petImg" autocomplete="off" placeholder="图片 URL" disabled></el-input>
+                <el-form-item :label="$t('column.photo')" :label-width="formLabelWidth">
+                    <el-input v-model="formInline.petImg" autocomplete="off" :placeholder="$t('placeholder.URL')" disabled></el-input>
                     <pet-image @onUpload="uploadImg" @removeUpload="removeImg" ref="PetImage"></pet-image>
                 </el-form-item>
 
