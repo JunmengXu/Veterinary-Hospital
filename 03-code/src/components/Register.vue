@@ -35,10 +35,18 @@
     export default {
         name: "Register",
         data(){
-            var validateEmail = (rule, value, callback) => {
+            let validateEmail = (rule, value, callback) => {
                 const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
                 if (!emailRegex.test(value)) {
                     callback(new Error(this.$t('message.emailFormat')))
+                } else {
+                    callback()
+                }
+            };
+            let validatePhone = (rule, value, callback) => {
+                const phoneRegex = /^1[3456789]\d{9}$/
+                if (!phoneRegex.test(value)) {
+                    callback(new Error(this.$t('message.phoneFormat')))
                 } else {
                     callback()
                 }
@@ -53,16 +61,19 @@
                 rules: {
                     username: [
                         { required: true, message: this.$t('placeholder.account'), trigger: 'blur' },
+                        { min: 3, max: 15, message:this.$t('message.accountLength') , trigger: "blur" }
                     ],
                     password: [
-                        { required: true, message: this.$t('placeholder.password'), trigger: 'blur' }
+                        { required: true, message: this.$t('placeholder.password'), trigger: 'blur' },
+                        { min: 5, max: 15, message: this.$t('message.passwordLength'), trigger: "blur" }
                     ],
                     email: [
                         { required: true, message: this.$t('placeholder.email'), trigger: 'blur' },
                         {validator: validateEmail}
                     ],
                     phone: [
-                        { required: true, message: this.$t('placeholder.phone'), trigger: 'blur' }
+                        { required: true, message: this.$t('placeholder.phone'), trigger: 'blur' },
+                        {validator: validatePhone}
                     ]
 
                 },

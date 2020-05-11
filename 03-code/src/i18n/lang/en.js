@@ -59,7 +59,7 @@ const en = {
         imageSize:"Image cannot bigger than 2MB!",
         emailFormat:"Wrong email format, please try again!",
         userExist:"Failed to register, user already exists!",
-        failingRegister:"Failed to register, please fill in all information!",
+        failingRegister:"Failed to register, please fill in all information correctly!",
         successRegister:"Registered successfully!",
         failingLogin:"Wrong account or password！",
         hasAppointment:"The pet already has an uncompleted appointment!",
@@ -69,6 +69,11 @@ const en = {
         statusChange:"*Pet's status will change to no appointment after rating",
         successRate:"Rated successfully！",
         failingRate:"Failed to rate!",
+        noUser:"User doesn't exist!",
+        phoneFormat:"Wrong phone number format, please try again!",
+        accountLength:"Account should between 3 to 15 characters!",
+        passwordLength:"Password should between 5 to 15 characters!",
+        failingMessage:"Failed to send message!",
 
     },
     placeholder:{
@@ -154,7 +159,7 @@ const en = {
         petInfo: "Pet Information: ",
         symptomInfo: "Symptom Description: ",
         bookingMadeTime:"Order Time: ",
-        bookingNeedTime:"Time of Appointment: ",
+        bookingNeedTime:"Time of Appointment/Operation time: ",
         account:"Account: ",
         email:"Email: ",
         oldPassword:"Old Password: ",
@@ -184,6 +189,7 @@ const en = {
         status4:"status 4",
         rated:"rated",
         noRate:"（No rate）",
+
     },
     ...enLocale
 };

@@ -159,7 +159,7 @@
                 <el-form-item :label="$t('column.date')" required>
                     <el-col :span="11">
                         <el-form-item prop="date">
-                            <el-date-picker type="date" :placeholder="$t('placeholder.time')" v-model="ruleForm.date" value-format="yyyy-MM-dd" style="width: 100%;"></el-date-picker>
+                            <el-date-picker type="date" :placeholder="$t('placeholder.time')" v-model="ruleForm.date" value-format="yyyy-MM-dd" style="width: 100%;" :picker-options="pickerOptions0"></el-date-picker>
                         </el-form-item>
                     </el-col>
                 </el-form-item>
@@ -180,7 +180,13 @@
         name: 'BookingItem',
         inject:['reload'],
         data () {
+
             return {
+                pickerOptions0: {
+                    disabledDate(time) {
+                        return time.getTime() < Date.now() - 8.64e7;
+                    }
+                },
                 tableData: [{
                     id: '12987122',
                     need_time: '3月13日 下午； 3月14日 上午+下午',

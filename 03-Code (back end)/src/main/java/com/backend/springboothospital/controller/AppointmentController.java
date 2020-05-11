@@ -138,7 +138,7 @@ public class AppointmentController {
         booking1.setRatevalue(rate);
         booking1.setRatecontent(content);
         booking1.setRatedis(1);
-        booking1.getPet().setStatus(0);
+        booking1.getPet().setStatus(4);
         bookingService.addOrUpdate(booking1);
         return booking1;
     }
@@ -147,12 +147,17 @@ public class AppointmentController {
     public void delete(@RequestBody Booking booking) throws Exception {
         Booking booking1 = bookingService.findById(booking.getId());
         Pet pet = booking1.getPet();
-        List<Booking> bookings = bookingService.listByPet(pet.getId());
-        /*if(bookings.size()==1){
-            pet.setStatus(0);
-        }*/
-        pet.setStatus(0);
         bookingService.deleteById(booking.getId());
+        List<Booking> bookings = bookingService.listByPet(pet.getId());
+
+        if(bookings.size()==0){
+            pet.setStatus(0);
+        }
+        else{
+            pet.setStatus(4);
+        }
+
+
     }
 
 

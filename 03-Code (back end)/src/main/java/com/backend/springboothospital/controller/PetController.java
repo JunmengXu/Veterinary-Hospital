@@ -1,7 +1,9 @@
 package com.backend.springboothospital.controller;
 
+import com.backend.springboothospital.entity.Booking;
 import com.backend.springboothospital.entity.Pet;
 import com.backend.springboothospital.entity.User;
+import com.backend.springboothospital.service.BookingService;
 import com.backend.springboothospital.service.PetService;
 import com.backend.springboothospital.service.UserService;
 import com.backend.springboothospital.utils.StringUtils;
@@ -19,6 +21,8 @@ public class PetController {
     PetService petService;
     @Autowired
     UserService userService;
+    @Autowired
+    BookingService bookingService;
 
     @GetMapping("/api/pets")
     public List<Pet> list() throws Exception{
@@ -37,6 +41,9 @@ public class PetController {
         List<Pet> list1 = petService.listByUser(user);
         List<Pet> list2 = petService.listByUser(user);
         for(int i=0 ; i < list1.size() ; i++){
+            if (list1.get(i).getStatus() == 4){
+                list1.get(i).setStatus(0);
+            }
             if(list1.get(i).getStatus() != status){
                 list2.remove(list1.get(i));
             }
@@ -54,7 +61,10 @@ public class PetController {
 
     @PostMapping("/api/petDelete")
     public void delete(@RequestBody Pet pet) throws Exception {
-        petService.deleteById(pet.getId());
+        List<Booking> bookings = bookingService.listByPet(pet.getId());
+        if (bookings.size()==0){
+            petService.deleteById(pet.getId());
+        }
     }
 
 //    上传图片，处理文件名与存储位置

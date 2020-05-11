@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="author">
-                        <span class="petstatus0" v-if="item.status==0">{{$t('sideMenu.noAppointment')}}</span><span class="petstatus1" v-else-if="item.status==1">{{$t('sideMenu.waitingDistribution')}}</span><span class="petstatus2" v-else-if="item.status==2">{{$t('sideMenu.waitingOperation')}}</span><span class="petstatus3" v-else>{{$t('sideMenu.waitingRelease')}}</span>
+                        <span class="petstatus0" v-if="item.status==0||item.status==4">{{$t('sideMenu.noAppointment')}}</span><span class="petstatus1" v-else-if="item.status==1">{{$t('sideMenu.waitingDistribution')}}</span><span class="petstatus2" v-else-if="item.status==2">{{$t('sideMenu.waitingOperation')}}</span><span class="petstatus3" v-else>{{$t('sideMenu.waitingRelease')}}</span>
                     </div>
                     <el-button size="small" style="float: right" v-if="item.status==0" @click="deleteBooking(item.id)">{{$t('button.delete')}}</el-button><el-button size="small" style="float: right" disabled v-else>{{$t('button.delete')}}</el-button>
                 </el-card>
@@ -48,7 +48,7 @@
                     <el-form-item :label="$t('column.time')" required>
                         <el-col :span="11">
                             <el-form-item prop="needtime">
-                                <el-date-picker type="date" :placeholder="$t('placeholder.time')" v-model="formInline2.needtime" style="width: 100%;"></el-date-picker>
+                                <el-date-picker type="date" :placeholder="$t('placeholder.time')" v-model="formInline2.needtime" style="width: 100%;" :picker-options="pickerOptions0"></el-date-picker>
                             </el-form-item>
                         </el-col>
 <!--                        <el-col class="line" :span="2">-</el-col>-->
@@ -94,6 +94,11 @@
         inject:['reload'],
         data () {
             return {
+                pickerOptions0: {
+                    disabledDate(time) {
+                        return time.getTime() < Date.now() - 8.64e7;
+                    },
+                },
                 myPets: [],
                 formInline: {
                     petName: '',
@@ -185,7 +190,7 @@
                 this.$refs.formInline2.resetFields();
             },
             judgeStatus(){
-                if(this.petStatus == 0){
+                if(this.petStatus == 0||this.petStatus == 4){
                     this.dialogFormVisible = true
                 }else{
                     this.$message.error(this.$t('message.hasAppointment'));

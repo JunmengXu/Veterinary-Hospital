@@ -61,7 +61,7 @@
                     <el-form-item :label="$t('column.date')" required>
                         <el-col :span="11">
                             <el-form-item prop="date">
-                                <el-date-picker type="date" :placeholder="$t('placeholder.time')" v-model="ruleForm.date" value-format="yyyy-MM-dd" style="width: 100%;"></el-date-picker>
+                                <el-date-picker type="date" :placeholder="$t('placeholder.time')" v-model="ruleForm.date" value-format="yyyy-MM-dd" style="width: 100%;" :picker-options="pickerOptions0"></el-date-picker>
                             </el-form-item>
                         </el-col>
                     </el-form-item>
@@ -103,6 +103,11 @@
         inject:['reload'],
         data() {
             return {
+                pickerOptions0: {
+                    disabledDate(time) {
+                        return time.getTime() < Date.now() - 8.64e7;
+                    }
+                },
                 tableData: [{
                     name: '客户姓名',
                     contain: '张三；123456789@qq.com；北京市东城区王府井大街1号；13812341234'

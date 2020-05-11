@@ -46,9 +46,9 @@
         <footer>
             <div class="container">
                 <img src="../../assets/image/dog.png" height="40">
-                <p>Beijing</p>
-                <p>Shanghai</p>
-                <p>Guangzhou</p>
+                <p>{{$t('choices.Beijing')}}</p>
+                <p>{{$t('choices.Shanghai')}}</p>
+                <p>{{$t('choices.Chengdu')}}</p>
             </div>
         </footer>
 

@@ -204,7 +204,7 @@
                             user:this.selectUser},
                     })
                 }else{
-                    this.$message.error('无此用户');
+                    this.$message.error(this.$t('message.noUser'));
                 }
             },
             handle(row, event, column) { //点击事件

@@ -18,6 +18,7 @@ const cn = {
         bookingDetail:"预约单详细信息",
         rate:"服务评价",
         contactCustomer:"联系客户",
+
     },
     message:{
         alreadyExist:"用户已存在，请重试！",
@@ -53,7 +54,7 @@ const cn = {
         imageSize:"上传头像图片大小不能超过 2MB!",
         emailFormat:"邮箱格式不正确，请重试！",
         userExist:"注册失败，用户已存在！",
-        failingRegister:"注册失败，请填写全部信息！",
+        failingRegister:"注册失败，请正确填写全部信息！",
         successRegister:"注册成功！",
         failingLogin:"账号或密码错误！",
         hasAppointment:"该宠物已在预约中！",
@@ -63,6 +64,11 @@ const cn = {
         statusChange: "*评价后宠物状态将自动变为无预约",
         successRate:"评价成功！",
         failingRate:"评价失败!",
+        noUser:"无此用户!",
+        phoneFormat:"手机号格式错误，请重试！",
+        accountLength:"长度在3到15个字符!",
+        passwordLength:"长度在5到15个字符!",
+        failingMessage:"发送消息失败!",
     },
     placeholder:{
         account:"请填写账号",
@@ -144,7 +150,7 @@ const cn = {
         petInfo: "宠物信息: ",
         symptomInfo: "病症描述: ",
         bookingMadeTime:"下单时间: ",
-        bookingNeedTime:"预约时间: ",
+        bookingNeedTime:"预约时间/手术时间: ",
         account:"账户：",
         email:"邮箱：",
         oldPassword:"原始密码： ",

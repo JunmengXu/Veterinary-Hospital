@@ -34,7 +34,7 @@
                                v-model="value2"
                                class="el-switch"
                                disabled>
-                    </el-switch><span v-if="bookings.distribution==0" class="el-switchtitle">Unassigned</span>
+                    </el-switch><span v-if="bookings.distribution==0" class="el-switchtitle">{{$t('sideMenu.unassigned')}}</span>
                 </p>
                 <p class="title">{{$t('column.releaseTime')}} <span v-if="bookings.releasetime">{{bookings.releasetime}}</span><span v-else>{{$t('choices.pending')}}</span></p>
                 <p class="title">{{$t('column.hospital')}} <span v-if="bookings.hospital==0">{{$t('choices.Beijing')}}</span><span v-else-if="bookings.hospital==1">{{$t('choices.Shanghai')}}</span><span v-else>{{$t('choices.Chengdu')}}</span></p>

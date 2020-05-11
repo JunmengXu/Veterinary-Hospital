@@ -35,7 +35,7 @@
             <el-input
                     type="textarea"
                     :autosize="{ minRows: 3, maxRows: 4}"
-                    placeholder="请输入内容"
+                    :placeholder="$t('placeholder.content')"
                     v-model="textarea"
                     maxlength="300"
                     show-word-limit>
@@ -98,7 +98,7 @@
                     }else{
                         this.$notify.error({
                             title: this.$t('message.failed'),
-                            message: '发送消息失败'
+                            message: this.$t('message.failingMessage')
                         });
                         return false;
                     }

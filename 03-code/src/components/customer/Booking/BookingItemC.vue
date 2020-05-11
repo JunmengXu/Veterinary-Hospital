@@ -98,7 +98,7 @@
                 console.log(id)
             },
             deleteBooking (id){
-                this.$confirm(this.$t('message.confirmDeletePet'), this.$t('menu.hint'), {
+                this.$confirm(this.$t('message.confirmDeleteAppointment'), this.$t('menu.hint'), {
                     confirmButtonText: this.$t('button.confirm'),
                     cancelButtonText: this.$t('button.cancel'),
                     type: 'warning'
