@@ -9,6 +9,7 @@ import com.backend.springboothospital.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.Console;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -147,16 +148,14 @@ public class AppointmentController {
     public void delete(@RequestBody Booking booking) throws Exception {
         Booking booking1 = bookingService.findById(booking.getId());
         Pet pet = booking1.getPet();
-        bookingService.deleteById(booking.getId());
         List<Booking> bookings = bookingService.listByPet(pet.getId());
-
-        if(bookings.size()==0){
+        if(bookings.size()==1){
             pet.setStatus(0);
         }
         else{
             pet.setStatus(4);
         }
-
+        bookingService.deleteById(booking.getId());
 
     }
 
