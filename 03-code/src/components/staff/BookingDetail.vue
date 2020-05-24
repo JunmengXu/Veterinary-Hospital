@@ -33,7 +33,17 @@
 
             <div style= "padding-bottom: 20px">
                 <p class="title">{{$t('column.status')}} </p>
-                <el-steps :active="bookings.pet.status+1" align-center finish-status="success">
+                <el-steps :active="bookings.pet.status+1" align-center finish-status="success" v-if="bookings.ratedis==0">
+                    <el-step :title="$t('choices.status1')" :description="$t('sideMenu.noAppointment')"></el-step>
+                    <el-step :title="$t('choices.status2')" :description="$t('sideMenu.waitingDistribution')"></el-step>
+                    <el-step :title="$t('choices.status3')" :description="$t('sideMenu.waitingOperation')"></el-step>
+                    <el-step :title="$t('choices.status4')" :description="$t('sideMenu.waitingRelease')"></el-step>
+                </el-steps>
+            </div>
+
+            <div style= "padding-bottom: 20px">
+                <p class="title">{{$t('column.status')}} </p>
+                <el-steps :active="4" align-center finish-status="success" v-if="bookings.ratedis==1">
                     <el-step :title="$t('choices.status1')" :description="$t('sideMenu.noAppointment')"></el-step>
                     <el-step :title="$t('choices.status2')" :description="$t('sideMenu.waitingDistribution')"></el-step>
                     <el-step :title="$t('choices.status3')" :description="$t('sideMenu.waitingOperation')"></el-step>
@@ -81,7 +91,7 @@
                     <el-form-item :label="$t('column.date')" required>
                         <el-col :span="11">
                             <el-form-item prop="date">
-                                <el-date-picker type="date" :placeholder="$t('placeholder.time')" v-model="ruleForm2.date" value-format="yyyy-MM-dd" style="width: 100%;"></el-date-picker>
+                                <el-date-picker type="date" :placeholder="$t('placeholder.time')" v-model="ruleForm2.date" value-format="yyyy-MM-dd" style="width: 100%;" :picker-options="pickerOptions0"></el-date-picker>
                             </el-form-item>
                         </el-col>
                     </el-form-item>

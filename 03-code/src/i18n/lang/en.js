@@ -70,7 +70,7 @@ const en = {
         successRate:"Rated successfully！",
         failingRate:"Failed to rate!",
         noUser:"User doesn't exist!",
-        phoneFormat:"Wrong phone number format, please try again!",
+        phoneFormat:"Wrong format,needs 9 digits with 1 begin, please try again!",
         accountLength:"Account should between 3 to 15 characters!",
         passwordLength:"Password should between 5 to 15 characters!",
         failingMessage:"Failed to send message!",

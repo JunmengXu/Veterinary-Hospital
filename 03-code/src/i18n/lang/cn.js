@@ -65,7 +65,7 @@ const cn = {
         successRate:"评价成功！",
         failingRate:"评价失败!",
         noUser:"无此用户!",
-        phoneFormat:"手机号格式错误，请重试！",
+        phoneFormat:"手机号格式错误，需为1开头的9位数，请重试！",
         accountLength:"长度在3到15个字符!",
         passwordLength:"长度在5到15个字符!",
         failingMessage:"发送消息失败!",

@@ -44,7 +44,7 @@
                 }
             };
             let validatePhone = (rule, value, callback) => {
-                const phoneRegex = /^1[3456789]\d{9}$/
+                const phoneRegex = /^1[123456789]\d{9}$/
                 if (!phoneRegex.test(value)) {
                     callback(new Error(this.$t('message.phoneFormat')))
                 } else {
