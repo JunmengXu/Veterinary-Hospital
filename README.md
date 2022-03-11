@@ -1,7 +1,7 @@
 # Veterinary-Hospital-Front-End-
 Group 5 Archer in COMP3030J
 
-[![Watch the video](https://github.com/17206032/Veterinary-Hospital/blob/master/pics/1.PNG)](https://github.com/17206032/Veterinary-Hospital/blob/master/pics/5_presentation.mp4)
+For watching the presentation about the web of our team work, please go to https://github.com/17206032/Veterinary-Hospital/blob/master/pics/5_presentation.mp4  
 
 ![image](https://github.com/17206032/Veterinary-Hospital/blob/master/pics/1.PNG)
 ![image](https://github.com/17206032/Veterinary-Hospital/blob/master/pics/2.PNG)
